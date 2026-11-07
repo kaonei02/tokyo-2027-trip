@@ -4,37 +4,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2027 日本東京＋野澤溫泉滑雪 12日互動手冊</title>
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="東京野澤2027" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
       --background: #f8fafc;
       --foreground: #0f172a;
       --card: #ffffff;
-      --border: #e2e8f0;
+      --card-foreground: #0f172a;
       --primary: #2563eb;
       --primary-foreground: #ffffff;
       --secondary: #f1f5f9;
       --secondary-foreground: #1e293b;
+      --muted: #f1f5f9;
       --muted-foreground: #64748b;
+      --border: #e2e8f0;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --background: #0f172a;
         --foreground: #f8fafc;
         --card: #1e293b;
-        --border: #334155;
+        --card-foreground: #f8fafc;
         --primary: #3b82f6;
         --primary-foreground: #ffffff;
         --secondary: #334155;
         --secondary-foreground: #f1f5f9;
+        --muted: #1e293b;
         --muted-foreground: #94a3b8;
+        --border: #334155;
       }
     }
     @media print {
+      :root {
+        --background: #ffffff !important;
+        --foreground: #0f172a !important;
+        --card: #ffffff !important;
+        --card-foreground: #0f172a !important;
+        --primary: #1d4ed8 !important;
+        --primary-foreground: #ffffff !important;
+        --secondary: #f1f5f9 !important;
+        --secondary-foreground: #1e293b !important;
+        --muted: #f1f5f9 !important;
+        --muted-foreground: #475569 !important;
+        --border: #cbd5e1 !important;
+      }
       #tab-itinerary, #tab-disney, #tab-onsen, #tab-checklist, #tab-kisarazu {
         display: block !important;
         margin-top: 1.25rem;
@@ -83,10 +96,10 @@
         ♨️ 野澤 13 外湯集章卡 (<span id="onsen-count">0</span>/13)
       </button>
       <button onclick="switchMainTab('checklist')" id="tab-btn-checklist" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        ✅ 行前預約檢核表 (<span id="check-count">0</span>/7)
+        ✅ 行前預約檢核表 (<span id="check-count">0</span>/8)
       </button>
       <button onclick="switchMainTab('kisarazu')" id="tab-btn-kisarazu" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        🛍️ 木更津 Outlet ＆ 必吃清單
+        🍓 採草莓 ＆ 木更津 Outlet ＆ 必吃清單
       </button>
     </div>
 
@@ -189,14 +202,46 @@
 
     <!-- TAB 4: KISARAZU OUTLET & FOOD GUIDE -->
     <div id="tab-kisarazu" class="hidden space-y-4">
+      <!-- Chiaki Strawberry Farm Official Info Card -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg font-bold text-[var(--foreground)]">🍓 1/23 (六) ちあきのいちご園（Chiaki's Strawberry Farm）官網完整攻略</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">📍 千葉県大網白里市南横川 3490（JR 外房線「永田駅」步行 10 分鐘）｜⏱️ 09:30–10:45（60分鐘完熟草莓吃到飽）</p>
+          </div>
+          <div class="flex gap-2">
+            <a href="https://chiakino15.xyz/" target="_blank" class="px-3 py-1.5 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-90">🌐 官方網站</a>
+            <a href="https://www.jalan.net/kankou/spt_guide000000212767/" target="_blank" class="px-3 py-1.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold hover:opacity-90">📅 じゃらん (Jalan) 預約頁</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">⚠️ 官網預約鐵則（超重要！）</div>
+            <div>• <strong>僅限週六、週日開放採果（完全預約制）</strong></div>
+            <div>• 官網聲明：<strong>「僅接受從 じゃらんnet (Jalan) 網路預約」</strong>（不受理電話或現場臨時入場）！</div>
+            <div>• <strong>場次選擇</strong>：一日僅兩場（<strong>第一部 09:30～10:30 報到</strong> ／ 第二部 12:00～13:00 報到），務必預訂 <strong>1/23 (六) 09:30 第一部</strong>！</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">🍓 兩種吃到飽方案（1月中旬–4/9 成人價）</div>
+            <div>• <strong>Standard 方案 (¥2,900)</strong>：高設栽培溫室（40cm寬植槽免彎腰），最多約 <strong>10 個品種</strong>（紅ほっぺ、おいCベリー、かおりの、章姫、恋みのり、よつぼし、越後姫等）。</div>
+            <div>• <strong>🔥 Premium 方案 (¥3,900・大推)</strong>：除高設溫室外，<strong>可進「土耕栽培溫室」採收糖度破 20 度的幻之黑草莓「真紅の美鈴」＆師匠直傳「とちおとめ（栃乙女）」</strong>，再<strong>免費送「白草莓」迷你杯</strong>（或迷你果醬）！</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">🐴 直賣所土耕栃乙女 ＆ 迷你馬 BERRY</div>
+            <div>• <strong>園內直賣所 (09:30起)</strong>：販售一般高設採果區吃不到的師匠直傳「土耕栽培完熟栃乙女」與手工無添加草莓果醬。</div>
+            <div>• <strong>園區吉祥物</strong>：採完草莓別忘了去找超可愛的迷你馬 <strong>「BERRY ちゃん（ミニチュアホース）」</strong> 互動拍照！</div>
+          </div>
+        </div>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
-          <h2 class="text-lg font-bold text-[var(--foreground)]">🛍️ 1/23 MITSUI OUTLET 木更津 分區專櫃</h2>
-          <p class="text-xs text-[var(--muted-foreground)]">抵達後先去服務台掃 QR Code 領外國遊客 10% 免稅＋折價券。</p>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">🛍️ 1/23 MITSUI OUTLET 木更津 分區專櫃 (12:30–18:30)</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">園區營業至 20:00｜抵達後先去服務台掃 QR Code 領外國遊客 10% 免稅＋折價券。</p>
           <div class="space-y-2.5 text-sm">
             <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
               <div class="font-semibold">🌿 Garden Zone（花園 / 中區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">HOKA（跑鞋/登山鞋）、SALOMON（戶外鞋/雪具）、lululemon（運動瑜珈服飾）</div>
+              <div class="text-xs text-[var(--muted-foreground)]">Lululemon（運動瑜珈服飾）、HOKA（跑鞋/登山鞋）、Salomon（戶外潮流鞋/雪具周邊）</div>
             </div>
             <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
               <div class="font-semibold">🧭 South Zone（南區）</div>
@@ -204,11 +249,11 @@
             </div>
             <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
               <div class="font-semibold">🌅 East Zone（東區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">QUIKSILVER Factory Outlet、Disney Store（迪士尼過季優惠）、Nike</div>
+              <div class="text-xs text-[var(--muted-foreground)]">Quiksilver Factory Outlet、Disney Store（迪士尼過季優惠）、Nike</div>
             </div>
             <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
               <div class="font-semibold">🏔️ North Zone（北區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">BILLABONG、UNDER ARMOUR Factory House、Timberland、The North Face</div>
+              <div class="text-xs text-[var(--muted-foreground)]">Under Armour Factory House、Billabong、Timberland、The North Face</div>
             </div>
           </div>
         </div>
@@ -230,8 +275,8 @@
               <span class="text-[var(--muted-foreground)]">石板現煎半熟炸牛排配山藥泥麥飯（排入 1/22 富士山回新宿晚餐）</span>
             </div>
             <div class="p-2.5 rounded-xl border border-[var(--border)]">
-              <span class="font-bold text-sm">前男友燒肉 / 敘敘苑 / 新宿風雲兒沾麵</span><br/>
-              <span class="text-[var(--muted-foreground)]">排入 1/23 東京鐵塔夜景後晚餐 ＆ 1/24 新宿最後一晚慶功宴</span>
+              <span class="font-bold text-sm">前男友燒肉 / 敘敘苑 / 新宿風雲兒沾麵 / 居酒屋</span><br/>
+              <span class="text-[var(--muted-foreground)]">排入 1/23 木更津高速巴士回新宿晚餐 ＆ 1/24 新宿最後一晚慶功宴</span>
             </div>
             <div class="p-2.5 rounded-xl border border-[var(--border)]">
               <span class="font-bold text-sm">野澤溫泉：和牛亭壽喜燒 ＆ 源六晚餐 ＆ 山頂銷魂燒肉飯</span><br/>
@@ -391,19 +436,18 @@
       },
       {
         day: "D10", date: "1/23", dow: "六", phase: "tokyo",
-        title: "明治神宮晨間參拜 ➔ MITSUI OUTLET 木更津 ➔ 東京鐵塔夜景 🗼",
+        title: "千葉「ちあきのいちご園」採草莓 🍓 ➔ MITSUI OUTLET 木更津 🛍️ ➔ 新宿",
         leave: "假日", hotel: "第10晚：安心小宿 東京滿新宿 (5700/3=1900/人)",
         members: "小白、Alan、傑若米 (D3)",
-        highlights: "🚌 回程從木更津搭往「東京站／濱松町」的巴士，轉去東京鐵塔看夜景只要 10 分鐘！",
+        highlights: "🍓 官網規定：ちあきのいちご園「僅限週六日、完全預約制且僅接受 じゃらん(Jalan) 網路預約」！推薦訂 09:30 第一部 Premium 方案(¥3,900)吃黑草莓「真紅の美鈴」＆土耕「栃乙女」！",
         events: [
-          { time: "07:30–08:30", type: "meal", text: "🍛 安心小宿免費早餐（續住同一間，行李直接留館內免搬動！）" },
-          { time: "08:30–10:20", type: "sight", text: "⛩️ 【明治神宮】晨間參拜（新宿搭山手線 2 站至原宿，走大鳥居、拍清酒菰樽牆、本殿祈福）" },
-          { time: "10:50–11:45", type: "transit", text: "🚌 Busta 新宿 4F 搭乘【三井 OUTLET 木更津 直達高速巴士】（55 分鐘直達大門）" },
-          { time: "12:00–13:15", type: "meal", text: "🍣 木更津午餐：【迴轉壽司 函太郎】或 美食街【松戶富田沾麵 ／ 金子半之助天丼】" },
-          { time: "13:15–17:30", type: "sight", text: "🛍️ 【MITSUI OUTLET 木更津】血拼：HOKA、SALOMON、lululemon、mont-bell、QUIKSILVER、BILLABONG、UA、Disney" },
-          { time: "17:40–18:40", type: "transit", text: "🚌 搭木更津直達巴士返回【東京站 或 濱松町】（離東京鐵塔最近！）" },
-          { time: "19:00–20:15", type: "sight", text: "🗼 【東京鐵塔看夜景】（芝公園 4 號地、赤羽橋站出口、地下停車場樓梯打卡點）" },
-          { time: "20:30–22:30", type: "meal", text: "🥩 DINNER 回東京／新宿：【前男友燒肉 (牛角/俺の焼肉)】或【風雲兒沾麵】／【權八居酒屋】" }
+          { time: "07:15–07:30", type: "meal", text: "🍛 安心小宿東京滿新宿 出發：在膠囊旅館享用免費早餐後出發（續住免搬行李）" },
+          { time: "07:30–09:15", type: "transit", text: "🚆 前往千葉「永田站」：新宿站(JR中央線快速) ➔ 東京站(轉JR京葉線特急/快速) ➔ 蘇我站(換乘JR外房線) ➔ 永田站（總車程約1小時35–45分），出站步行10分鐘抵草莓園" },
+          { time: "09:30–10:45", type: "sight", text: "🍓 ちあきのいちご園 採草莓（60分鐘）：09:30準時報到入場，享1小時完熟草莓吃到飽（Standard ¥2,900 高設10品種 ／ Premium ¥3,900 加碼土耕黑草莓「真紅の美鈴」＆「栃乙女」＋送白草莓杯），結束逛直賣所土耕栃乙女、手工果醬＆看迷你馬 BERRY ちゃん" },
+          { time: "11:00–12:30", type: "transit", text: "🚆🚌 前往 MITSUI OUTLET PARK 木更津（電車轉巴士不走回頭路）：永田站(JR外房線約25分) ➔ 蘇我站(轉JR內房線約30–35分) ➔ 袖ヶ浦站或木更津站 ➔ 轉搭路線巴士(約10–20分)抵達 Outlet" },
+          { time: "12:30–18:30", type: "sight", text: "🛍️ MITSUI OUTLET PARK 木更津 逛街 & 用餐：先在美食街/餐廳吃午餐（函太郎壽司/松戶富田沾麵/金子半之助），接著開逛 Lululemon、HOKA、Salomon、mont-bell、Under Armour、Quiksilver、Billabong、Timberland 及 Disney Store（營業至 20:00）" },
+          { time: "18:30–19:40", type: "transit", text: "🚌 返回新宿 & 安心小宿東京滿新宿：從木更津 Outlet 搭乘「新宿線高速巴士」直達 Busta 新宿（車程約 60–70 分鐘，免去提戰利品轉乘電車的麻煩！）" },
+          { time: "19:45–22:00", type: "meal", text: "🍻 新宿市區吃晚餐（居酒屋、前男友燒肉或風雲兒沾麵/拉麵），餐後步行回安心小宿泡湯休息" }
         ]
       },
       {
@@ -461,6 +505,7 @@
       { id: "c4", date: "2026/12/15", title: "預訂 1/15 & 1/20 JR 北陸新幹線車票（上野 ↔ 飯山）", detail: "乘車前 1 個月於 JR-EAST Train Reservation 預訂指定席（含大型行李席位）。", defaultDone: false },
       { id: "c5", date: "2026/12/16", title: "預約野澤熱門晚餐：和牛亭壽喜燒 (1/16) ＆ びっきゃ燒肉 (1/19)", detail: "1 月中旬為野澤旺季，熱門餐廳務必提前 3–4 週電話或請信用卡秘書預約。", defaultDone: false },
       { id: "c6", date: "2026/12/22", title: "預訂 1/22 新宿↔富士山 高速巴士來回票（傑瑞米負責）", detail: "去程買「Busta新宿 ➔ 中央道下吉田」(07:15/07:35)；回程買「河口湖駅 ➔ Busta新宿」(18:10/18:40)。", defaultDone: false },
+      { id: "c8", date: "2026/12月底–1月初", title: "於 じゃらん(Jalan) 預約 1/23 (六) 09:30【ちあきのいちご園】採草莓", detail: "官網規定僅限週六日開放、完全預約制且「僅接受 Jalan 網路預約」！推薦訂第一部 09:30 Premium 方案 (¥3,900/人，含土耕黑草莓真紅の美鈴、栃乙女＆白草莓迷你杯)。", defaultDone: false },
       { id: "c7", date: "2027/01/14 09:00前", title: "向野澤源六 (Genroku) 預約 1/16 早餐", detail: "源六規定需於用餐日 2 天前 09:00 AM 前預約（1/15 入住時再當面訂 1/17 早餐与 1/18 早晚餐）。", defaultDone: false }
     ];
 
