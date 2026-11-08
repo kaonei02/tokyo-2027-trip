@@ -48,7 +48,7 @@
         --muted-foreground: #475569 !important;
         --border: #cbd5e1 !important;
       }
-      #tab-itinerary, #tab-disney, #tab-onsen, #tab-checklist, #tab-kisarazu {
+      #tab-itinerary, #tab-disney, #tab-onsen, #tab-nozawa-guide, #tab-kisarazu, #tab-shopping-rules, #tab-budget, #tab-checklist {
         display: block !important;
         margin-top: 1.25rem;
       }
@@ -58,48 +58,58 @@
     }
   </style>
 </head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-4 md:p-6">
-  <div class="max-w-5xl mx-auto space-y-5">
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased transition-colors duration-200 min-h-screen">
 
-    <!-- Header Card -->
-    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+  <div class="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-6">
       <div class="space-y-1.5">
-        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-medium">
-          <span>❄️ 2027/01/14 (四) – 01/25 (一)</span>
-          <span>•</span>
-          <span>12天11夜</span>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)]">2027.01.14 – 01.25</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--secondary)] text-[var(--secondary-foreground)]">12 天 11 夜完全指南</span>
+          <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300">⚠️ 強制規定：拍2-3支MV・絕對不能吵架</span>
         </div>
-        <h1 class="text-xl md:text-2xl font-bold text-[var(--foreground)]">日本東京＋野澤溫泉滑雪 互動旅遊手冊</h1>
-        <p class="text-sm text-[var(--muted-foreground)]">
-          成員：小白、Alan（全程 1/14–1/25）＋ 傑若米（1/20 羽田會合–1/25）｜強制規定：拍 2–3 支 MV ＆ 絕對不吵架 ❤️
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">🇯🇵 2027 日本東京＋野澤溫泉滑雪 互動手冊</h1>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)]">
+          成員：<strong>小白、Alan</strong>（全程 1/14–1/25） ＋ <strong>傑若米 (怪寶貝)</strong>（1/20–1/25 合體加入）｜已完整整合 Google 試算表筆記、交通時程、即時檢核表與預算精算！
         </p>
       </div>
-      <div class="flex flex-wrap items-center gap-2">
-        <a href="https://docs.google.com/spreadsheets/d/1krzeMA_yB_dQIpz_sGzqvJxsGOeA4sIxsfmP_2ITJN8/edit?gid=1893305671#gid=1893305671" target="_blank" class="px-3.5 py-2 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold hover:opacity-90 transition">
-          📊 開啟 Google 試算表完善版
+      <div class="flex items-center gap-2 shrink-0 no-print">
+        <a href="https://docs.google.com/spreadsheets/u/0/d/1krzeMA_yB_dQIpz_sGzqvJxsGOeA4sIxsfmP_2ITJN8/htmlview#gid=377794634" target="_blank" class="px-3.5 py-2 rounded-xl bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-80 transition shadow-sm">
+          📊 原始試算表
         </a>
         <button onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-90 transition">
-          🖨️ 列印 / 存成 PDF
+          🖨️ 列印 / 存 PDF
         </button>
       </div>
     </div>
 
     <!-- Top Navigation Tabs -->
-    <div class="flex flex-wrap gap-2 border-b border-[var(--border)] pb-3">
-      <button onclick="switchMainTab('itinerary')" id="tab-btn-itinerary" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition">
-        📅 每日詳細行程 (D1–D12)
+    <div class="flex flex-wrap gap-2 border-b border-[var(--border)] pb-3 no-print">
+      <button onclick="switchMainTab('itinerary')" id="tab-btn-itinerary" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition">
+        📅 每日行程 (D1–D12)
       </button>
-      <button onclick="switchMainTab('disney')" id="tab-btn-disney" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        🌋 迪士尼海洋必玩攻略 (<span id="disney-count">0</span>/10)
+      <button onclick="switchMainTab('disney')" id="tab-btn-disney" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        🌋 迪士尼海洋攻略 (<span id="disney-count">0</span>/10)
       </button>
-      <button onclick="switchMainTab('onsen')" id="tab-btn-onsen" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        ♨️ 野澤 13 外湯集章卡 (<span id="onsen-count">0</span>/13)
+      <button onclick="switchMainTab('onsen')" id="tab-btn-onsen" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        ♨️ 野澤 13 外湯集章 (<span id="onsen-count">0</span>/13)
       </button>
-      <button onclick="switchMainTab('checklist')" id="tab-btn-checklist" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        ✅ 行前預約檢核表 (<span id="check-count">0</span>/8)
+      <button onclick="switchMainTab('nozawa-guide')" id="tab-btn-nozawa-guide" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        🎿 野澤交通＆雪具指南
       </button>
-      <button onclick="switchMainTab('kisarazu')" id="tab-btn-kisarazu" class="px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        🍓 採草莓 ＆ 木更津 Outlet ＆ 必吃清單
+      <button onclick="switchMainTab('kisarazu')" id="tab-btn-kisarazu" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        🍓 採草莓＆木更津＆美食
+      </button>
+      <button onclick="switchMainTab('shopping-rules')" id="tab-btn-shopping-rules" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        🛒 必買清單＆旅行備忘錄 (<span id="shop-count">0</span>/6)
+      </button>
+      <button onclick="switchMainTab('budget')" id="tab-btn-budget" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        💰 3人預算＆住宿分攤
+      </button>
+      <button onclick="switchMainTab('checklist')" id="tab-btn-checklist" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
+        ✅ 行前預約檢核表 (<span id="check-count">0</span>/9)
       </button>
     </div>
 
@@ -109,7 +119,7 @@
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-3.5 shadow-sm space-y-3">
         <div class="flex items-center justify-between flex-wrap gap-2">
           <span class="text-xs font-semibold text-[var(--muted-foreground)] uppercase tracking-wider">選擇日期（點擊切換單日或顯示全部）</span>
-          <div class="flex gap-1.5">
+          <div class="flex gap-1.5 flex-wrap">
             <button onclick="selectPhase('all')" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-80">全部 12 天</button>
             <button onclick="selectPhase('nozawa')" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-80">🎿 野澤滑雪段 (1/15–1/20)</button>
             <button onclick="selectPhase('tokyo')" class="px-2.5 py-1 rounded-lg text-xs font-medium bg-[var(--secondary)] text-[var(--secondary-foreground)] hover:opacity-80">🗼 東京三人合體段 (1/20–1/25)</button>
@@ -122,16 +132,15 @@
       <div id="days-container" class="space-y-4"></div>
     </div>
 
-    <!-- TAB DISNEY: TOKYO DISNEYSEA MUST-PLAY & TIME ALLOCATION -->
+    <!-- TAB 2: DISNEY MUST-PLAY -->
     <div id="tab-disney" class="hidden space-y-4">
-      <!-- 3-Person Entry Strategy Card -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <h2 class="text-lg font-bold text-[var(--foreground)]">🌋 1/21 (四) 東京迪士尼海洋・2027 最新制度＆25週年最終章攻略</h2>
           <span class="px-2.5 py-1 rounded-full bg-[var(--secondary)] text-[var(--secondary-foreground)] text-xs font-semibold">✨ 海洋 25 週年 Sparkling Jubilee 最終章 (1/13–3/31)</span>
         </div>
-        <p class="text-xs text-[var(--muted-foreground)]">
-          ⚠️ <strong>2027 最新制度重點</strong>：<strong>「40週年優先入場卡 (PP)」已於 2026/8/31 結束</strong>，且 <strong>「夢幻泉鄉免費 Standby Pass」已於 2025/4/1 廢除</strong>！現在夢幻泉鄉全天自由進出、所有設施皆可直接現場排隊，搭配 <strong>付費 DPA</strong> 與 <strong>Single Rider 單人通道</strong> 就是最強無敵組合！
+        <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+          ⚠️ <strong>2027 最新制度重點</strong>：<strong>「40週年優先入場卡 (PP)」已於 2026/8/31 結束</strong>，且 <strong>「夢幻泉鄉免費 Standby Pass」已廢除</strong>！現在夢幻泉鄉全天自由進出、所有設施皆可直接現場排隊，搭配 <strong>付費 DPA</strong> 與 <strong>Single Rider 單人通道</strong> 就是最強無敵組合！
         </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
           <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
@@ -139,19 +148,19 @@
             <div>趁 90% 遊客停在門口，3 人直接快步走去最深處 <strong>夢幻泉鄉</strong>，免抽卡直接現場排 <strong>《小飛俠》＋《樂佩天燈》</strong>（剛開園排僅需 20–30 分鐘，立省兩張 DPA！）。</div>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
-            <div class="font-bold text-sm text-[var(--foreground)]">📱 A 寶貝（負責買付費 DPA）</div>
-            <div>1. 08:30 刷入園秒買排隊最久的 <strong>《安娜與艾莎的冰雪之旅》DPA (¥2,000，選10:00時段)</strong></div>
-            <div class="text-[var(--muted-foreground)]">⏰ <strong>滿 60 分鐘（09:30）</strong> 設鬧鐘買第 2 張 DPA <strong>《翱翔：夢幻奇航》</strong>（10:30 可視情況買第 3 張）。</div>
+            <div class="font-bold text-sm text-[var(--foreground)]">📱 A 寶貝（負責購票＆搶付費 DPA）</div>
+            <div>1. <strong>門票</strong>：出發前 2 個月（11/21 日本 14:00）準時搶票！</div>
+            <div>2. 08:30 刷入園秒買排隊最久的 <strong>《安娜與艾莎的冰雪之旅》DPA (¥2,000，選10:00時段)</strong>。</div>
+            <div class="text-[var(--muted-foreground)]">⏰ <strong>滿 60 分鐘（09:30）</strong> 設鬧鐘買第 2 張 DPA <strong>《翱翔：夢幻奇航》</strong>！</div>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
             <div class="font-bold text-sm text-[var(--foreground)]">📱 傑若米（點餐＋單人通道秘技）</div>
-            <div>1. 08:30 用 <strong>Mobile Order</strong> 預訂 12:00 夢幻泉鄉「阿倫戴爾皇家宴會廳」午餐＋抽劇場秀 Entry Request。</div>
+            <div>1. 08:30 用 <strong>Mobile Order</strong> 預訂 12:00 夢幻泉鄉「阿倫戴爾皇家宴會廳」午餐吹暖氣。</div>
             <div>2. <strong>《印第安納瓊斯》＆《忿怒雙神》</strong> 直接跟入口人員說走 <strong>Single Rider 單人通道</strong>（10分鐘內免費神速上車！）。</div>
           </div>
         </div>
       </div>
 
-      <!-- Must-Play 10 Rides Interactive Tracker -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
@@ -165,15 +174,14 @@
         <div id="disney-rides-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
       </div>
 
-      <!-- Full-Day Time Allocation Table -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
         <h2 class="text-lg font-bold text-[var(--foreground)]">⏰ 1/21 (四) 全天精準時間分配（由裡往外玩・避開所有人潮！）</h2>
-        <p class="text-xs text-[var(--muted-foreground)]">動線設計：開園直衝最深處「夢幻泉鄉」➔ 失落河三角洲 (Single Rider) ➔ 阿拉伯海岸 ➔ 神秘島 ➔ 地中海港灣 (25週年港灣秀＋翱翔) ➔ 美國海濱 ➔ 夜間水上大秀！</p>
+        <p class="text-xs text-[var(--muted-foreground)]">動線設計：開園直衝最深處「夢幻泉鄉」➔ 失落河三角洲 (Single Rider) ➔ 阿拉伯海岸 ➔ 神秘島 ➔ 地中海港灣 (25週年港灣秀＋翱翔) ➔ 美國海濱 ➔ 夜間水上大秀 ➔ 提前離園回淺草雷門吃居酒屋！</p>
         <div id="disney-timeline" class="space-y-2"></div>
       </div>
     </div>
 
-    <!-- TAB 2: 13 SOTO-YU STAMP TRACKER -->
+    <!-- TAB 3: 13 SOTO-YU STAMP TRACKER -->
     <div id="tab-onsen" class="hidden space-y-4">
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -189,27 +197,131 @@
       </div>
     </div>
 
-    <!-- TAB 3: PRE-TRIP CHECKLIST -->
-    <div id="tab-checklist" class="hidden space-y-4">
+    <!-- TAB 4: NOZAWA TRAFFIC & SKI RENTAL GUIDE (NEW!) -->
+    <div id="tab-nozawa-guide" class="hidden space-y-4">
+      <!-- Traffic Section -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
         <div>
-          <h2 class="text-lg font-bold text-[var(--foreground)]">✅ 行前關鍵訂票與預約時間軸</h2>
-          <p class="text-xs text-[var(--muted-foreground)]">點擊項目即可打勾標記完成狀態。</p>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">🚅 如何抵達野澤溫泉滑雪場：完整交通指南</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">距離野澤溫泉最近的鐵路門戶為<strong>「飯山站 (Iiyama)」</strong>。自東京搭乘 JR 北陸新幹線直達飯山站後轉乘直達巴士，交通動線順暢極佳！</p>
         </div>
-        <div id="checklist-container" class="space-y-2.5"></div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead>
+              <tr class="border-b border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)]">
+                <th class="p-3 font-semibold">出發點</th>
+                <th class="p-3 font-semibold">交通路線與轉乘方式</th>
+                <th class="p-3 font-semibold">所需時間</th>
+                <th class="p-3 font-semibold">備註說明</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border)]">
+              <tr>
+                <td class="p-3 font-bold">東京站 / 上野站</td>
+                <td class="p-3">搭乘 <strong>JR 北陸新幹線「白鷹號 (Hakutaka)」</strong> ➔ 抵達長野縣「飯山站」➔ 於 4 號月台轉乘 <strong>野澤溫泉接駁巴士（Nozawa Onsen Liner）</strong> 直達野澤中央總站</td>
+                <td class="p-3 font-mono font-semibold">約 2～2.5 小時</td>
+                <td class="p-3 text-[var(--muted-foreground)]">新幹線約 100 分鐘，巴士約 25 分鐘 (¥600 可刷 Suica)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">成田機場 (NRT)</td>
+                <td class="p-3">於成田機場第二航廈搭乘 <strong>長野雪地接駁車（Nagano Snow Shuttle）</strong> 直達野澤溫泉村</td>
+                <td class="p-3 font-mono font-semibold">約 6.5 小時</td>
+                <td class="p-3 text-[var(--muted-foreground)]">直達免搬行李換車，需提前數週官網預約班次</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">羽田機場 (HND)</td>
+                <td class="p-3">於羽田機場第三航廈搭乘 <strong>長野雪地接駁車（Nagano Snow Shuttle）</strong> 直達野澤溫泉村</td>
+                <td class="p-3 font-mono font-semibold">約 6.5 小時</td>
+                <td class="p-3 text-[var(--muted-foreground)]">適合紅眼或深夜抵達旅客直奔雪場</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Village Free Shuttle Bus -->
+        <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🚌</span>
+            <h3 class="font-bold text-sm text-[var(--foreground)]">野澤溫泉村免費接駁巴士（Free Shuttle Bus）重點筆記</h3>
+          </div>
+          <p class="text-xs text-[var(--secondary-foreground)] leading-relaxed">
+            野澤溫泉村雖然人口不多，但腹地遼闊，景點與各纜車站之間距離不短。村內設有<strong>免費循環接駁巴士</strong>，可輕鬆往返各主要區域與景點，讓旅人更自在地享受觀光與滑雪。<br/>
+            📍 <strong>重要站點</strong>：<strong>「前坂入口」</strong> 為最接近雪場的主要下車站，路線亦會經過第一、第二、第三停車場。<br/>
+            ⏱️ <strong>運行期間</strong>：雪季接駁巴士行駛期間約為每年 <strong>12 月 20 日至隔年 3 月 29 日</strong>，行前可向源六櫃台索取最新當日時刻表。
+          </p>
+        </div>
+      </div>
+
+      <!-- Ski Rental Comparison Table -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg font-bold text-[var(--foreground)]">🏂 野澤雪具租賃店家完整大比拼</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">試算表內收錄之村內 4 大租賃店規格與費用比較（本次行程已拍板預訂 <strong>Haus St. Anton</strong> 4天）。</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 text-xs font-bold">已預訂 Haus St. Anton ¥21,800/人</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-4 rounded-xl border-2 border-[var(--primary)] bg-[var(--secondary)] space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-sm text-[var(--foreground)]">🏆 Haus St. Anton（本次首選）</h3>
+              <span class="px-2 py-0.5 rounded bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold">已預約</span>
+            </div>
+            <div class="text-xs space-y-1">
+              <div>📍 <strong>地點</strong>：大湯通（就在住宿「源六」斜隔壁，走路 30 秒！）</div>
+              <div>⭐ <strong>特色</strong>：裝備新穎維護好，1/15 抵達可提早試穿確認尺寸，退房還裝備最輕鬆。</div>
+              <div class="p-2 rounded bg-[var(--card)] font-mono text-xs space-y-0.5">
+                <div>• 3日：¥16,600 (約 NT$3,320)</div>
+                <div class="font-bold text-[var(--primary)]">• 4日：¥21,800 (約 NT$4,360) 👈 本次方案</div>
+                <div>• 5日：¥27,000 (約 NT$5,400)</div>
+                <div>• 4小時：¥5,000</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--card)] space-y-2">
+            <h3 class="font-bold text-sm text-[var(--foreground)]">🎿 Shirakaba Rental（白樺）</h3>
+            <div class="text-xs space-y-1">
+              <div>📍 <strong>地點</strong>：靠近日影纜車 (Hikage)</div>
+              <div>⭐ <strong>特色</strong>：LGBQ 友善店家，近兒童雪道與初學者區域。</div>
+              <div class="p-2 rounded bg-[var(--secondary)] font-mono text-xs space-y-0.5 text-[var(--muted-foreground)]">
+                <div>• 3日：¥25,200 (約 NT$5,040)</div>
+                <div>• 4日：¥33,100 (約 NT$6,620)</div>
+                <div>• 5日：¥40,600 (約 NT$8,120)</div>
+                <div>• 4小時：¥8,300</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--card)] space-y-2">
+            <h3 class="font-bold text-sm text-[var(--foreground)]">🎿 NOZAWA Sports Thanx</h3>
+            <div class="text-xs space-y-1">
+              <div>📍 <strong>地點</strong>：靠近長坂纜車 (Nagasaka)</div>
+              <div>⭐ <strong>特色</strong>：價格親民，<strong>提供雪具免費倉儲寄放服務</strong>（免每天扛回飯店），住客再享 9 折。</div>
+              <div class="p-2 rounded bg-[var(--secondary)] font-mono text-xs space-y-0.5 text-[var(--muted-foreground)]">
+                <div>• 非住客 3日：¥14,900 (約 NT$2,980)</div>
+                <div>• 非住客 4日：¥19,400 (約 NT$3,880)</div>
+                <div>• 非住客 5日：¥23,900 (約 NT$4,780)</div>
+                <div>• 配合住客 4日特惠：¥14,400</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- TAB 4: KISARAZU OUTLET & FOOD GUIDE -->
+    <!-- TAB 5: KISARAZU OUTLET & FOOD GUIDE -->
     <div id="tab-kisarazu" class="hidden space-y-4">
-      <!-- Chiaki Strawberry Farm Official Info Card -->
+      <!-- Chiaki Strawberry Farm Card -->
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2">
           <div>
             <h2 class="text-lg font-bold text-[var(--foreground)]">🍓 1/23 (六) ちあきのいちご園（Chiaki's Strawberry Farm）官網完整攻略</h2>
             <p class="text-xs text-[var(--muted-foreground)]">📍 千葉県大網白里市南横川 3490（JR 外房線「永田駅」步行 10 分鐘）｜⏱️ 09:30–10:45（60分鐘完熟草莓吃到飽）</p>
           </div>
-          <div class="flex gap-2">
+          <div class="flex gap-2 flex-wrap">
             <a href="https://chiakino15.xyz/" target="_blank" class="px-3 py-1.5 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-90">🌐 官方網站</a>
             <a href="https://www.jalan.net/kankou/spt_guide000000212767/" target="_blank" class="px-3 py-1.5 rounded-xl bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-semibold hover:opacity-90">📅 じゃらん (Jalan) 預約頁</a>
           </div>
@@ -223,8 +335,8 @@
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
             <div class="font-bold text-sm text-[var(--foreground)]">🍓 兩種吃到飽方案（1月中旬–4/9 成人價）</div>
-            <div>• <strong>Standard 方案 (¥2,900)</strong>：高設栽培溫室（40cm寬植槽免彎腰），最多約 <strong>10 個品種</strong>（紅ほっぺ、おいCベリー、かおりの、章姫、恋みのり、よつぼし、越後姫等）。</div>
-            <div>• <strong>🔥 Premium 方案 (¥3,900・大推)</strong>：除高設溫室外，<strong>可進「土耕栽培溫室」採收糖度破 20 度的幻之黑草莓「真紅の美鈴」＆師匠直傳「とちおとめ（栃乙女）」</strong>，再<strong>免費送「白草莓」迷你杯</strong>（或迷你果醬）！</div>
+            <div>• <strong>Standard 方案 (¥2,900)</strong>：高設栽培溫室（40cm寬植槽免彎腰），最多約 <strong>10 個品種</strong>（紅ほっぺ、おいCベリー、かおりの、章姬、恋みのり、よつぼし等）。</div>
+            <div>• <strong>🔥 Premium 方案 (¥3,900・大推)</strong>：除高設溫室外，<strong>可進「土耕栽培溫室」採收糖度破 20 度的幻之黑草莓「真紅の美鈴」＆師匠直傳「栃乙女」</strong>，再<strong>免費送「白草莓」迷你杯</strong>！</div>
           </div>
           <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
             <div class="font-bold text-sm text-[var(--foreground)]">🐴 直賣所土耕栃乙女 ＆ 迷你馬 BERRY</div>
@@ -235,56 +347,207 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Kisarazu Outlet Brands -->
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
-          <h2 class="text-lg font-bold text-[var(--foreground)]">🛍️ 1/23 MITSUI OUTLET 木更津 分區專櫃 (12:30–18:30)</h2>
-          <p class="text-xs text-[var(--muted-foreground)]">園區營業至 20:00｜💴 <strong>2026/11/01 日本免稅新制</strong>：結帳一律先付 10% 含稅全額（免封透明袋！），1/25 在羽田機場 T3 托運行李前先去自助退稅機台刷護照退回信用卡。</p>
-          <div class="space-y-2.5 text-sm">
-            <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
-              <div class="font-semibold">🌿 Garden Zone（花園 / 中區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">Lululemon（運動瑜珈服飾）、HOKA（跑鞋/登山鞋）、Salomon（戶外潮流鞋/雪具周邊）</div>
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-bold text-[var(--foreground)]">🛍️ 1/23 MITSUI OUTLET 木更津 專櫃分區</h2>
+            <span class="text-xs text-[var(--muted-foreground)]">10:00–20:00</span>
+          </div>
+          <div class="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-xs text-amber-800 dark:text-amber-200">
+            💬 <strong>試算表幽默吐槽備註</strong>：「預計 12 點逛到下午晚餐，應該夠吧@@ 是要當貴婦？？」
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)] space-y-1">
+              <div class="font-semibold text-sm">🌿 Garden Zone（花園區 / 腰圍區）</div>
+              <div class="text-[var(--muted-foreground)]"><strong>Lululemon</strong>（露露檸檬 運動瑜珈服飾）、<strong>HOKA</strong>（霍卡 專業跑鞋/登山鞋）、<strong>SALOMON</strong>（薩洛蒙 越野戶外鞋/雪具周邊）</div>
             </div>
-            <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
-              <div class="font-semibold">🧭 South Zone（南區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">mont-bell / mont-bell Factory Outlet（必逛戶外羽絨衣、羊毛底層衣出清）</div>
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)] space-y-1">
+              <div class="font-semibold text-sm">🧭 South Zone（南區）</div>
+              <div class="text-[var(--muted-foreground)]"><strong>mont-bell / mont-bell Factory Outlet</strong>（必逛戶外羽絨衣、羊毛底層衣與雪地周邊出清特價）</div>
             </div>
-            <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
-              <div class="font-semibold">🌅 East Zone（東區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">Quiksilver Factory Outlet、Disney Store（迪士尼過季優惠）、Nike</div>
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)] space-y-1">
+              <div class="font-semibold text-sm">🌅 East Zone（東區）</div>
+              <div class="text-[var(--muted-foreground)]"><strong>QUIKSILVER 工廠直營店</strong>（滑雪/衝浪潮流服飾）、<strong>Disney Store</strong>（日本限定迪士尼過季優惠專櫃）</div>
             </div>
-            <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
-              <div class="font-semibold">🏔️ North Zone（北區）</div>
-              <div class="text-xs text-[var(--muted-foreground)]">Under Armour Factory House、Billabong、Timberland、The North Face</div>
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)] space-y-1">
+              <div class="font-semibold text-sm">🏔️ North Zone（北區）</div>
+              <div class="text-[var(--muted-foreground)]"><strong>UNDER ARMOUR FACTORY HOUSE</strong>、<strong>BILLABONG OUTLET</strong>（海灘潮流服飾）、<strong>Timberland</strong></div>
             </div>
           </div>
         </div>
 
+        <!-- Food Checklist -->
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
-          <h2 class="text-lg font-bold text-[var(--foreground)]">👓 台灣人日本配 JINS 攻略 ＆ 🥩 必吃美食清單</h2>
-          <div class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1 text-xs">
-            <div class="font-bold text-sm text-[var(--foreground)]">👓 1/15 (D2) 10:00「JINS アトレ上野店」30分鐘極速配鏡秘訣</div>
-            <div>• <strong>為何 D1 晚上去池袋來不及？</strong>池袋各店（PARCO/LABI/東武）最晚 20:00–21:00 打烊，且當日取件須於打烊前1小時結帳；D1 班機 19:35 降落成田，到市區已逾 21:15。</div>
-            <div>• <strong>為何選上野站內「JINS アトレ上野店 (10:00開門)」？</strong>① 10:00 開門第一批進去免排隊；② 萬一選特殊鏡片或度數需等 6–7 天（日本 JINS 不能跨店取件），<strong>1/20 從野澤搭新幹線回東京一樣在上野站下車</strong>，剛好回同店取件！</div>
-            <div>• <strong>免日文驗光秘技</strong>：直接<strong>戴著度數最合適的舊眼鏡去讓店員用機器測度數（僅需 2 分鐘！）</strong>，或出發前在台灣先驗好光拍下驗光單（含度數 SPH、散光 CYL、軸度 AXIS、瞳距 PD）。</div>
-          </div>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">🥩 2027 試算表收錄・必吃美食口袋清單</h2>
           <div class="space-y-2 text-xs">
-            <div class="p-2.5 rounded-xl border border-[var(--border)] flex justify-between items-center">
-              <div><span class="font-bold text-sm">Steak Lodge 秋葉原店</span><br/><span class="text-[var(--muted-foreground)]">鐵板厚切牛排（已排入 1/20 晚餐）</span></div>
+            <div class="p-2.5 rounded-xl border border-[var(--border)] flex justify-between items-center bg-[var(--secondary)]">
+              <div>
+                <span class="font-bold text-sm">Steak Lodge 秋葉原店</span><br/>
+                <span class="text-[var(--muted-foreground)]">試算表大推：「有去秋葉原的話 可以吃這家厚切牛排！」（排入 1/20 D7 晚餐）</span>
+              </div>
               <a href="https://maps.app.goo.gl/AVRuw4AMKeFgBLG9A" target="_blank" class="px-2.5 py-1 rounded-lg bg-[var(--primary)] text-[var(--primary-foreground)] font-medium">地圖</a>
             </div>
-            <div class="p-2.5 rounded-xl border border-[var(--border)]">
+            <div class="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--secondary)]">
               <span class="font-bold text-sm">らーめん 鴨to蔥（上野御徒町本店）</span><br/>
-              <span class="text-[var(--muted-foreground)]">超人氣鴨肉＋丸太白蔥醬油拉麵（排入 1/15 配鏡後或 1/20 上野轉車午餐）</span>
+              <span class="text-[var(--muted-foreground)]">排隊人氣名店！鴨肉＋丸太白蔥熬製醇厚醬油拉麵（排入 1/15 D2 或 1/20 D7 上野轉車午餐）</span>
             </div>
-            <div class="p-2.5 rounded-xl border border-[var(--border)]">
+            <div class="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--secondary)]">
               <span class="font-bold text-sm">炸牛排 牛かつ もと村（新宿南口店 / 歌舞伎町店）</span><br/>
-              <span class="text-[var(--muted-foreground)]">石板現煎半熟炸牛排配山藥泥麥飯（排入 1/22 富士山回新宿晚餐）</span>
+              <span class="text-[var(--muted-foreground)]">石板現煎外酥內嫩牛排配山藥泥麥飯（排入 1/22 D9 富士山回新宿晚餐）</span>
             </div>
-            <div class="p-2.5 rounded-xl border border-[var(--border)]">
-              <span class="font-bold text-sm">野澤溫泉：和牛亭壽喜燒 ＆ 源六晚餐 ＆ 山頂銷魂燒肉飯</span><br/>
-              <span class="text-[var(--muted-foreground)]">1/16 和牛亭、1/17 七良兵衛/新屋串燒、1/18 源六晚餐、1/19 びっきゃ燒肉</span>
+            <div class="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--secondary)]">
+              <span class="font-bold text-sm">前男友燒肉（東京有四間分店）</span><br/>
+              <span class="text-[var(--muted-foreground)]">肉質極佳話題燒肉店，適合新宿逛街後犒賞慶祝（排入 1/23 D10 晚餐候補）</span>
+            </div>
+            <div class="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--secondary)]">
+              <span class="font-bold text-sm">野澤在地美食：和牛亭壽喜燒 ＆ びっきゃ信州牛燒肉</span><br/>
+              <span class="text-[var(--muted-foreground)]">1/16 和牛亭 A5 壽喜燒、1/18 源六招牌家庭料理、1/19 びっきゃ燒肉慶功宴</span>
+            </div>
+            <div class="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--secondary)]">
+              <span class="font-bold text-sm">章魚燒 ＆ 鎌倉秋本吻仔魚丼</span><br/>
+              <span class="text-[var(--muted-foreground)]">澀谷/築地現烤熱騰騰章魚燒；1/24 鎌倉小町通在地知名生吻仔魚雙色丼！</span>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: SHOPPING LIST & TRAVEL RULES (NEW!) -->
+    <div id="tab-shopping-rules" class="hidden space-y-4">
+      <!-- Golden Travel Rules -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
+        <h2 class="text-lg font-bold text-[var(--foreground)]">📜 2027 東京野澤行前最高守則（強制規定・絕不可違規！）</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 space-y-1">
+            <div class="font-bold text-sm text-red-700 dark:text-red-300">🎬 拍攝 MV 強制令</div>
+            <div class="text-[var(--foreground)] font-medium">「此次行程要拍 2–3 支 MV 才可以，強制規定！！！」</div>
+            <div class="text-[var(--muted-foreground)]">長坂 Skyline 稜線、迪士尼樂佩天燈、下吉田富士山街景與澀谷十字路口為必拍取景點。</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-orange-50 dark:bg-orange-950/30 border border-orange-200 dark:border-orange-800 space-y-1">
+            <div class="font-bold text-sm text-orange-700 dark:text-orange-300">🤝 團結和平守則</div>
+            <div class="text-[var(--foreground)] font-bold text-base">「P.S. 絕對不能吵架！！！」</div>
+            <div class="text-[var(--muted-foreground)]">遇到找路或排隊時相互包容，行李放車站寄物櫃，隨時補充足夠熱量。</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 space-y-1">
+            <div class="font-bold text-sm text-blue-700 dark:text-blue-300">🧳 睡機場戰術</div>
+            <div class="text-[var(--foreground)] font-medium">「1/24 晚上因為睡機場，越晚到越好！」</div>
+            <div class="text-[var(--muted-foreground)]">先在東京/新宿吃飽喝足逛到深夜再移動至羽田 T3（或直通泉天空之湯泡湯），免得太早到機場乾等無聊。</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-purple-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 space-y-1">
+            <div class="font-bold text-sm text-purple-700 dark:text-purple-300">💼 1/25 返台悲喜分工</div>
+            <div class="text-[var(--foreground)] font-medium">「傑瑞米請整天不要鬧還上班＝ ＝ A寶貝、奇寶貝兩個瘋子下飛機直接上班，怪寶貝休息！」</div>
+            <div class="text-[var(--muted-foreground)]">小白＋Alan 清晨 08:00 桃機落地直接上班開會，怪寶貝傑若米松山返家補眠！</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Shopping List -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h2 class="text-lg font-bold text-[var(--foreground)]">🛒 試算表必買願望清單（點擊即可打勾完成！）</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">收錄 AEON 超市 YUDA 優格、Speedo 潮流泳鏡、JINS 配鏡與戶外裝備等。</p>
+          </div>
+          <button onclick="resetShopping()" class="self-start px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
+            重置清單
+          </button>
+        </div>
+        <div id="shopping-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      </div>
+    </div>
+
+    <!-- TAB 7: BUDGET & ACCOMMODATION SPLIT (NEW!) -->
+    <div id="tab-budget" class="hidden space-y-4">
+      <!-- 3-Person Total Summary Card -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-3">
+        <h2 class="text-lg font-bold text-[var(--foreground)]">💰 2027 旅費精算總結（每人已付/預估款項）</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 text-center space-y-1">
+            <div class="text-xs font-semibold text-blue-800 dark:text-blue-300">小白 (全程 12 天)</div>
+            <div class="text-2xl font-extrabold text-[var(--foreground)]">NT$ 32,342</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">含雙人來回機票、野澤源六5晚、市區飯店、4天雪具與迪士尼門票</div>
+          </div>
+          <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-center space-y-1">
+            <div class="text-xs font-semibold text-emerald-800 dark:text-emerald-300">Alan (全程 12 天)</div>
+            <div class="text-2xl font-extrabold text-[var(--foreground)]">NT$ 32,342</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">含雙人來回機票、野澤源六5晚、市區飯店、4天雪具與迪士尼門票</div>
+          </div>
+          <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-center space-y-1">
+            <div class="text-xs font-semibold text-amber-800 dark:text-amber-300">傑若米 (怪寶貝・後5天)</div>
+            <div class="text-2xl font-extrabold text-[var(--foreground)]">NT$ 7,551</div>
+            <div class="text-[11px] text-[var(--muted-foreground)]">機票自理；含淺草雷索爾2晚、新宿安心小宿2晚均攤與迪士尼門票</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hotel Detail & Deposit Schedule Table -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+        <div>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">🏨 住宿安排與訂金扣款日程表</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">依試算表登記之各飯店付款方式與注意事項整理。</p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border-collapse">
+            <thead>
+              <tr class="border-b border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)]">
+                <th class="p-2.5 font-semibold">日期</th>
+                <th class="p-2.5 font-semibold">住宿飯店名稱</th>
+                <th class="p-2.5 font-semibold">入住成員</th>
+                <th class="p-2.5 font-semibold">每人每晚費用</th>
+                <th class="p-2.5 font-semibold">重要付款與退改規則</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[var(--border)]">
+              <tr>
+                <td class="p-2.5 font-mono">1/14 (D1)</td>
+                <td class="p-2.5 font-bold">APA 飯店 巢鴨站前</td>
+                <td class="p-2.5">小白、Alan</td>
+                <td class="p-2.5 font-mono">NT$ 1,640</td>
+                <td class="p-2.5 text-[var(--muted-foreground)]">含早餐、大浴場人工溫泉</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-mono">1/15–1/19 (D2–D6)</td>
+                <td class="p-2.5 font-bold">NOZAWA GENROKU (源六) 共5晚</td>
+                <td class="p-2.5">小白、Alan</td>
+                <td class="p-2.5 font-mono">NT$ 1,870 (5晚共 NT$9,350)</td>
+                <td class="p-2.5 text-[var(--muted-foreground)]">現場結算；早餐 ¥1,500/人 (07:30統一供餐)、晚餐 ¥4,000/人 (18:00統一開飯)；需於 2 天前 09:00 前預訂；1/17、1/20 不供晚餐</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-mono">1/20–1/21 (D7–D8)</td>
+                <td class="p-2.5 font-bold">東京淺草雷索爾奢華飯店 (RESOL POSHTEL)</td>
+                <td class="p-2.5 font-semibold">小白、Alan、傑若米</td>
+                <td class="p-2.5 font-mono">NT$ 1,128 (2晚共 JPY 34,200)</td>
+                <td class="p-2.5 text-[var(--muted-foreground)]"><strong>⚠️ 1/16 會先預扣信用卡 NT$ 6,768 訂金，退房時歸還</strong>；現場到店付款 JPY 34,200（3人分攤）</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-mono">1/22–1/23 (D9–D10)</td>
+                <td class="p-2.5 font-bold">安心小宿 東京滿新宿 (Anshin Oyado)</td>
+                <td class="p-2.5 font-semibold">小白、Alan、傑若米</td>
+                <td class="p-2.5 font-mono">D9 NT$ 1,200 (3600/3)<br/>D10 NT$ 1,900 (5700/3)</td>
+                <td class="p-2.5 text-red-600 dark:text-red-400 font-medium">⚠️ 已訂不可退款！含免費早餐、咖哩飯、酒水喝到飽與人工溫泉大浴場</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-mono">1/24 (D11)</td>
+                <td class="p-2.5 font-bold">羽田機場 T3（泉天空之湯 / 睡機場）</td>
+                <td class="p-2.5">小白、Alan、傑若米</td>
+                <td class="p-2.5 font-mono">NT$ 0</td>
+                <td class="p-2.5 text-[var(--muted-foreground)]">「越晚到越好！」可付費進 24H 泉天空之湯泡露天溫泉＋蒸氣室休息</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 8: PRE-TRIP CHECKLIST -->
+    <div id="tab-checklist" class="hidden space-y-4">
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+        <div>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">✅ 行前關鍵訂票與預約時間軸</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">點擊項目即可打勾標記完成狀態（自動記錄於瀏覽器）。</p>
+        </div>
+        <div id="checklist-container" class="space-y-2.5"></div>
       </div>
     </div>
 
@@ -294,10 +557,10 @@
     const DAYS_DATA = [
       {
         day: "D1", date: "1/14", dow: "四", phase: "tokyo1",
-        title: "桃園飛東京成田 ➔ Skyliner 赴巢鴨 / 池袋",
-        leave: "請假半天", hotel: "第1晚：APA飯店 巢鴨站前 (含早餐)",
+        title: "桃園飛東京成田 ➔ Skyliner 赴巢鴨 APA 放行李 ➔ 池袋逛街晚餐",
+        leave: "請假半天", hotel: "第1晚：APA飯店 巢鴨站前 (含早餐/澡堂 NT$1,640)",
         members: "小白、Alan",
-        highlights: "⚠️ 09:00前務必確認已預訂 1/16 源六早餐！班機 19:35 抵達成田 T2（池袋 JINS 21:00 打烊來不及，排隔天 10:00 上野站配最順！）。",
+        highlights: "⚠️ 09:00前務必確認已向源六預訂 1/16 早餐！班機 19:35 抵達成田 T2（池袋 JINS 21:00 打烊來不及，排隔天 10:00 上野站配最順！）。",
         events: [
           { time: "06:00–12:00", type: "note", text: "上午上班（請假半天）｜⚠️ 提醒：09:00 前發信確認預訂 1/16 源六早餐" },
           { time: "12:30–15:35", type: "transit", text: "前往桃園機場第一航廈 (T1) 報到托運、機場簡單果腹" },
@@ -308,16 +571,16 @@
       },
       {
         day: "D2", date: "1/15", dow: "五", phase: "nozawa",
-        title: "東京上野 JINS 配眼鏡 ➔ 北陸新幹線赴野澤 ➔ 道祖神火祭 🔥",
-        leave: "請假", hotel: "第2晚：NOZAWA GENROKU (源六)",
+        title: "東京上野 JINS 配鏡 ➔ 北陸新幹線赴野澤 ➔ 道祖神火祭 🔥",
+        leave: "請假", hotel: "第2晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
-        highlights: "👓 10:00 準時進「JINS アトレ上野店」(戴舊眼鏡測度數僅2分鐘，30–40分取件；萬一需等7天，1/20 回上野站剛好拿)！🔥 晚上看日本三大火祭「道祖神火祭」！",
+        highlights: "👓 10:00 準時進「JINS アトレ上野店」(戴舊眼鏡測度數僅2分鐘，30–40分取件；若等7天1/20回上野剛好拿)！🔥 晚上看日本三大火祭「道祖神火祭」！",
         events: [
           { time: "07:30–09:00", type: "meal", text: "🍳 APA 巢鴨飯店早餐 ＆ 退房，搭山手線至上野站寄放大件行李" },
-          { time: "10:00–11:15", type: "sight", text: "👓 上野站 1F【JINS アトレ上野店 (10:00開門)】配眼鏡（💡 台灣人秘技：直接戴合適的舊眼鏡讓店員用儀器測度數、或出示台灣驗光單，選標準非球面鏡片約 30–40 分鐘當場取件！）" },
+          { time: "10:00–11:15", type: "sight", text: "👓 上野站 1F【JINS アトレ上野店 (10:00開門)】配眼鏡（💡 秘技：戴合適舊眼鏡讓店員機器測度數，標準非球面鏡片約 30–40 分鐘當場取件！）" },
           { time: "11:15–12:40", type: "meal", text: "🍱 東京商業午餐（上野【らーめん 鴨to蔥】／【敘敘苑 燒肉午間套餐】／【宇奈とと 鰻魚飯】）" },
-          { time: "13:02–15:40", type: "transit", text: "🚄 JR 北陸新幹線 Hakutaka 563（上野 13:02 ➔ 飯山 14:43）＋ 🚌 飯山站 4 號月台搭 Nozawa Onsen Liner 冬季官方班次（15:15 發 ➔ 野澤溫泉 15:40，¥600 可刷 Suica）※若眼鏡提早拿到亦可改搭 11:30 新幹線轉 13:40 巴士" },
-          { time: "15:45–16:30", type: "ski", text: "🏨 源六 Check-in（櫃台預訂 1/17 早餐、1/18 早晚餐）" },
+          { time: "13:02–15:40", type: "transit", text: "🚄 JR 北陸新幹線 Hakutaka 563（上野 13:02 ➔ 飯山 14:43）＋ 🚌 飯山站 4 號月台搭 Nozawa Onsen Liner（15:15 發 ➔ 野澤溫泉 15:40，¥600 可刷 Suica）" },
+          { time: "15:45–16:30", type: "ski", text: "🏨 源六 Check-in（櫃台預訂 1/17 早餐、1/18 早晚餐；注意 1/17、1/20 源六不供晚餐）" },
           { time: "16:30–17:15", type: "sight", text: "🏂 隔壁 Haus St. Anton 提前確認雪具尺寸 ＋ 🌽 逛溫泉老街吃樂一溫泉玉米、溫泉饅頭、野澤菜烤包子 (おやき)" },
           { time: "17:15–18:30", type: "meal", text: "🍜 提早晚餐：蕎麦処 鈴木（手打蕎麥麵）／ とん吉炸豬排（避開火祭人潮）" },
           { time: "19:00–21:30", type: "ski", text: "🔥 野澤溫泉【道祖神火祭】（1/15 限定！觀賞壯觀木造社殿火把攻防戰＆冬季花火）" },
@@ -327,11 +590,11 @@
       {
         day: "D3", date: "1/16", dow: "六", phase: "nozawa",
         title: "野澤滑雪 Day 1 ➔ 和牛亭 A5 壽喜燒 ➔ 外湯 ②③④",
-        leave: "假日", hotel: "第3晚：NOZAWA GENROKU (源六)",
+        leave: "假日", hotel: "第3晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
         highlights: "🏂 Haus St. Anton 取雪具（已訂 4 天 1/16–1/19，現場付 ¥21,800×2 = ¥43,600）。",
         events: [
-          { time: "07:30–08:10", type: "meal", text: "🍳 BREAKFAST：吃第一次源六早餐（⚠️ 09:00 前確認已向櫃台預訂 1/18 早＋晚餐）" },
+          { time: "07:30–08:10", type: "meal", text: "🍳 BREAKFAST：吃第一次源六早餐（⚠️ 09:00 前確認向櫃台預訂 1/18 早＋晚餐）" },
           { time: "08:10–08:50", type: "ski", text: "🏂 Haus St. Anton 領取雪具裝備（現場付 ¥43,600 日幣）" },
           { time: "09:00–12:00", type: "ski", text: "🎿 SKI 滑雪 Day 1（上午）：長坂纜車 (Nagasaka) ／ 日影雪道 (Hikage) 暖身開滑" },
           { time: "12:00–13:30", type: "meal", text: "🥩 雪場午餐：山頂 Yamabiko 餐廳【銷魂野澤菜燒肉飯】或【信州手打蕎麥麵】" },
@@ -343,7 +606,7 @@
       {
         day: "D4", date: "1/17", dow: "日", phase: "nozawa",
         title: "野澤滑雪 Day 2 ➔ 七良兵衛居酒屋 / 新屋串燒 ➔ 外湯 ⑤⑥⑦",
-        leave: "假日", hotel: "第4晚：NOZAWA GENROKU (源六)",
+        leave: "假日", hotel: "第4晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
         highlights: "📌 源六今日 (1/17) 不供應晚餐，安排溫泉街人氣居酒屋或串燒！",
         events: [
@@ -358,24 +621,24 @@
       {
         day: "D5", date: "1/18", dow: "一", phase: "nozawa",
         title: "野澤滑雪 Day 3 ➔ 源六招牌家庭料理晚餐 ➔ 外湯 ⑧⑨",
-        leave: "請假", hotel: "第5晚：NOZAWA GENROKU (源六)",
+        leave: "請假", hotel: "第5晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
-        highlights: "🍱 今晚享用源六評價極高的 ¥4,000 招牌晚餐（18:00 準時同時開飯）。",
+        highlights: "🍱 今晚享用源六評價極高的 ¥4,000 招牌晚餐（18:00 準時開飯，強制拍 MV 素材！）。",
         events: [
-          { time: "07:30–08:15", type: "meal", text: "🍳 BREAKFAST：源六早餐（09:00 前可順便預訂 1/20 早餐）" },
+          { time: "07:30–08:15", type: "meal", text: "🍳 BREAKFAST：源六早餐（09:00 前順便預訂 1/20 早餐）" },
           { time: "08:30–12:00", type: "ski", text: "🎿 SKI 滑雪 Day 3（上午）：長坂 Gondola 直攻山頂、Skyline 稜線景觀雪道" },
           { time: "12:00–13:30", type: "meal", text: "🍛 雪場午餐：長坂中心【豬排咖哩／拉麵】或【ブンブン (Bunbun) 雪場牛排飯】" },
-          { time: "13:30–16:30", type: "ski", text: "🎿 SKI 滑雪 Day 3（下午）：練 Carving ＆ 拍攝滑雪 MV 素材" },
-          { time: "18:00–19:15", type: "meal", text: "🍱 DINNER：【源六 (Genroku) 招牌家庭料理晚餐 ¥4,000/人】（1/16 已預訂）" },
+          { time: "13:30–16:30", type: "ski", text: "🎿 SKI 滑雪 Day 3（下午）：練 Carving ＆ 拍攝滑雪 MV 素材（強制規定！）" },
+          { time: "18:00–19:15", type: "meal", text: "🍱 DINNER：【源六 (Genroku) 招牌家庭料理晚餐 ¥4,000/人】（1/16 已預訂，18:00 準時上菜）" },
           { time: "19:30–21:00", type: "ski", text: "♨️ 外湯巡禮 ⑧【横落之湯】（三猿地標旁）、⑨【中尾之湯】（全村最大木造外湯）" }
         ]
       },
       {
         day: "D6", date: "1/19", dow: "二", phase: "nozawa",
         title: "野澤滑雪 Day 4（收官日）➔ 歸還雪具 ➔ 信州牛燒肉慶功 ➔ 外湯 ⑩⑪",
-        leave: "請假", hotel: "第6晚：NOZAWA GENROKU (源六)",
+        leave: "請假", hotel: "第6晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
-        highlights: "🏂 16:00–17:00 至 Haus St. Anton 歸還雪具，晚上吃燒肉＋喝里武士精釀啤酒！",
+        highlights: "🏂 16:00–17:00 至 Haus St. Anton 歸還雪具，晚上吃信州牛燒肉＋喝里武士精釀啤酒！",
         events: [
           { time: "07:30–08:15", type: "meal", text: "🍳 BREAKFAST：源六早餐" },
           { time: "08:30–12:00", type: "ski", text: "🎿 SKI 滑雪 Day 4（上午）：重溫最愛雪道、Nozawa Onsen 綠白路標合照打卡" },
@@ -388,97 +651,97 @@
       },
       {
         day: "D7", date: "1/20", dow: "三", phase: "tokyo",
-        title: "晨泡達成 13 外湯制霸 ➔ 新幹線返東京淺草＆秋葉原 ➔ 傑若米羽田會合",
-        leave: "請假", hotel: "第7晚：東京淺草雷索爾奢華飯店 (2晚 ¥34,200)",
+        title: "晨泡達成 13 外湯制霸 ➔ 新幹線返東京淺草 ➔ 傑若米羽田合體",
+        leave: "請假", hotel: "第7晚：東京淺草雷索爾奢華飯店 (NT$1,128/人)",
         members: "小白、Alan ＋ 傑若米 (22:15 羽田抵達)",
-        highlights: "✈️ 傑若米搭乘 18:25–22:15 松山飛羽田，從羽田搭「京急線直通都營淺草線」38分鐘免轉車直達淺草站！",
+        highlights: "✈️ 傑若米 18:25–22:15 松山飛羽田，搭京急線直通淺草線 38 分鐘直達淺草飯店！飯店 1/16 預扣 NT$6,768 訂金退房歸還。",
         events: [
           { time: "07:00–08:50", type: "ski", text: "🌽 源六早餐／老街溫泉玉米 ➔ ♨️ 晨泡外湯 ⑫【滝之湯】、⑬【秋葉之湯】（13 外湯全制霸！）" },
-          { time: "09:00–09:55", type: "transit", text: "🧳 09:15 前退房 ➔ 🚌 Nozawa Onsen Liner 冬季官方班次（野澤中央總站 09:30 ➔ 飯山站 09:55）※若想晚點起亦可搭 11:15 巴士轉 12:12 新幹線" },
-          { time: "11:02–12:46", type: "transit", text: "🚄 JR 北陸新幹線 Hakutaka 558（飯山站 11:02 ➔ 上野站 12:46）※若 1/15 在上野 JINS 配訂製鏡片，出站剛好順路領取！" },
+          { time: "09:00–09:55", type: "transit", text: "🧳 09:15 前退房 ➔ 🚌 Nozawa Onsen Liner（野澤中央總站 09:30 ➔ 飯山站 09:55）" },
+          { time: "11:02–12:46", type: "transit", text: "🚄 JR 北陸新幹線 Hakutaka 558（飯山站 11:02 ➔ 上野站 12:46）※若 1/15 在上野 JINS 配鏡，出站剛好順路領取！" },
           { time: "13:00–14:15", type: "meal", text: "🍜 東京商業午餐：上野【鴨to蔥 拉麵】或 淺草【淺草今半 百年壽喜燒午間套餐】" },
           { time: "14:30–16:45", type: "sight", text: "🏨 東京淺草雷索爾奢華飯店 Check-in ➔ ⛩️ 淺草寺雷門、仲見世通散步" },
-          { time: "17:00–20:00", type: "meal", text: "🛍️ 搭銀座線逛【秋葉原】＋ 🥩 DINNER：【Steak Lodge 秋葉原店】鐵板厚切牛排" },
-          { time: "22:15–23:30", type: "transit", text: "✈️ 傑若米 22:15 抵羽田 ➔ 京急線直通淺草線 (~23:30 淺草飯店會合) ＋ 超商買明天迪士尼早餐" }
+          { time: "17:00–20:00", type: "meal", text: "🛍️ 搭銀座線逛【秋葉原】＋ 🥩 DINNER：【Steak Lodge 秋葉原店】厚切鐵板牛排（試算表大推！）" },
+          { time: "22:15–23:30", type: "transit", text: "✈️ 傑若米 22:15 抵羽田 ➔ 京急線直通淺草線 (~23:30 淺草飯店 3人合體！) ＋ 超商買明天迪士尼早餐" }
         ]
       },
       {
         day: "D8", date: "1/21", dow: "四", phase: "tokyo",
         title: "東京迪士尼海洋 25 週年最終章 (Tokyo DisneySea) 全日暢玩 🌋",
-        leave: "請假", hotel: "第8晚：東京淺草雷索爾奢華飯店",
+        leave: "請假", hotel: "第8晚：東京淺草雷索爾奢華飯店 (NT$1,128/人)",
         members: "小白、Alan、傑若米 (D1)",
-        highlights: "✨ 2027最新制度：40週年PP卡與夢幻泉鄉SP已廢除！08:30 開園雙腳直衝夢幻泉鄉現場排《小飛俠＋樂佩》，手機秒買《冰雪奇緣》DPA！",
+        highlights: "✨ 2027最新：PP卡與SP已廢除！08:30 入園雙腳直衝夢幻泉鄉現場排《小飛俠＋樂佩》，A寶貝秒買《冰雪奇緣》DPA，傑若米點阿倫戴爾午餐！",
         events: [
           { time: "06:45–07:45", type: "transit", text: "🍙 帶超商早餐出發：淺草 ➔ 八丁堀轉 JR 京葉線 ➔ 舞濱站 ➔ 迪士尼海洋站排隊" },
-          { time: "08:30–10:45", type: "sight", text: "❄️ 08:30 入園秒買《冰雪奇緣》DPA＋訂阿倫戴爾午餐 ➔ 雙腳直衝【夢幻泉鄉】免抽卡連刷：《小飛俠》(排25分)、《樂佩天燈》(排25分)、《冰雪奇緣》(用DPA)！" },
+          { time: "08:30–10:45", type: "sight", text: "❄️ 08:30 入園秒買《冰雪奇緣》DPA＋訂阿倫戴爾午餐 ➔ 雙腳直衝【夢幻泉鄉】現場連刷：《小飛俠》(排25分)、《樂佩天燈》(排25分)、《冰雪奇緣》(用DPA)！" },
           { time: "10:50–11:55", type: "sight", text: "🗿 失落河三角洲：用 Single Rider 單人通道免排隊連玩《印第安納瓊斯》＆《忿怒雙神》（🔔 09:30 已買好第 2 張 DPA《翱翔》）" },
           { time: "12:00–13:15", type: "meal", text: "🍔 園內午餐：夢幻泉鄉【阿倫戴爾皇家宴會廳】（用 Mobile Order 免排隊入場，吃紅酒燉牛肉派套餐吹暖氣）" },
           { time: "13:15–16:45", type: "sight", text: "✨ 阿拉伯海岸《辛巴達》➔ 觀賞【海洋25週年最終章港灣秀 Sparkling Jubilee】➔ 神秘島《地心探險》＋三眼怪麻糬 ➔ 地中海港灣《翱翔：夢幻奇航》(用DPA)" },
-          { time: "16:45–20:15", type: "sight", text: "🎯 美國海濱《玩具總動員》＋《驚魂古塔》➔ 🎆 19:15 夜間水上大秀《Believe! Sea of Dreams》➔ 20:15 提早離園" },
-          { time: "21:15–22:45", type: "meal", text: "🍻 DINNER 回淺草／上野吃：【淺草 Hoppy 通居酒屋／鳥貴族】或【一蘭拉麵】" }
+          { time: "16:45–20:15", type: "sight", text: "🎯 美國海濱《玩具總動員》＋《驚魂古塔》➔ 🎆 19:15 夜間水上大秀《Believe! Sea of Dreams》➔ 20:15 提早離園避開散場" },
+          { time: "21:15–22:45", type: "meal", text: "🍻 DINNER 回淺草吃居酒屋：試算表定案【<<<<最後決定雷門附近吃>>>>】或【一蘭拉麵】" }
         ]
       },
       {
         day: "D9", date: "1/22", dow: "五", phase: "tokyo",
         title: "富士山三區全制霸一日遊（下吉田＋忍野八海＋河口湖）🗻",
-        leave: "請假", hotel: "第9晚：安心小宿 東京滿新宿 (3600/3=1200/人)",
+        leave: "請假", hotel: "第9晚：安心小宿 東京滿新宿 (NT$1,200/人)",
         members: "小白、Alan、傑若米 (D2)",
-        highlights: "🚌 去程巴士買到「中央道下吉田」最順！下吉田➔忍野八海➔河口湖中間搭 2 趟短程計程車，3人分攤省時又不累。",
+        highlights: "🚌 Busta 新宿搭高速巴士（傑瑞米處理，車上補眠）！去程買到「中央道下吉田」走7分到淺間公園；富士山18:00後沒東西，19:00巴士回東京吃居酒屋！",
         events: [
-          { time: "06:00–07:00", type: "transit", text: "🧳 淺草退房搭車至新宿 ➔ 行李直接免費寄放「安心小宿 新宿店」櫃台（免租車站寄物櫃！）" },
-          { time: "07:15–08:55", type: "transit", text: "🚌 Busta 新宿 4F 搭高速巴士出發（⚠️ 車票買到「中央道下吉田」，下車走 7 分鐘直達淺間公園）" },
+          { time: "06:00–07:00", type: "transit", text: "🧳 淺草退房搭車至新宿 ➔ 行李直接免費寄放「安心小宿 新宿店」櫃台（免花錢放車站寄物櫃！）" },
+          { time: "07:15–08:55", type: "transit", text: "🚌 Busta 新宿 4F 搭高速巴士出發（車票買到「中央道下吉田」，下車走 7 分鐘直達淺間公園，車上補眠 Zzz）" },
           { time: "09:00–10:45", type: "sight", text: "🗻 【第一區：下吉田】新倉山淺間公園（忠靈塔順光富士山）＋ 本町二丁目商店街（日川時計店）" },
           { time: "10:45–12:15", type: "sight", text: "🚕 計程車① (18分/約¥3,500) ➔ 💧 【第二區：忍野八海】逛湧池、鏡池、吃現烤艾草餅＆天婦羅" },
           { time: "12:15–13:50", type: "meal", text: "🚕 計程車② (20分) 至河口湖 ➔ 🍲 富士山午餐：【ほうとう不動 南瓜餺飥麵】或【富士山天婦羅 IDATEN】" },
           { time: "14:00–17:00", type: "sight", text: "🍮 【第三區：河口湖】LAWSON 站前店＋對面買【富士山布丁】➔【天上山公園纜車】➔【Fujiyama Cookie】買名產" },
-          { time: "18:10–20:10", type: "transit", text: "🚌 河口湖站搭高速巴士（18:10 或 18:40 班次）返回 Busta 新宿" },
-          { time: "20:30–22:30", type: "meal", text: "🥩 安心小宿 Check-in ➔ 新宿晚餐：【牛かつ もと村 炸牛排】或【新宿 敘敘苑／思出橫丁串燒】（飯店亦有免費咖哩拉麵酒水）" }
+          { time: "18:00–21:00", type: "transit", text: "🚌 富士山周邊 18:00 後商店皆關門，至河口湖站逛伴手禮，搭 19:00 高速巴士直達東京（約 21:00 抵達）" },
+          { time: "21:00–23:00", type: "meal", text: "🥩 安心小宿 Check-in ➔ 新宿晚餐：【牛かつ もと村 炸牛排】或【居酒屋】（飯店亦有免費咖哩拉麵酒水）" }
         ]
       },
       {
         day: "D10", date: "1/23", dow: "六", phase: "tokyo",
-        title: "千葉「ちあきのいちご園」採草莓 🍓 ➔ MITSUI OUTLET 木更津 🛍️ ➔ 新宿",
-        leave: "假日", hotel: "第10晚：安心小宿 東京滿新宿 (5700/3=1900/人)",
+        title: "千葉「ちあきのいちご園」採草莓 🍓 ➔ MITSUI OUTLET 木更津 🛍️ ➔ 東京鐵塔夜景",
+        leave: "假日", hotel: "第10晚：安心小宿 東京滿新宿 (NT$1,900/人)",
         members: "小白、Alan、傑若米 (D3)",
-        highlights: "🍓 官網規定：ちあきのいちご園「僅限週六日、完全預約制且僅接受 じゃらん(Jalan) 網路預約」！推薦訂 09:30 第一部 Premium 方案(¥3,900)吃黑草莓「真紅の美鈴」＆土耕「栃乙女」！",
+        highlights: "🍓 ちあきのいちご園 Jalan 預約 09:30 第一部 Premium 方案(¥3,900)吃黑草莓！Outlet 逛到下午（當貴婦??），晚上回東京鐵塔看夜景！",
         events: [
           { time: "07:15–07:30", type: "meal", text: "🍛 安心小宿東京滿新宿 出發：在膠囊旅館享用免費早餐後出發（續住免搬行李）" },
-          { time: "07:30–09:15", type: "transit", text: "🚆 前往千葉「永田站」：新宿站(JR中央線快速) ➔ 東京站(轉JR京葉線特急/快速) ➔ 蘇我站(換乘JR外房線) ➔ 永田站（總車程約1小時35–45分），出站步行10分鐘抵草莓園" },
-          { time: "09:30–10:45", type: "sight", text: "🍓 ちあきのいちご園 採草莓（60分鐘）：09:30準時報到入場，享1小時完熟草莓吃到飽（Standard ¥2,900 高設10品種 ／ Premium ¥3,900 加碼土耕黑草莓「真紅の美鈴」＆「栃乙女」＋送白草莓杯），結束逛直賣所土耕栃乙女、手工果醬＆看迷你馬 BERRY ちゃん" },
-          { time: "11:00–12:30", type: "transit", text: "🚆🚌 前往 MITSUI OUTLET PARK 木更津（電車轉巴士不走回頭路）：永田站(JR外房線約25分) ➔ 蘇我站(轉JR內房線約30–35分) ➔ 袖ヶ浦站或木更津站 ➔ 轉搭路線巴士(約10–20分)抵達 Outlet" },
-          { time: "12:30–18:30", type: "sight", text: "🛍️ MITSUI OUTLET PARK 木更津 逛街 & 用餐：先在美食街/餐廳吃午餐（函太郎壽司/松戶富田沾麵/金子半之助），接著開逛 Lululemon、HOKA、Salomon、mont-bell、Under Armour、Quiksilver、Billabong、Timberland 及 Disney Store（營業至 20:00）" },
-          { time: "18:30–19:40", type: "transit", text: "🚌 返回新宿 & 安心小宿東京滿新宿：從木更津 Outlet 搭乘「新宿線高速巴士」直達 Busta 新宿（車程約 60–70 分鐘，免去提戰利品轉乘電車的麻煩！）" },
-          { time: "19:45–22:00", type: "meal", text: "🍻 新宿市區吃晚餐（居酒屋、前男友燒肉或風雲兒沾麵/拉麵），餐後步行回安心小宿泡湯休息" }
+          { time: "07:30–09:15", type: "transit", text: "🚆 前往千葉「永田站」：新宿站(JR中央線快速) ➔ 東京站(轉JR京葉線特急) ➔ 蘇我站(換JR外房線) ➔ 永田站，出站步行10分鐘抵草莓園" },
+          { time: "09:30–10:45", type: "sight", text: "🍓 ちあきのいちご園 採草莓（60分鐘）：09:30 準時報到，Premium 方案吃土耕黑草莓「真紅の美鈴」＆「栃乙女」＋送白草莓杯，看迷你馬 BERRY ちゃん" },
+          { time: "11:00–12:30", type: "transit", text: "🚆 前往 MITSUI OUTLET PARK 木更津：永田站(JR外房線) ➔ 蘇我站(轉JR內房線) ➔ 木更津/袖ヶ浦站搭巴士抵達" },
+          { time: "12:30–18:30", type: "sight", text: "🛍️ MITSUI OUTLET 木更津 逛街午餐：函太郎壽司/富田沾麵，開逛 Lululemon、HOKA、Salomon、mont-bell、Under Armour、Quiksilver、Disney Store" },
+          { time: "18:30–19:40", type: "transit", text: "🚌 從木更津 Outlet 搭乘「高速巴士」直達東京市區（免提戰利品轉車擠電車）" },
+          { time: "19:45–22:00", type: "sight", text: "🗼 東京鐵塔看璀璨夜景 ＋ 🥩 晚餐：【前男友燒肉】或【新宿居酒屋/沾麵】，回安心小宿泡人工溫泉" }
         ]
       },
       {
         day: "D11", date: "1/24", dow: "日", phase: "tokyo",
-        title: "鎌倉半日遊 ➔ 澀谷寶可夢中心 (超夢) ➔ 新宿 Alpen TOKYO ➔ 羽田機場 T3",
+        title: "鎌倉大佛半日遊 ➔ 澀谷超夢寶可夢中心 ➔ 新宿 Alpen ➔ 羽田機場 T3",
         leave: "假日", hotel: "第11晚：睡羽田機場 T3（或 泉天空之湯 24H 溫泉）",
         members: "小白、Alan、傑若米 (D4)",
-        highlights: "🚆 新宿搭「JR湘南新宿線」一班車直達鎌倉，回程同線先在「澀谷」下車逛寶可夢，再回「新宿」逛 Alpen 最順路！",
+        highlights: "🚆 JR湘南新宿線直達鎌倉（看大佛、逛小町通買御守，不去江之島）；下午澀谷看超夢＋新宿逛 Alpen；晚上「睡機場越晚到越好！」",
         events: [
-          { time: "07:30–08:20", type: "meal", text: "🍛 安心小宿早餐 ＆ 退房，行李免費寄放安心小宿櫃台（或新宿站寄物櫃）" },
+          { time: "07:30–08:20", type: "meal", text: "🍛 安心小宿早餐 ＆ 退房，行李放寄物櫃（行李必放車站天）" },
           { time: "08:30–09:30", type: "transit", text: "🚆 新宿站搭乘【JR 湘南新宿線（直達免換車）】➔ 鎌倉站（約 58 分鐘）" },
-          { time: "09:30–12:00", type: "sight", text: "🌊 【鎌倉半日精華遊】轉江之電至長谷站看【鎌倉大佛】➔ 回鎌倉站逛【小町通商店街】＆【鶴岡八幡宮】" },
+          { time: "09:30–12:00", type: "sight", text: "🌊 【鎌倉半日精華遊】轉江之電至長谷站看【高德院・鎌倉大佛】➔ 回鎌倉站逛【小町通商店街】吃點心 ＆【鶴岡八幡宮】拜拜買御守" },
           { time: "12:00–13:20", type: "meal", text: "🐟 鎌倉午餐：小町通【秋本 鎌倉吻仔魚丼】或【Caraway 排隊咖哩飯】" },
           { time: "13:25–14:20", type: "transit", text: "🚆 鎌倉站搭【JR 湘南新宿線直達車】返回【澀谷站】（約 52 分鐘）" },
           { time: "14:30–17:30", type: "sight", text: "⚡ 【澀谷逛街】澀谷 PARCO 6F【寶可夢中心 (超夢) ＋ 任天堂旗艦店】➔【MEGA 唐吉軻德澀谷本店】買伴手禮＆吃章魚燒" },
-          { time: "17:45–19:45", type: "sight", text: "🏂 搭山手線回新宿東口：逛【Alpen TOKYO 運動用品旗艦店】（B2–8F 全日本最大運動＆滑雪用品店）" },
-          { time: "19:45–21:45", type: "meal", text: "🍻 東京最後一晚慶功 DINNER（新宿燒肉／居酒屋）＋ 補拍 2–3 MV 殺青畫面！" },
-          { time: "22:00–23:15", type: "transit", text: "🧳 新宿領行李 ➔ 濱松町轉東京單軌電車至【羽田機場 T3】（推薦去 T3 直通「泉天空之湯」24H 溫泉泡湯休息）" }
+          { time: "17:45–19:45", type: "sight", text: "🏂 搭山手線回新宿東口：逛【Alpen TOKYO 旗艦店】（全日本最大運動＆滑雪用品店）" },
+          { time: "19:45–22:00", type: "meal", text: "🍻 東京最後一晚慶功 DINNER（居酒屋／燒肉）＋ 補拍 MV 殺青畫面！" },
+          { time: "22:00–23:30", type: "transit", text: "🧳 新宿領行李 ➔ 濱松町轉東京單軌電車至【羽田機場 T3】（「越晚到越好！」直通泉天空之湯泡湯休息）" }
         ]
       },
       {
         day: "D12", date: "1/25", dow: "一", phase: "tokyo",
         title: "羽田機場返台（桃園 ／ 松山）✈️",
-        leave: "請假 (按時數)", hotel: "第12晚：溫暖的家",
+        leave: "請假 (按時數)", hotel: "第12晚：溫暖的家（睡家裡）",
         members: "小白、Alan、傑若米 (D5)",
-        highlights: "💴 【2026/11/01 日本免稅新制致命提醒】：去航空公司櫃檯托運大行李前，務必先去羽田 T3 3F「自助退稅機台 (Kiosk)」刷護照完成查驗判定！",
+        highlights: "💴 免稅新制先去 T3 機台刷護照！「傑瑞米請整天不要鬧還上班＝ ＝ A寶貝、奇寶貝兩個瘋子下機直接上班，怪寶貝在家補眠！」",
         events: [
           { time: "02:45–05:00", type: "transit", text: "✈️ 小白＋Alan：02:45 先於羽田 T3 自助退稅機台刷護照退稅 ➔ 03:00 開櫃托運行李 ➔ 05:00 AM 起飛返台（08:00 抵達桃園 T1）" },
           { time: "05:30–07:55", type: "transit", text: "✈️ 傑若米：05:30 先於羽田 T3 自助退稅機台刷護照退稅 ➔ 05:55 櫃檯托運 ➔ 07:55–10:55 羽田飛台北松山" },
-          { time: "09:00–18:00", type: "note", text: "💼 兩位寶貝光榮上班、怪寶貝在家休息補眠！" }
+          { time: "09:00–18:00", type: "note", text: "💼 A寶貝、奇寶貝光榮上班工作，怪寶貝傑若米在家休息補眠！全員平安完成 2–3 支 MV，旅程大圓滿！" }
         ]
       }
     ];
@@ -501,18 +764,30 @@
 
     const CHECKLIST_DATA = [
       { id: "c1", date: "2026/10/09", title: "預訂野澤雪具 Haus St. Anton（1/16–1/19 共4天）", detail: "已線上完成預訂（信用卡 0 元過卡），當天現場付 ¥21,800 × 2 = ¥43,600 日幣。", defaultDone: true },
-      { id: "c2", date: "2026/10/21", title: "預訂台北↔東京來回機票（出發前 3 個月）", detail: "小白＋Alan：1/14 桃園飛成田、1/25 羽田飛桃園｜傑若米：1/20 松山飛羽田、1/25 羽田飛松山。", defaultDone: false },
-      { id: "c3", date: "2026/11/21 13:00", title: "搶購 1/21 東京迪士尼海洋門票（A 寶貝負責）", detail: "日本時間 14:00（台灣時間 13:00）開賣 2 個月後同日門票，入園前下載好官方 App。", defaultDone: false },
+      { id: "c2", date: "2026/10/21", title: "預訂台北↔東京來回機票（出發前 3 個月）", detail: "小白＋Alan：1/14 桃園飛成田、1/25 羽田飛桃園 (NT$18,548)｜傑若米：1/20 松山飛羽田、1/25 羽田飛松山。", defaultDone: false },
+      { id: "c3", date: "2026/11/21 13:00", title: "搶購 1/21 東京迪士尼海洋門票（A 寶貝負責）", detail: "日本時間 14:00（台灣時間 13:00）開賣 2 個月後同日門票，入園前下載好官方 App 群組。", defaultDone: false },
       { id: "c4", date: "2026/12/15", title: "預訂 1/15 & 1/20 JR 北陸新幹線車票（上野 ↔ 飯山）", detail: "乘車前 1 個月於 JR-EAST Train Reservation 預訂指定席（含大型行李席位）。", defaultDone: false },
       { id: "c5", date: "2026/12/16", title: "預約野澤熱門晚餐：和牛亭壽喜燒 (1/16) ＆ びっきゃ燒肉 (1/19)", detail: "1 月中旬為野澤旺季，熱門餐廳務必提前 3–4 週電話或請信用卡秘書預約。", defaultDone: false },
-      { id: "c6", date: "2026/12/22", title: "預訂 1/22 新宿↔富士山 高速巴士來回票（傑瑞米負責）", detail: "去程買「Busta新宿 ➔ 中央道下吉田」(07:15/07:35)；回程買「河口湖駅 ➔ Busta新宿」(18:10/18:40)。", defaultDone: false },
-      { id: "c8", date: "2026/12月底–1月初", title: "於 じゃらん(Jalan) 預約 1/23 (六) 09:30【ちあきのいちご園】採草莓", detail: "官網規定僅限週六日開放、完全預約制且「僅接受 Jalan 網路預約」！推薦訂第一部 09:30 Premium 方案 (¥3,900/人，含土耕黑草莓真紅の美鈴、栃乙女＆白草莓迷你杯)。", defaultDone: false },
-      { id: "c7", date: "2027/01/14 09:00前", title: "向野澤源六 (Genroku) 預約 1/16 早餐", detail: "源六規定需於用餐日 2 天前 09:00 AM 前預約（1/15 入住時再當面訂 1/17 早餐与 1/18 早晚餐）。", defaultDone: false }
+      { id: "c6", date: "2026/12/22", title: "預訂 1/22 新宿↔富士山 高速巴士來回票（傑瑞米負責）", detail: "去程買「Busta新宿 ➔ 中央道下吉田」(07:15/07:35)；回程買「河口湖駅 ➔ Busta新宿」(19:00)。", defaultDone: false },
+      { id: "c8", date: "2026/12月底–1月初", title: "於 じゃらん(Jalan) 預約 1/23 (六) 09:30【ちあきのいちご園】採草莓", detail: "官網規定僅限週六日開放、完全預約制且「僅接受 Jalan 網路預約」！推薦訂第一部 09:30 Premium 方案 (¥3,900/人，含黑草莓真紅の美鈴、栃乙女＆白草莓杯)。", defaultDone: false },
+      { id: "c7", date: "2027/01/14 09:00前", title: "向野澤源六 (Genroku) 預約 1/16 早餐", detail: "源六規定需於用餐日 2 天前 09:00 AM 前預約（早餐 ¥1,500、晚餐 ¥4,000；1/17、1/20 不供晚餐）。", defaultDone: false },
+      { id: "c9", date: "2027/01/16", title: "淺草雷索爾奢華飯店 信用卡預扣 NT$6,768 訂金", detail: "飯店於入住前扣訂金擔保，1/22 退房時全額歸還，現場付款 JPY 34,200。", defaultDone: false }
+    ];
+
+    const SHOPPING_DATA = [
+      { id: "s1", category: "超商/超市必買", title: "🥛 AEON 超市・YUDA 湯田優格", desc: "岩手豪雪地帶名產！原想買大谷翔平推薦款，架上大推這款「YUDA 湯田優格」，以濃厚綿密如鮮奶油般口感風靡日本（鋁箔夾鏈袋裝）！" },
+      { id: "s2", category: "運動裝備", title: "🏊 Speedo Sunny G 潮流泳鏡", desc: "試算表指名！今年話題詢問度最高、一上市即秒殺完售款泳鏡，適合野澤泡湯 SPA 或泳訓日常佩戴。" },
+      { id: "s3", category: "日本配鏡", title: "👓 JINS 日本快配眼鏡（アトレ上野店）", desc: "免日文驗光！戴舊眼鏡機器 2 分鐘測度數，標準非球面鏡片 30–40 分鐘取件，免稅結帳省超多。" },
+      { id: "s4", category: "滑雪＆潮流服飾", title: "🏂 Alpen TOKYO ＆ 木更津 Outlet 戰利品", desc: "Salomon、HOKA 跑鞋、mont-bell 羊毛底層衣與羽絨衣、Lululemon 運動服、Under Armour、Billabong。" },
+      { id: "s5", category: "伴手禮名產", title: "🍪 富士山造型餅乾 (Fujiyama Cookie) ＆ 富士山布丁", desc: "河口湖必買名產！造型精緻口感香濃；LAWSON 站前買完再去對面買好吃布丁。" },
+      { id: "s6", category: "產地直送", title: "🍓 ちあきのいちご園 直賣所 栃乙女＆手工果醬", desc: "師匠直傳土耕栽培完熟栃乙女與無添加天然草莓果醬，採完草莓順路帶回！" }
     ];
 
     let selectedDay = "all";
     let onsenState = JSON.parse(localStorage.getItem("nozawa_onsen_2027") || "{}");
     let checkState = JSON.parse(localStorage.getItem("tokyo_check_2027") || "{}");
+    let shopState = JSON.parse(localStorage.getItem("tokyo_shop_2027") || "{}");
+
     CHECKLIST_DATA.forEach(item => {
       if (checkState[item.id] === undefined) checkState[item.id] = item.defaultDone;
     });
@@ -564,7 +839,7 @@
             </div>
           </div>
 
-          <div class="p-2.5 rounded-xl bg-[var(--secondary)] text-xs text-[var(--secondary-foreground)] font-medium">
+          <div class="p-2.5 rounded-xl bg-[var(--secondary)] text-xs text-[var(--secondary-foreground)] font-medium leading-relaxed">
             💡 <strong>當日重點：</strong>${d.highlights}
           </div>
 
@@ -668,14 +943,55 @@
       renderChecklist();
     }
 
+    function renderShopping() {
+      const grid = document.getElementById("shopping-grid");
+      let count = 0;
+      grid.innerHTML = SHOPPING_DATA.map(s => {
+        const done = !!shopState[s.id];
+        if (done) count++;
+        return `
+          <div onclick="toggleShopping('${s.id}')" class="cursor-pointer p-4 rounded-2xl border transition flex flex-col justify-between gap-2 ${
+            done ? "bg-[var(--secondary)] border-[var(--primary)] shadow-sm" : "bg-[var(--background)] border-[var(--border)] hover:opacity-90"
+          }">
+            <div class="space-y-1">
+              <div class="flex items-center justify-between gap-2">
+                <span class="px-2 py-0.5 rounded bg-[var(--card)] border border-[var(--border)] text-xs font-semibold text-[var(--muted-foreground)]">${s.category}</span>
+                <span class="px-2 py-0.5 rounded-full text-xs font-semibold ${
+                  done ? "bg-[var(--primary)] text-[var(--primary-foreground)]" : "bg-[var(--card)] text-[var(--muted-foreground)] border border-[var(--border)]"
+                }">${done ? "✅ 已買到" : "未買"}</span>
+              </div>
+              <div class="font-bold text-sm text-[var(--foreground)] ${done ? "line-through opacity-75" : ""}">${s.title}</div>
+            </div>
+            <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">${s.desc}</p>
+          </div>
+        `;
+      }).join("");
+      document.getElementById("shop-count").textContent = count;
+    }
+
+    function toggleShopping(id) {
+      shopState[id] = !shopState[id];
+      localStorage.setItem("tokyo_shop_2027", JSON.stringify(shopState));
+      renderShopping();
+    }
+
+    function resetShopping() {
+      shopState = {};
+      localStorage.setItem("tokyo_shop_2027", JSON.stringify(shopState));
+      renderShopping();
+    }
+
     function switchMainTab(tab) {
-      ["itinerary", "disney", "onsen", "checklist", "kisarazu"].forEach(t => {
-        document.getElementById("tab-" + t).classList.toggle("hidden", t !== tab);
+      ["itinerary", "disney", "onsen", "nozawa-guide", "kisarazu", "shopping-rules", "budget", "checklist"].forEach(t => {
+        const el = document.getElementById("tab-" + t);
+        if (el) el.classList.toggle("hidden", t !== tab);
         const btn = document.getElementById("tab-btn-" + t);
-        if (t === tab) {
-          btn.className = "px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition";
-        } else {
-          btn.className = "px-4 py-2 rounded-xl text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition";
+        if (btn) {
+          if (t === tab) {
+            btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--primary)] text-[var(--primary-foreground)] transition";
+          } else {
+            btn.className = "px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition";
+          }
         }
       });
     }
@@ -686,7 +1002,7 @@
       { id: "d3", tier: "Tier S 必玩", name: "③ 翱翔：夢幻奇航 (Soaring)", zone: "地中海港灣", thrill: "★★☆☆☆", pass: "09:30 第二波買 DPA (¥2,000)", desc: "乘滑翔機飛越世界奇景（含東京鐵塔），搭配微風與香氣，DPA 滿 60 分鐘立刻買第 2 張。" },
       { id: "d4", tier: "Tier S 必玩", name: "④ 地心探險之旅", zone: "神秘島（火山中心）", thrill: "★★★★☆", pass: "10:30 買第3張 DPA 或下午現場排", desc: "迪士尼海洋鎮園之寶！探索地底奇景，最後時速 75km 衝出火山口俯瞰園區。" },
       { id: "d5", tier: "Tier A 經典", name: "⑤ 樂佩公主天燈盛會", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★☆☆☆☆", pass: "09:10 玩完小飛俠後隔壁直接排 (約25分)", desc: "數百盞天燈水面浪漫造景，視覺效果極美，非常適合拍 MV 畫面！" },
-      { id: "d6", tier: "Tier A 經典", name: "⑥ 印第安納瓊斯：水晶骷髏頭魔宮", zone: "失落河三角洲", thrill: "★★★★☆", pass: "走 Single Rider 單人通道 (10分內免費)", desc: "越野車高速穿梭古文明遺跡與巨石機關！PP 卡結束後，3 男生走單人通道最快。" },
+      { id: "d6", tier: "Tier A 經典", name: "⑥ 印第安納瓊斯：水晶骷髏頭魔宮", zone: "失落河三角洲", thrill: "★★★★☆", pass: "走 Single Rider 單人通道 (10分內免費)", desc: "越野車高速穿梭古文明遺跡與巨石機關！3 男生走單人通道免排隊最快。" },
       { id: "d7", tier: "Tier A 經典", name: "⑦ 驚魂古塔 (Tower of Terror)", zone: "美國海濱", thrill: "★★★★★", pass: "下午買 DPA (¥1,500) 或傍晚排隊", desc: "受詛咒的自由落體電梯，升到頂樓瞬間可飽覽東京灣夜景後急墜！" },
       { id: "d8", tier: "Tier A 經典", name: "⑧ 玩具總動員瘋狂遊戲屋", zone: "美國海濱", thrill: "★★☆☆☆", pass: "下午買 DPA (¥2,000) 或傍晚排隊", desc: "戴 3D 眼鏡瘋狂拉繩射擊比拼最高分，3 個男生 PK 超級歡樂！" },
       { id: "d9", tier: "Tier B 順路", name: "⑨ 忿怒雙神 (Raging Spirits)", zone: "失落河三角洲", thrill: "★★★★☆", pass: "走 Single Rider 單人通道 (10分內免費)", desc: "全園唯一 360 度環形雲霄飛車（就在印第安納瓊斯正隔壁，單人通道神速上車）。" },
@@ -704,7 +1020,7 @@
       { time: "15:30–16:45", zone: "地中海港灣", type: "sight", text: "🦅 第9站：《翱翔：夢幻奇航 Soaring》（使用09:30買好的DPA，直接略過140分鐘排隊人潮！）" },
       { time: "16:45–18:45", zone: "美國海濱", type: "sight", text: "🎯 第10站：《玩具總動員瘋狂遊戲屋》(3人射擊對決) ＋ ⚡ 第11站：《驚魂古塔》(看東京灣夜景急墜) ＋ 逛史高治百貨買25週年最終章＆達菲周邊" },
       { time: "18:50–19:45", zone: "地中海港灣", type: "sight", text: "🎆 夜間水上大秀《Believe! Sea of Dreams 堅信！～夢想之海～》（18:50港灣斜坡卡位，雷射水幕火焰煙火大合演）" },
-      { time: "19:45–20:15", zone: "地球廣場商店", type: "transit", text: "逛入口「恩波利歐商場」買伴手禮餅乾 ➔ 20:15 提早離園避開 21:00 散場塞車 ➔ 回淺草吃 Hoppy 通居酒屋／拉麵！" }
+      { time: "19:45–20:15", zone: "地球廣場商店", type: "transit", text: "逛入口「恩波利歐商場」買伴手禮餅乾 ➔ 20:15 提早離園避開 21:00 散場塞車 ➔ 回淺草雷門附近吃居酒屋！" }
     ];
 
     let disneyState = JSON.parse(localStorage.getItem("disney_rides_2027") || "{}");
@@ -768,6 +1084,7 @@
     renderDays();
     renderDisney();
     renderOnsen();
+    renderShopping();
     renderChecklist();
   </script>
 </body>
