@@ -76,7 +76,7 @@
         </p>
       </div>
       <div class="flex items-center gap-2 shrink-0 no-print">
-        <a href="https://docs.google.com/spreadsheets/u/0/d/1krzeMA_yB_dQIpz_sGzqvJxsGOeA4sIxsfmP_2ITJN8/htmlview#gid=377794634" target="_blank" class="px-3.5 py-2 rounded-xl bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-80 transition shadow-sm">
+        <a href="https://docs.google.com/spreadsheets/d/1krzeMA_yB_dQIpz_sGzqvJxsGOeA4sIxsfmP_2ITJN8/edit?gid=1893305671#gid=1893305671" target="_blank" class="px-3.5 py-2 rounded-xl bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-80 transition shadow-sm">
           📊 原始試算表
         </a>
         <button onclick="window.print()" class="px-3.5 py-2 rounded-xl bg-[var(--secondary)] text-[var(--secondary-foreground)] border border-[var(--border)] text-xs font-semibold hover:opacity-90 transition">
@@ -136,6 +136,7 @@
     </div>
 
         <!-- TAB 2: CONCEPTUAL DISTANCE & DIRECTION MAP (NEW!) -->
+    <!-- TAB 2: CONCEPTUAL DISTANCE & DIRECTION MAP -->
     <div id="tab-concept-map" class="hidden space-y-6">
       
       <!-- Top Title & View Switcher -->
@@ -144,431 +145,567 @@
           <div class="space-y-1">
             <div class="flex items-center gap-2">
               <span class="text-xl">🗺️</span>
-              <h2 class="text-lg sm:text-xl font-extrabold text-[var(--foreground)]">2027 東京＋野澤 主要地點距離方位概念圖</h2>
+              <h2 class="text-lg sm:text-xl font-extrabold text-[var(--foreground)]">野澤溫泉村「源六生活圈」步行導航與方位概念圖</h2>
             </div>
             <p class="text-xs text-[var(--muted-foreground)]">
-              參考班老大風格實地調研：將 12 天旅程中的<strong>「關東 ↔ 信州跨區宏觀方位」</strong>與<strong>「野澤溫泉村＆雪場微觀動線」</strong>以概念圖直觀呈現！
+              以我們連續住宿 5 晚的 <strong>NOZAWA GENROKU 源六旅館</strong> 為核心，參考班老大 Google Maps 實測導航風格，直觀標示外湯、雪具店、登山電動步道與美食打卡點！
             </p>
           </div>
           
           <!-- Map View Toggle Pills -->
           <div class="flex gap-1.5 p-1 rounded-xl bg-[var(--secondary)] border border-[var(--border)] shrink-0 self-start sm:self-auto">
-            <button onclick="switchMapView('macro')" id="map-btn-macro" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm transition">
-              🌏 關東＋信州 全景方位圖
+            <button onclick="switchMapView('walking')" id="map-btn-walking" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm transition">
+              🚶 源六 5分鐘生活圈 (導航圖)
             </button>
-            <button onclick="switchMapView('micro')" id="map-btn-micro" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition">
-              🎿 野澤溫泉村＆雪場特寫
+            <button onclick="switchMapView('mountain')" id="map-btn-mountain" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition">
+              🎿 雪場纜車立體高低差
+            </button>
+            <button onclick="switchMapView('macro')" id="map-btn-macro" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition">
+              🌏 關東⇄信州 全景方位
             </button>
           </div>
         </div>
 
-        <!-- SVG Map Views -->
-        <div class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[var(--background)] shadow-inner">
-          <div id="map-view-macro" class="p-2 sm:p-4">
-            <svg viewBox="0 0 900 620" class="w-full h-auto select-none font-sans" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <defs>
-    <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.05" />
-      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.15" />
-    </radialGradient>
-    <linearGradient id="lineNorth" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#60a5fa" />
-    </linearGradient>
-    <linearGradient id="lineWest" x1="100%" y1="50%" x2="0%" y2="50%">
-      <stop offset="0%" stop-color="#10b981" />
-      <stop offset="100%" stop-color="#34d399" />
-    </linearGradient>
-    <linearGradient id="lineSouth" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#8b5cf6" />
-      <stop offset="100%" stop-color="#a78bfa" />
-    </linearGradient>
-    <linearGradient id="lineEast" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f59e0b" />
-      <stop offset="100%" stop-color="#fbbf24" />
-    </linearGradient>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15" />
-    </filter>
-  </defs>
+        <!-- 1. VIEW 1: GOOGLE MAPS STYLE WALKING MAP (DEFAULT & PRIMARY) -->
+        <div id="map-view-walking" class="rounded-2xl border border-[var(--border)] overflow-hidden bg-[#eef6ec] shadow-inner p-2 sm:p-4">
+          <svg viewBox="0 0 960 640" class="w-full h-auto select-none font-sans" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="mapShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15" />
+              </filter>
+              <filter id="pinShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25" />
+              </filter>
+            </defs>
 
-  <rect width="900" height="620" rx="24" fill="url(#bgGrad)" />
+            <!-- Base Map Land Background -->
+            <rect width="960" height="640" fill="#eef6ec" rx="16" />
 
-  <!-- Compass Rose (Top Right) -->
-  <g transform="translate(830, 70)">
-    <circle r="32" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)" />
-    <path d="M0 -24 L6 -4 L0 0 L-6 -4 Z" fill="#ef4444" />
-    <path d="M0 24 L6 4 L0 0 L-6 4 Z" fill="#94a3b8" />
-    <path d="M-24 0 L-4 -6 L0 0 L-4 6 Z" fill="#94a3b8" />
-    <path d="M24 0 L4 -6 L0 0 L4 6 Z" fill="#94a3b8" />
-    <text x="0" y="-27" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">N 北</text>
-    <text x="0" y="35" font-size="9" font-weight="bold" fill="#64748b" text-anchor="middle">S</text>
-    <text x="-34" y="3" font-size="9" font-weight="bold" fill="#64748b" text-anchor="middle">W</text>
-    <text x="34" y="3" font-size="9" font-weight="bold" fill="#64748b" text-anchor="middle">E</text>
-  </g>
+            <!-- Decorative Terrain Contours / Green Zones -->
+            <path d="M 0,0 L 960,0 L 960,140 Q 600,120 400,80 Q 200,40 0,90 Z" fill="#e2eedf" />
+            <path d="M 700,0 L 960,0 L 960,380 Q 820,320 740,240 Z" fill="#d9e9d5" />
+            <path d="M 0,480 Q 150,500 280,560 L 220,640 L 0,640 Z" fill="#e2eedf" />
 
-  <!-- Concentric Distance Range Rings from Tokyo Center (450, 340) -->
-  <circle cx="450" cy="340" r="90" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4" opacity="0.35" />
-  <circle cx="450" cy="340" r="180" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4" opacity="0.35" />
-  <circle cx="450" cy="340" r="260" fill="none" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4" opacity="0.35" />
-  <text x="450" y="246" font-size="10" fill="#94a3b8" font-weight="bold" text-anchor="middle" opacity="0.8">50 km 圈</text>
-  <text x="450" y="156" font-size="10" fill="#94a3b8" font-weight="bold" text-anchor="middle" opacity="0.8">100 km 圈</text>
-  <text x="450" y="76" font-size="10" fill="#94a3b8" font-weight="bold" text-anchor="middle" opacity="0.8">200+ km 圈</text>
+            <!-- Town Blocks / Building Footprints (Google Maps Beige Style) -->
+            <g fill="#fbf6e9" stroke="#e2ddd0" stroke-width="1.5">
+              <!-- Upper Blocks -->
+              <rect x="180" y="80" width="85" height="45" rx="4" />
+              <rect x="280" y="70" width="110" height="50" rx="4" />
+              <rect x="410" y="60" width="130" height="45" rx="4" />
+              <rect x="560" y="75" width="90" height="55" rx="4" />
+              <rect x="670" y="90" width="120" height="60" rx="4" />
 
-  <!-- ROUTE 1: NORTH to Nozawa Onsen (450, 340 -> 450, 65) -->
-  <path d="M 450 310 L 450 115" stroke="url(#lineNorth)" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round" />
-  <!-- Travel badge -->
-  <g transform="translate(450, 190)">
-    <rect x="-85" y="-14" width="170" height="28" rx="14" fill="#2563eb" filter="url(#shadow)" />
-    <text x="0" y="4" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">🚄 北陸新幹線 100分 + 巴士 25分</text>
-    <text x="95" y="4" font-size="10" font-weight="bold" fill="#3b82f6">約 220 km</text>
-  </g>
+              <!-- Middle North Blocks -->
+              <rect x="140" y="160" width="90" height="55" rx="4" />
+              <rect x="250" y="155" width="120" height="55" rx="4" />
+              <rect x="520" y="150" width="100" height="55" rx="4" />
+              <rect x="640" y="170" width="110" height="60" rx="4" />
 
-  <!-- ROUTE 2: WEST to Mt. Fuji / Kawaguchiko (450, 340 -> 130, 340) -->
-  <path d="M 380 340 L 195 340" stroke="url(#lineWest)" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round" />
-  <!-- Travel badge -->
-  <g transform="translate(285, 340)">
-    <rect x="-80" y="-20" width="160" height="26" rx="13" fill="#059669" filter="url(#shadow)" />
-    <text x="0" y="-3" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">🚌 Busta新宿高速巴士 100分</text>
-    <text x="0" y="19" font-size="10" font-weight="bold" fill="#10b981" text-anchor="middle">約 100 km</text>
-  </g>
+              <!-- Center Blocks (Around Genroku & Oyu) -->
+              <rect x="340" y="250" width="75" height="50" rx="4" />
+              <rect x="535" y="245" width="95" height="65" rx="4" />
+              <rect x="650" y="260" width="120" height="65" rx="4" />
 
-  <!-- ROUTE 3: SOUTH to Kamakura (450, 340 -> 420, 520) -->
-  <path d="M 440 380 L 420 480" stroke="url(#lineSouth)" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round" />
-  <!-- Travel badge -->
-  <g transform="translate(430, 430)">
-    <rect x="-75" y="-12" width="150" height="24" rx="12" fill="#7c3aed" filter="url(#shadow)" />
-    <text x="0" y="4" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">🚆 JR湘南新宿線直達 58分</text>
-    <text x="85" y="4" font-size="10" font-weight="bold" fill="#8b5cf6">約 55 km</text>
-  </g>
+              <!-- Lower Blocks -->
+              <rect x="160" y="360" width="110" height="65" rx="4" />
+              <rect x="290" y="370" width="130" height="70" rx="4" />
+              <rect x="440" y="380" width="90" height="60" rx="4" />
+              <rect x="550" y="370" width="115" height="70" rx="4" />
+              <rect x="680" y="360" width="100" height="65" rx="4" />
 
-  <!-- ROUTE 4: SOUTHEAST to Chiba Strawberries & Kisarazu Outlet (450, 340 -> 720, 440) -->
-  <path d="M 490 365 L 670 435" stroke="url(#lineEast)" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round" />
-  <!-- Travel badge -->
-  <g transform="translate(585, 385)">
-    <rect x="-75" y="-12" width="150" height="24" rx="12" fill="#d97706" filter="url(#shadow)" />
-    <text x="0" y="4" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">🚆 電車 90分 / 跨海巴士 60分</text>
-    <text x="85" y="4" font-size="10" font-weight="bold" fill="#f59e0b">約 60-80 km</text>
-  </g>
+              <!-- Southern Blocks -->
+              <rect x="210" y="480" width="120" height="65" rx="4" />
+              <rect x="350" y="490" width="140" height="60" rx="4" />
+              <rect x="510" y="480" width="130" height="65" rx="4" />
+            </g>
 
-  <!-- AIRPORT 1: Narita NRT (North-East 65km) -->
-  <path d="M 490 320 L 680 230" stroke="#0284c7" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round" />
-  <g transform="translate(585, 260)">
-    <rect x="-60" y="-10" width="120" height="20" rx="10" fill="#0284c7" />
-    <text x="0" y="4" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">✈️ Skyliner 36分</text>
-  </g>
+            <!-- STREET NETWORK (Google Maps Off-White Roads with Grey Borders) -->
+            <!-- Background Road Casing (Grey) -->
+            <g stroke="#cbd5e1" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <!-- Main Road: Oyu Dori (Horizontal Spine) -->
+              <path d="M 80,230 L 260,230 L 460,235 L 680,240 L 900,245" stroke-width="28" />
+              <!-- Road: To Yu-road / Hikage (North-East) -->
+              <path d="M 460,235 L 530,190 L 610,135 L 750,75 L 880,45" stroke-width="24" />
+              <!-- Road: To Ogama (North-West) -->
+              <path d="M 460,235 L 420,170 L 370,120 L 310,70 L 240,40" stroke-width="22" />
+              <!-- Road: South to Chuo Bus Terminal -->
+              <path d="M 460,235 L 455,340 L 430,440 L 390,540 L 360,610" stroke-width="26" />
+              <!-- Road: South-East to Maesaka / Nagasaka -->
+              <path d="M 460,235 L 560,310 L 670,410 L 790,510 L 900,570" stroke-width="24" />
+              <!-- Cross Connector Streets -->
+              <path d="M 260,230 L 250,370 L 240,510" stroke-width="18" />
+              <path d="M 680,240 L 670,360 L 660,500" stroke-width="18" />
+              <path d="M 250,370 L 440,380 L 670,360" stroke-width="18" />
+            </g>
 
-  <!-- AIRPORT 2: Haneda HND (South 20km) -->
-  <path d="M 460 375 L 500 460" stroke="#0284c7" stroke-width="3" stroke-dasharray="4 4" stroke-linecap="round" />
-  <g transform="translate(485, 415)">
-    <rect x="-55" y="-10" width="110" height="20" rx="10" fill="#0284c7" />
-    <text x="0" y="4" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">✈️ 京急線 38分</text>
-  </g>
+            <!-- Foreground Road Fill (Pure White) -->
+            <g stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M 80,230 L 260,230 L 460,235 L 680,240 L 900,245" stroke-width="24" />
+              <path d="M 460,235 L 530,190 L 610,135 L 750,75 L 880,45" stroke-width="20" />
+              <path d="M 460,235 L 420,170 L 370,120 L 310,70 L 240,40" stroke-width="18" />
+              <path d="M 460,235 L 455,340 L 430,440 L 390,540 L 360,610" stroke-width="22" />
+              <path d="M 460,235 L 560,310 L 670,410 L 790,510 L 900,570" stroke-width="20" />
+              <path d="M 260,230 L 250,370 L 240,510" stroke-width="14" />
+              <path d="M 680,240 L 670,360 L 660,500" stroke-width="14" />
+              <path d="M 250,370 L 440,380 L 670,360" stroke-width="14" />
+            </g>
 
-  <!-- ================= NODES ================= -->
+            <!-- Road Name Labels (Subtle Slate) -->
+            <text x="170" y="224" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">大湯通り (Oyu Dori)</text>
+            <text x="640" y="125" font-size="10" font-weight="600" fill="#94a3b8" transform="rotate(-24 640 125)">往 遊步道／日影雪場 ➔</text>
+            <text x="310" y="105" font-size="10" font-weight="600" fill="#94a3b8" transform="rotate(-38 310 105)">往 麻釜 (煮蛋區) ➔</text>
+            <text x="470" y="380" font-size="10" font-weight="600" fill="#94a3b8" transform="rotate(76 470 380)">往 中央巴士總站 ➔</text>
+            <text x="710" y="445" font-size="10" font-weight="600" fill="#94a3b8" transform="rotate(40 710 445)">往 前坂站牌／長坂纜車 ➔</text>
 
-  <!-- NODE: NORTH - Nozawa Onsen -->
-  <g transform="translate(450, 75)" filter="url(#shadow)">
-    <rect x="-140" y="-35" width="280" height="70" rx="18" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5" />
-    <circle cx="-105" cy="0" r="22" fill="#2563eb" />
-    <text x="-105" y="7" font-size="18" text-anchor="middle">🎿</text>
-    <text x="-70" y="-8" font-size="15" font-weight="extrabold" fill="#ffffff">野澤溫泉滑雪場 ＆ 溫泉街</text>
-    <text x="-70" y="12" font-size="11" font-weight="medium" fill="#93c5fd">1/15–1/20 (D2–D6) ｜ 毛無山 1650m・源六・13外湯</text>
-    <text x="-70" y="26" font-size="10" font-weight="bold" fill="#fbbf24">🔥 1/15 道祖神火祭 ｜ 飯山站轉接駁巴士 25分</text>
-  </g>
+            <!-- ============================================== -->
+            <!-- GOOGLE MAPS WALKING ROUTES (From GENROKU Base) -->
+            <!-- ============================================== -->
 
-  <!-- NODE: WEST - Mt. Fuji -->
-  <g transform="translate(115, 340)" filter="url(#shadow)">
-    <rect x="-105" y="-50" width="210" height="100" rx="18" fill="#1e293b" stroke="#10b981" stroke-width="2.5" />
-    <circle cx="-65" cy="-15" r="20" fill="#059669" />
-    <text x="-65" y="-8" font-size="16" text-anchor="middle">🗻</text>
-    <text x="-35" y="-12" font-size="14" font-weight="extrabold" fill="#ffffff">富士山・河口湖</text>
-    <text x="-35" y="6" font-size="10" font-weight="bold" fill="#6ee7b7">1/22 (D9) 一日遊</text>
-    <text x="-90" y="25" font-size="10" fill="#cbd5e1">• 下吉田：新倉山淺間公園</text>
-    <text x="-90" y="39" font-size="10" fill="#cbd5e1">• 忍野八海 ＋ 天上山纜車</text>
-  </g>
+            <!-- Route 1: Genroku -> Oyu (Walking 30s / 30m) -->
+            <path d="M 450,250 L 430,240" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <!-- NODE: SOUTH - Kamakura -->
-  <g transform="translate(390, 535)" filter="url(#shadow)">
-    <rect x="-100" y="-32" width="200" height="64" rx="16" fill="#1e293b" stroke="#8b5cf6" stroke-width="2.5" />
-    <circle cx="-68" cy="0" r="18" fill="#7c3aed" />
-    <text x="-68" y="6" font-size="15" text-anchor="middle">🌊</text>
-    <text x="-40" y="-6" font-size="13" font-weight="extrabold" fill="#ffffff">鎌倉・湘南海岸</text>
-    <text x="-40" y="10" font-size="10" font-weight="bold" fill="#c4b5fd">1/24 (D11) 半日遊</text>
-    <text x="-40" y="22" font-size="9" fill="#e2e8f0">高德院大佛・小町通・鶴岡八幡宮</text>
-  </g>
+            <!-- Route 2: Genroku -> Shirakaba Rental (Walking 2m / 140m) -->
+            <path d="M 460,245 L 530,195 L 580,165" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <!-- NODE: SOUTHEAST - Chiba Strawberries & Kisarazu Outlet -->
-  <g transform="translate(740, 465)" filter="url(#shadow)">
-    <rect x="-115" y="-45" width="230" height="90" rx="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2.5" />
-    <circle cx="-80" cy="-12" r="18" fill="#d97706" />
-    <text x="-80" y="-6" font-size="15" text-anchor="middle">🍓</text>
-    <text x="-52" y="-10" font-size="13" font-weight="extrabold" fill="#ffffff">千葉採草莓 ＆ 木更津</text>
-    <text x="-52" y="7" font-size="10" font-weight="bold" fill="#fcd34d">1/23 (D10) 一日遊</text>
-    <text x="-100" y="23" font-size="9" fill="#e2e8f0">• ちあきのいちご園（永田站採黑草莓）</text>
-    <text x="-100" y="36" font-size="9" fill="#e2e8f0">• MITSUI OUTLET PARK 木更津（大採購）</text>
-  </g>
+            <!-- Route 3: Genroku -> Yu-road (Walking 3.5m / 250m) -->
+            <path d="M 580,165 L 630,130 L 730,85" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <!-- NODE: AIRPORTS -->
-  <!-- NRT Airport -->
-  <g transform="translate(730, 210)" filter="url(#shadow)">
-    <rect x="-85" y="-22" width="170" height="44" rx="12" fill="#0f172a" stroke="#0284c7" stroke-width="2" />
-    <text x="-68" y="6" font-size="14">✈️</text>
-    <text x="-48" y="-3" font-size="12" font-weight="extrabold" fill="#ffffff">成田機場 (NRT)</text>
-    <text x="-48" y="12" font-size="9" fill="#7dd3fc">1/14 19:35 抵達 (T2)</text>
-  </g>
+            <!-- Route 4: Genroku -> Ogama (Walking 5m / 400m) -->
+            <path d="M 450,245 L 420,175 L 370,125 L 305,80" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <!-- HND Airport -->
-  <g transform="translate(560, 520)" filter="url(#shadow)">
-    <rect x="-85" y="-22" width="170" height="44" rx="12" fill="#0f172a" stroke="#0284c7" stroke-width="2" />
-    <text x="-68" y="6" font-size="14">✈️</text>
-    <text x="-48" y="-3" font-size="12" font-weight="extrabold" fill="#ffffff">羽田機場 (HND)</text>
-    <text x="-48" y="12" font-size="9" fill="#7dd3fc">1/20 傑若米入境 ｜ 1/25 返台</text>
-  </g>
+            <!-- Route 5: Genroku -> Chuo Bus Terminal (Walking 4m / 300m) -->
+            <path d="M 455,255 L 450,345 L 425,445 L 385,545" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <!-- CENTER HUB: TOKYO METROPOLITAN (450, 340) -->
-  <g transform="translate(450, 340)" filter="url(#shadow)">
-    <rect x="-100" y="-55" width="200" height="110" rx="20" fill="#ffffff" stroke="#e11d48" stroke-width="3" />
-    <rect x="-95" y="-50" width="190" height="24" rx="10" fill="#e11d48" />
-    <text x="0" y="-34" font-size="12" font-weight="extrabold" fill="#ffffff" text-anchor="middle">🗼 東京都心核心大本營</text>
-    
-    <g transform="translate(0, -10)" font-size="10" font-weight="bold" fill="#0f172a">
-      <text x="-85" y="0">🏨 淺草雷索爾 (D7-D8)</text>
-      <text x="15" y="0">🏨 安心小宿新宿 (D9-D10)</text>
-      <text x="-85" y="15">👓 上野 JINS (D2/D7)</text>
-      <text x="15" y="15">🥩 秋葉原 Steak Lodge</text>
-      <text x="-85" y="30">🌋 舞濱 迪士尼海洋 (D8)</text>
-      <text x="15" y="30">⚡ 澀谷 超夢中心 (D11)</text>
-    </g>
-  </g>
-</svg>
-          </div>
-          <div id="map-view-micro" class="hidden p-2 sm:p-4">
-            <svg viewBox="0 0 900 620" class="w-full h-auto select-none font-sans" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="microBg" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#0f172a" stop-opacity="0.03" />
-      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.12" />
-    </radialGradient>
-    <filter id="mShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.12" />
-    </filter>
-  </defs>
+            <!-- Route 6: Genroku -> Maesaka Bus Stop (Walking 3m / 220m) -->
+            <path d="M 460,250 L 555,315 L 650,400" stroke="#2563eb" stroke-width="6" stroke-linecap="round" stroke-dasharray="3 6" />
 
-  <rect width="900" height="620" rx="24" fill="url(#microBg)" />
+            <!-- ============================================== -->
+            <!-- WALKING DISTANCE CALLOUT BADGES (Google Maps Style) -->
+            <!-- ============================================== -->
 
-  <!-- Mountain Slope Gradient Contour from Bottom (Village 565m) to Top (Peak 1650m) -->
-  <path d="M 50 280 Q 250 180 450 120 Q 650 180 850 260 L 850 40 L 50 40 Z" fill="#3b82f6" fill-opacity="0.08" />
-  <path d="M 50 420 Q 300 360 450 320 Q 600 360 850 410 L 850 260 L 50 280 Z" fill="#38bdf8" fill-opacity="0.06" />
+            <!-- Callout: To Shirakaba (140m / 2分) - Just like Benic360! -->
+            <g transform="translate(515, 150)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('shirakaba')">
+              <rect x="0" y="0" width="95" height="32" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.8" />
+              <path d="M 20,32 L 25,38 L 30,32 Z" fill="#ffffff" />
+              <text x="10" y="16" font-size="12" font-weight="bold" fill="#1e293b">🚶 2 分</text>
+              <text x="10" y="27" font-size="9" font-weight="600" fill="#64748b">140公尺</text>
+            </g>
 
-  <!-- Elevation Lines & Labels -->
-  <text x="60" y="70" font-size="11" font-weight="bold" fill="#3b82f6">▲ 毛無山頂 1,650m (山頂粉雪區)</text>
-  <text x="60" y="220" font-size="11" font-weight="bold" fill="#0284c7">▲ 上之平高原 1,400m (初學天堂)</text>
-  <text x="60" y="370" font-size="11" font-weight="bold" fill="#059669">▲ 長坂／日影雪場底 660m (纜車站/雪具店)</text>
-  <text x="60" y="580" font-size="11" font-weight="bold" fill="#ea580c">▼ 野澤溫泉老街 565m (大湯/源六/13外湯)</text>
+            <!-- Callout: To Oyu (30m / 30秒) -->
+            <g transform="translate(370, 205)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('oyu')">
+              <rect x="0" y="0" width="85" height="30" rx="6" fill="#ffffff" stroke="#ef4444" stroke-width="1.5" />
+              <path d="M 60,30 L 65,35 L 70,30 Z" fill="#ffffff" />
+              <text x="8" y="15" font-size="11" font-weight="bold" fill="#ef4444">♨️ 30 秒</text>
+              <text x="8" y="25" font-size="8.5" font-weight="600" fill="#64748b">出門即達 30m</text>
+            </g>
 
-  <!-- MOUNTAIN PEAK ZONE (Top Center: 450, 75) -->
-  <g transform="translate(450, 80)" filter="url(#mShadow)">
-    <rect x="-140" y="-32" width="280" height="64" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
-    <circle cx="-105" cy="0" r="18" fill="#2563eb" />
-    <text x="-105" y="6" font-size="14" text-anchor="middle">🏔️</text>
-    <text x="-75" y="-6" font-size="13" font-weight="extrabold" fill="#ffffff">毛無山頂 ＆ Yamabiko</text>
-    <text x="-75" y="12" font-size="10" fill="#93c5fd">標高 1,650m ｜ 頂級樹林粉雪</text>
-    <text x="-75" y="24" font-size="9" font-weight="bold" fill="#fbbf24">🥩 必吃 Yamabiko 銷魂野澤菜燒肉飯</text>
-  </g>
+            <!-- Callout: To Yu-road (250m / 3.5分) -->
+            <g transform="translate(685, 45)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('yuroad')">
+              <rect x="0" y="0" width="100" height="32" rx="8" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" />
+              <path d="M 45,32 L 50,38 L 55,32 Z" fill="#ffffff" />
+              <text x="10" y="16" font-size="12" font-weight="bold" fill="#0284c7">🚶 3.5 分</text>
+              <text x="10" y="27" font-size="9" font-weight="600" fill="#64748b">250m 直達日影</text>
+            </g>
 
-  <!-- MID MOUNTAIN: Uenotaira (Top-Mid: 450, 195) -->
-  <g transform="translate(450, 195)" filter="url(#mShadow)">
-    <rect x="-120" y="-24" width="240" height="48" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
-    <text x="-100" y="5" font-size="14">⛷️</text>
-    <text x="-75" y="-3" font-size="12" font-weight="bold" fill="#ffffff">上之平高原 (Uenotaira)</text>
-    <text x="-75" y="13" font-size="9" fill="#7dd3fc">2km 超寬 8–12° 平緩綠線 ｜ 完美初學天堂</text>
-  </g>
+            <!-- Callout: To Ogama (400m / 5分) -->
+            <g transform="translate(250, 40)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('ogama')">
+              <rect x="0" y="0" width="95" height="32" rx="8" fill="#ffffff" stroke="#f59e0b" stroke-width="1.8" />
+              <path d="M 50,32 L 55,38 L 60,32 Z" fill="#ffffff" />
+              <text x="10" y="16" font-size="12" font-weight="bold" fill="#d97706">🚶 5 分</text>
+              <text x="10" y="27" font-size="9" font-weight="600" fill="#64748b">400m 煮蛋地標</text>
+            </g>
 
-  <!-- SKYLINE RIDGE RUN (Right curve: 680, 180) -->
-  <g transform="translate(710, 180)" filter="url(#mShadow)">
-    <rect x="-85" y="-20" width="170" height="40" rx="12" fill="#0f172a" stroke="#818cf8" stroke-width="1.5" />
-    <text x="-70" y="5" font-size="13">✨</text>
-    <text x="-48" y="-2" font-size="11" font-weight="bold" fill="#ffffff">Skyline 天際線</text>
-    <text x="-48" y="12" font-size="9" fill="#c7d2fe">3.5km 雲海稜線俯衝</text>
-  </g>
+            <!-- Callout: To Chuo Terminal (300m / 4分) -->
+            <g transform="translate(320, 520)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('bus')">
+              <rect x="0" y="0" width="105" height="32" rx="8" fill="#ffffff" stroke="#059669" stroke-width="1.8" />
+              <path d="M 70,0 L 75,-6 L 80,0 Z" fill="#ffffff" />
+              <text x="10" y="16" font-size="12" font-weight="bold" fill="#059669">🚶 4 分</text>
+              <text x="10" y="27" font-size="9" font-weight="600" fill="#64748b">300m 飯山接駁</text>
+            </g>
 
-  <!-- GONDOLA LIFT (Nagasaka Gondola Line: 320, 370 -> 450, 195 -> 450, 80) -->
-  <path d="M 320 370 L 450 195 L 450 115" stroke="#ef4444" stroke-width="3" stroke-dasharray="8 4" stroke-linecap="round" />
-  <g transform="translate(365, 275) rotate(-55)">
-    <rect x="-55" y="-10" width="110" height="20" rx="10" fill="#ef4444" />
-    <text x="0" y="4" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">🚠 長坂纜車 8分直達</text>
-  </g>
+            <!-- Callout: To Maesaka Shuttle Stop (220m / 3分) -->
+            <g transform="translate(620, 355)" filter="url(#mapShadow)" class="cursor-pointer" onclick="showPoi('maesaka')">
+              <rect x="0" y="0" width="105" height="32" rx="8" fill="#ffffff" stroke="#8b5cf6" stroke-width="1.8" />
+              <path d="M 35,32 L 40,38 L 45,32 Z" fill="#ffffff" />
+              <text x="10" y="16" font-size="12" font-weight="bold" fill="#7c3aed">🚶 3 分</text>
+              <text x="10" y="27" font-size="9" font-weight="600" fill="#64748b">220m 免費接駁</text>
+            </g>
 
-  <!-- SKI RESORT BASES (Middle: Hikage & Nagasaka) -->
-  <!-- Hikage Base (Left: 180, 380) -->
-  <g transform="translate(180, 380)" filter="url(#mShadow)">
-    <rect x="-100" y="-35" width="200" height="70" rx="16" fill="#1e293b" stroke="#10b981" stroke-width="2" />
-    <circle cx="-68" cy="0" r="18" fill="#059669" />
-    <text x="-68" y="6" font-size="14" text-anchor="middle">🏂</text>
-    <text x="-40" y="-8" font-size="13" font-weight="extrabold" fill="#ffffff">日影滑雪場 (Hikage)</text>
-    <text x="-40" y="8" font-size="10" fill="#6ee7b7">初學滑雪學校 ＆ 兒童公園</text>
-    <text x="-40" y="22" font-size="9" font-weight="bold" fill="#a7f3d0">🛗 直通 Yu-road 遮雨電動步道</text>
-  </g>
+            <!-- ============================================== -->
+            <!-- DESTINATION & POI PINS (Benic360 Google Maps Style) -->
+            <!-- ============================================== -->
 
-  <!-- Nagasaka Base (Center-Right: 430, 380) -->
-  <g transform="translate(430, 380)" filter="url(#mShadow)">
-    <rect x="-100" y="-35" width="200" height="70" rx="16" fill="#1e293b" stroke="#0ea5e9" stroke-width="2" />
-    <circle cx="-68" cy="0" r="18" fill="#0284c7" />
-    <text x="-68" y="6" font-size="14" text-anchor="middle">🚠</text>
-    <text x="-40" y="-8" font-size="13" font-weight="extrabold" fill="#ffffff">長坂纜車站 (Nagasaka)</text>
-    <text x="-40" y="8" font-size="10" fill="#7dd3fc">2020全新 10人座高速纜車</text>
-    <text x="-40" y="22" font-size="9" font-weight="bold" fill="#bae6fd">🎿 Sports Thanx 免費倉儲店</text>
-  </g>
+            <!-- 1. CENTRAL BASE PIN: NOZAWA GENROKU 源六 -->
+            <g transform="translate(460, 240)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('genroku')">
+              <circle r="18" fill="#1e3a8a" stroke="#ffffff" stroke-width="3" />
+              <text x="0" y="5" font-size="14" text-anchor="middle" fill="#ffffff">🏨</text>
+              <!-- Pin Card Label -->
+              <g transform="translate(-105, -45)">
+                <rect width="210" height="34" rx="8" fill="#1e3a8a" stroke="#ffffff" stroke-width="2" />
+                <path d="M 100,34 L 105,40 L 110,34 Z" fill="#1e3a8a" />
+                <text x="105" y="16" font-size="11.5" font-weight="extrabold" fill="#ffffff" text-anchor="middle">🏨 宿點：NOZAWA GENROKU 源六</text>
+                <text x="105" y="28" font-size="9" font-weight="bold" fill="#93c5fd" text-anchor="middle">連住 5 晚生活核心・出門即大湯通</text>
+              </g>
+            </g>
 
-  <!-- TRANSIT: Yu-road (Village -> Hikage) -->
-  <path d="M 230 490 L 180 415" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
-  <g transform="translate(230, 450) rotate(-55)">
-    <rect x="-55" y="-10" width="110" height="20" rx="10" fill="#059669" />
-    <text x="0" y="4" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">🛗 Yu-road 電動步道 5分</text>
-  </g>
+            <!-- 2. 大湯 (OYU) -->
+            <g transform="translate(415, 235)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('oyu')">
+              <path d="M0,0 C-10,-10 -15,-20 0,-32 C15,-20 10,-10 0,0 Z" fill="#dc2626" />
+              <circle cx="0" cy="-20" r="7" fill="#ffffff" />
+              <text x="0" y="-17" font-size="9" text-anchor="middle" fill="#dc2626">♨️</text>
+              <text x="0" y="14" font-size="11" font-weight="bold" fill="#dc2626" text-anchor="middle">大湯 (Oyu)</text>
+            </g>
 
-  <!-- TRANSIT: Free Shuttle Bus (Village Central Bus Station -> Nagasaka & Maesaka) -->
-  <path d="M 520 520 Q 560 450 490 415" stroke="#f59e0b" stroke-width="3" stroke-dasharray="6 4" stroke-linecap="round" />
-  <g transform="translate(565, 460)">
-    <rect x="-50" y="-10" width="100" height="20" rx="10" fill="#d97706" />
-    <text x="0" y="4" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle">🚌 免費巴士 5分</text>
-  </g>
+            <!-- 3. SHIRAKABA 白樺租借雪具 -->
+            <g transform="translate(595, 155)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('shirakaba')">
+              <path d="M0,0 C-10,-10 -15,-20 0,-32 C15,-20 10,-10 0,0 Z" fill="#16a34a" />
+              <circle cx="0" cy="-20" r="7" fill="#ffffff" />
+              <text x="0" y="-17" font-size="8.5" text-anchor="middle" fill="#16a34a">🎿</text>
+              <text x="0" y="14" font-size="11" font-weight="bold" fill="#15803d" text-anchor="middle">白樺雪具 (Shirakaba)</text>
+            </g>
 
-  <!-- VILLAGE HUB (Bottom: 380, 535) -->
-  <g transform="translate(380, 535)" filter="url(#mShadow)">
-    <rect x="-170" y="-45" width="340" height="90" rx="20" fill="#ffffff" stroke="#ea580c" stroke-width="3" />
-    <rect x="-165" y="-40" width="330" height="24" rx="10" fill="#ea580c" />
-    <text x="0" y="-24" font-size="12" font-weight="extrabold" fill="#ffffff" text-anchor="middle">♨️ 野澤溫泉老街核心圈（大湯通）</text>
-    
-    <g transform="translate(0, -5)" font-size="10" font-weight="bold" fill="#0f172a">
-      <text x="-150" y="8">🏨 住宿：源六 (Genroku) 走路30秒到大湯</text>
-      <text x="10" y="8">🏂 雪具：Haus St. Anton (源六對面)</text>
-      <text x="-150" y="24">♨️ 代表外湯：大湯、河原湯、麻釜湯</text>
-      <text x="10" y="24">🍺 里武士啤酒 ＆ 和牛亭壽喜燒</text>
-    </g>
-  </g>
+            <!-- 4. 遊步道 (YU-ROAD) -->
+            <g transform="translate(760, 70)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('yuroad')">
+              <circle r="16" fill="#0284c7" stroke="#ffffff" stroke-width="2.5" />
+              <text x="0" y="5" font-size="13" text-anchor="middle" fill="#ffffff">🚠</text>
+              <text x="0" y="26" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">遊步道 (Yu-road)</text>
+              <text x="0" y="38" font-size="8.5" fill="#64748b" text-anchor="middle">免費電動步道直攻日影</text>
+            </g>
 
-  <!-- VILLAGE CENTRAL BUS TERMINAL (Bottom Right: 730, 535) -->
-  <g transform="translate(730, 535)" filter="url(#mShadow)">
-    <rect x="-85" y="-30" width="170" height="60" rx="14" fill="#1e293b" stroke="#f59e0b" stroke-width="2" />
-    <text x="-65" y="-6" font-size="14">🚌</text>
-    <text x="-45" y="-8" font-size="12" font-weight="extrabold" fill="#ffffff">野澤中央巴士總站</text>
-    <text x="-45" y="8" font-size="9" fill="#fcd34d">Nozawa Onsen Liner 站</text>
-    <text x="-65" y="22" font-size="9" fill="#e2e8f0">往返 JR飯山站 25分 (¥600)</text>
-  </g>
+            <!-- 5. 麻釜 (OGAMA) -->
+            <g transform="translate(230, 35)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('ogama')">
+              <circle r="16" fill="#d97706" stroke="#ffffff" stroke-width="2.5" />
+              <text x="0" y="5" font-size="13" text-anchor="middle" fill="#ffffff">🥚</text>
+              <text x="0" y="26" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">麻釜 (Ogama)</text>
+              <text x="0" y="38" font-size="8.5" fill="#64748b" text-anchor="middle">100°C 國定溫泉煮蛋區</text>
+            </g>
 
-  <!-- 13 SOTO-YU CLUSTER NOTES (Left & Right Bottom) -->
-  <g transform="translate(100, 535)">
-    <rect x="-70" y="-22" width="140" height="44" rx="12" fill="#fef2f2" stroke="#f87171" stroke-width="1.5" />
-    <text x="0" y="-4" font-size="10" font-weight="bold" fill="#b91c1c" text-anchor="middle">♨️ 西側/東側外湯群</text>
-    <text x="0" y="11" font-size="9" fill="#ef4444" text-anchor="middle">熊の手洗、真湯、中尾之湯</text>
-  </g>
-</svg>
+            <!-- 6. 中央巴士總站 (CHUO TERMINAL) -->
+            <g transform="translate(365, 595)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('bus')">
+              <circle r="16" fill="#059669" stroke="#ffffff" stroke-width="2.5" />
+              <text x="0" y="5" font-size="13" text-anchor="middle" fill="#ffffff">🚌</text>
+              <text x="0" y="26" font-size="11" font-weight="bold" fill="#047857" text-anchor="middle">野澤中央巴士總站</text>
+              <text x="0" y="38" font-size="8.5" fill="#64748b" text-anchor="middle">野澤 Liner 往返飯山站</text>
+            </g>
+
+            <!-- 7. 前坂入口站牌 (MAESAKA BUS STOP) -->
+            <g transform="translate(665, 410)" filter="url(#pinShadow)" class="cursor-pointer" onclick="showPoi('maesaka')">
+              <circle r="15" fill="#7c3aed" stroke="#ffffff" stroke-width="2" />
+              <text x="0" y="5" font-size="12" text-anchor="middle" fill="#ffffff">🚏</text>
+              <text x="0" y="25" font-size="10.5" font-weight="bold" fill="#6d28d9" text-anchor="middle">前坂入口站牌</text>
+              <text x="0" y="36" font-size="8.5" fill="#64748b" text-anchor="middle">免費接駁車往長坂纜車</text>
+            </g>
+
+            <!-- ============================================== -->
+            <!-- FOOD & SHOPPING PINS (Pink Hearts like Benic360) -->
+            <!-- ============================================== -->
+
+            <!-- POI 1: Haus St. Anton (Apple Pie & Gelato) -->
+            <g transform="translate(485, 205)" class="cursor-pointer" onclick="showPoi('stanton')">
+              <circle r="11" fill="#ec4899" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="4" font-size="9" text-anchor="middle" fill="#ffffff">🥧</text>
+              <text x="16" y="4" font-size="10" font-weight="bold" fill="#be185d">Haus St. Anton (蘋果派)</text>
+            </g>
+
+            <!-- POI 2: 樂一 (Rakuichi Corn) -->
+            <g transform="translate(390, 260)" class="cursor-pointer" onclick="showPoi('rakuichi')">
+              <circle r="11" fill="#eab308" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="4" font-size="9" text-anchor="middle" fill="#ffffff">🌽</text>
+              <text x="-16" y="4" font-size="10" font-weight="bold" fill="#a16207" text-anchor="end">樂一 (溫泉水煮玉米)</text>
+            </g>
+
+            <!-- POI 3: フキヤ (Fukiya Manju) -->
+            <g transform="translate(445, 180)" class="cursor-pointer" onclick="showPoi('fukiya')">
+              <circle r="10" fill="#f43f5e" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="3.5" font-size="8.5" text-anchor="middle" fill="#ffffff">🥟</text>
+              <text x="14" y="4" font-size="9.5" font-weight="bold" fill="#be123c">フキヤ (溫泉饅頭)</text>
+            </g>
+
+            <!-- POI 4: 竹本 (Takemoto Senbei/Manju) -->
+            <g transform="translate(350, 210)" class="cursor-pointer" onclick="showPoi('takemoto')">
+              <circle r="10" fill="#f43f5e" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="3.5" font-size="8.5" text-anchor="middle" fill="#ffffff">🍘</text>
+              <text x="-14" y="4" font-size="9.5" font-weight="bold" fill="#be123c" text-anchor="end">竹本 (野澤菜煎餅)</text>
+            </g>
+
+            <!-- POI 5: AJB 里武士 Taproom (Craft Beer) -->
+            <g transform="translate(420, 290)" class="cursor-pointer" onclick="showPoi('libushi')">
+              <circle r="11" fill="#f97316" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="4" font-size="9" text-anchor="middle" fill="#ffffff">🍺</text>
+              <text x="16" y="4" font-size="10" font-weight="bold" fill="#c2410c">AJB 里武士 (精釀啤酒吧)</text>
+            </g>
+
+            <!-- POI 6: 七良兵衛珈琲 (Cafe) -->
+            <g transform="translate(540, 245)" class="cursor-pointer" onclick="showPoi('shichiroubee')">
+              <circle r="10" fill="#854d0e" stroke="#ffffff" stroke-width="1.8" filter="url(#mapShadow)" />
+              <text x="0" y="3.5" font-size="8.5" text-anchor="middle" fill="#ffffff">☕</text>
+              <text x="14" y="4" font-size="9.5" font-weight="bold" fill="#713f12">七良兵衛珈琲</text>
+            </g>
+
+            <!-- OTHER FAMOUS ONSEMBATHS (13外湯代表) -->
+            <!-- 河原湯 -->
+            <g transform="translate(425, 345)" class="cursor-pointer" onclick="showPoi('kawayu')">
+              <circle r="10" fill="#0284c7" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="3.5" font-size="8" text-anchor="middle" fill="#ffffff">♨️</text>
+              <text x="-14" y="4" font-size="9" font-weight="600" fill="#0369a1" text-anchor="end">河原湯</text>
+            </g>
+            <!-- 麻釜之湯 -->
+            <g transform="translate(325, 120)" class="cursor-pointer" onclick="showPoi('asagamayu')">
+              <circle r="10" fill="#0284c7" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="3.5" font-size="8" text-anchor="middle" fill="#ffffff">♨️</text>
+              <text x="14" y="4" font-size="9" font-weight="600" fill="#0369a1">麻釜之湯</text>
+            </g>
+            <!-- 真湯 -->
+            <g transform="translate(190, 80)" class="cursor-pointer" onclick="showPoi('shinshu')">
+              <circle r="10" fill="#0284c7" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="3.5" font-size="8" text-anchor="middle" fill="#ffffff">♨️</text>
+              <text x="14" y="4" font-size="9" font-weight="600" fill="#0369a1">真湯 (乳白美肌)</text>
+            </g>
+
+            <!-- Compass & Scale (Bottom Right) -->
+            <g transform="translate(860, 560)">
+              <rect width="80" height="60" rx="8" fill="#ffffff" fill-opacity="0.9" stroke="#cbd5e1" stroke-width="1" />
+              <text x="40" y="20" font-size="11" font-weight="bold" fill="#ef4444" text-anchor="middle">↑ N 北</text>
+              <line x1="15" y1="36" x2="65" y2="36" stroke="#475569" stroke-width="2" />
+              <line x1="15" y1="32" x2="15" y2="40" stroke="#475569" stroke-width="2" />
+              <line x1="65" y1="32" x2="65" y2="40" stroke="#475569" stroke-width="2" />
+              <text x="40" y="50" font-size="8.5" font-weight="bold" fill="#64748b" text-anchor="middle">約 200 公尺</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 2. VIEW 2: MOUNTAIN & RESORT VERTICAL PROFILE (HIDDEN BY DEFAULT) -->
+        <div id="map-view-mountain" class="hidden rounded-2xl border border-[var(--border)] overflow-hidden bg-slate-900 shadow-inner p-2 sm:p-4">
+          <svg viewBox="0 0 960 520" class="w-full h-auto select-none font-sans" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="mtnSky" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#0f172a" />
+                <stop offset="100%" stop-color="#1e293b" />
+              </linearGradient>
+              <linearGradient id="snowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#cbd5e1" />
+              </linearGradient>
+            </defs>
+            <rect width="960" height="520" fill="url(#mtnSky)" rx="16" />
+            <!-- Mountain Silhouette -->
+            <path d="M 0,520 L 0,440 L 180,430 L 340,360 L 520,240 L 700,120 L 780,70 L 860,110 L 960,180 L 960,520 Z" fill="url(#snowGrad)" opacity="0.95" />
+            
+            <!-- Mountain Peak Label -->
+            <g transform="translate(780, 50)">
+              <circle r="6" fill="#ef4444" />
+              <text x="0" y="-12" font-size="13" font-weight="bold" fill="#f8fafc" text-anchor="middle">▲ 毛無山山頂 (1,650m)</text>
+              <text x="0" y="22" font-size="10.5" fill="#fbcfe8" font-weight="600" text-anchor="middle">Yamabiko 天然粉雪區 (黑線/紅線)</text>
+            </g>
+
+            <!-- Lift Lines -->
+            <!-- Nagasaka Gondola: Village 560m -> Mid Station 1300m -->
+            <line x1="280" y1="440" x2="680" y2="150" stroke="#f59e0b" stroke-width="3.5" stroke-dasharray="6 4" />
+            <text x="470" y="275" font-size="11" font-weight="bold" fill="#fbbf24" transform="rotate(-36 470 275)">🚠 新長坂 Gondola (直攻1,300m 僅8分鐘)</text>
+
+            <!-- Yu-road: Village -> Hikage Slope -->
+            <line x1="120" y1="460" x2="260" y2="400" stroke="#38bdf8" stroke-width="4" />
+            <text x="180" y="415" font-size="11" font-weight="bold" fill="#38bdf8" transform="rotate(-23 180 415)">🚶 遊步道 Yu-road (8分鐘)</text>
+
+            <!-- Stations -->
+            <!-- Genroku Lodging Base -->
+            <g transform="translate(100, 480)">
+              <rect x="-80" y="-30" width="160" height="34" rx="8" fill="#1e3a8a" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="-14" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">🏨 源六旅館 (560m)</text>
+              <text x="0" y="-2" font-size="8.5" fill="#93c5fd" text-anchor="middle">出門搭 Yu-road 直攻雪場</text>
+            </g>
+
+            <!-- Hikage Base -->
+            <g transform="translate(300, 410)">
+              <rect x="-65" y="-28" width="130" height="30" rx="6" fill="#0284c7" stroke="#ffffff" stroke-width="1" />
+              <text x="0" y="-13" font-size="10.5" font-weight="bold" fill="#ffffff" text-anchor="middle">🎿 日影雪場 (Hikage)</text>
+              <text x="0" y="-1" font-size="8" fill="#bae6fd" text-anchor="middle">新手練習・滑雪學校基地</text>
+            </g>
+
+            <!-- Nagasaka Base -->
+            <g transform="translate(420, 460)">
+              <rect x="-65" y="-28" width="130" height="30" rx="6" fill="#d97706" stroke="#ffffff" stroke-width="1" />
+              <text x="0" y="-13" font-size="10.5" font-weight="bold" fill="#ffffff" text-anchor="middle">🚡 長坂纜車站 (Nagasaka)</text>
+              <text x="0" y="-1" font-size="8" fill="#fde68a" text-anchor="middle">主纜車中心・寬敞平緩坡</text>
+            </g>
+
+            <!-- Mid Mountain Paradise -->
+            <g transform="translate(680, 175)">
+              <rect x="-70" y="-28" width="140" height="30" rx="6" fill="#059669" stroke="#ffffff" stroke-width="1" />
+              <text x="0" y="-13" font-size="10.5" font-weight="bold" fill="#ffffff" text-anchor="middle">🌲 上之平高原 (1,300m)</text>
+              <text x="0" y="-1" font-size="8" fill="#a7f3d0" text-anchor="middle">2km 絕景超寬平緩初級道</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- 3. VIEW 3: MACRO KANTO / SHINSHU MAP (HIDDEN BY DEFAULT) -->
+        <div id="map-view-macro" class="hidden rounded-2xl border border-[var(--border)] overflow-hidden bg-slate-950 shadow-inner p-2 sm:p-4">
+          <svg viewBox="0 0 960 520" class="w-full h-auto select-none font-sans" xmlns="http://www.w3.org/2000/svg">
+            <rect width="960" height="520" fill="#090d16" rx="16" />
+            <!-- Distance Rings from Tokyo -->
+            <circle cx="480" cy="300" r="80" fill="none" stroke="#334155" stroke-dasharray="4 4" />
+            <circle cx="480" cy="300" r="160" fill="none" stroke="#334155" stroke-dasharray="4 4" />
+            <circle cx="480" cy="300" r="230" fill="none" stroke="#334155" stroke-dasharray="4 4" />
+            <text x="480" y="215" font-size="9.5" fill="#64748b" text-anchor="middle">50 km 圈</text>
+            <text x="480" y="135" font-size="9.5" fill="#64748b" text-anchor="middle">100 km 圈</text>
+            <text x="480" y="65" font-size="9.5" fill="#64748b" text-anchor="middle">200+ km 圈</text>
+
+            <!-- Routes -->
+            <!-- North to Nozawa -->
+            <line x1="480" y1="280" x2="480" y2="70" stroke="#38bdf8" stroke-width="4" stroke-dasharray="6 4" />
+            <text x="495" y="170" font-size="10" fill="#38bdf8" font-weight="bold">北陸新幹線 100分 + Liner巴士 25分</text>
+
+            <!-- Southeast to Kisarazu -->
+            <line x1="480" y1="310" x2="620" y2="400" stroke="#f59e0b" stroke-width="3" stroke-dasharray="4 4" />
+            <!-- East to Disney -->
+            <line x1="495" y1="300" x2="570" y2="305" stroke="#ec4899" stroke-width="3" />
+            <!-- South to Kamakura -->
+            <line x1="475" y1="315" x2="420" y2="420" stroke="#10b981" stroke-width="3" />
+
+            <!-- Tokyo Center Hub -->
+            <g transform="translate(480, 300)">
+              <circle r="14" fill="#3b82f6" stroke="#ffffff" stroke-width="2" />
+              <text x="0" y="4" font-size="11" text-anchor="middle" fill="#ffffff">🗼</text>
+              <text x="0" y="26" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">東京都會中心</text>
+              <text x="0" y="38" font-size="8.5" fill="#94a3b8" text-anchor="middle">巢鴨 APA / 淺草雷索爾 / 新宿</text>
+            </g>
+
+            <!-- Nozawa Hub (North) -->
+            <g transform="translate(480, 60)">
+              <rect x="-85" y="-26" width="170" height="34" rx="8" fill="#0284c7" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="-11" font-size="11.5" font-weight="bold" fill="#ffffff" text-anchor="middle">🎿 野澤溫泉村 (約220km)</text>
+              <text x="0" y="1" font-size="8.5" fill="#bae6fd" text-anchor="middle">1/15–1/20 宿 源六 (5晚滑雪)</text>
+            </g>
+
+            <!-- Disney Hub (East) -->
+            <g transform="translate(585, 305)">
+              <circle r="12" fill="#ec4899" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="4" font-size="10" text-anchor="middle" fill="#ffffff">🌋</text>
+              <text x="0" y="24" font-size="10.5" font-weight="bold" fill="#f472b6" text-anchor="middle">迪士尼海洋 (16km)</text>
+            </g>
+
+            <!-- Kisarazu Hub (Southeast) -->
+            <g transform="translate(630, 410)">
+              <circle r="12" fill="#d97706" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="4" font-size="10" text-anchor="middle" fill="#ffffff">🍓</text>
+              <text x="0" y="24" font-size="10.5" font-weight="bold" fill="#fbbf24" text-anchor="middle">木更津 Outlet (60km)</text>
+            </g>
+
+            <!-- Airport Gateways -->
+            <g transform="translate(680, 260)">
+              <circle r="10" fill="#64748b" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="3.5" font-size="8.5" text-anchor="middle" fill="#ffffff">✈️</text>
+              <text x="0" y="20" font-size="9.5" fill="#cbd5e1" text-anchor="middle">成田機場 NRT (D1入境)</text>
+            </g>
+            <g transform="translate(490, 360)">
+              <circle r="10" fill="#64748b" stroke="#ffffff" stroke-width="1.5" />
+              <text x="0" y="3.5" font-size="8.5" text-anchor="middle" fill="#ffffff">✈️</text>
+              <text x="0" y="20" font-size="9.5" fill="#cbd5e1" text-anchor="middle">羽田機場 HND (D12睡機場)</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- INTERACTIVE POI INFO CARD (UPDATES ON CLICK) -->
+        <div id="poi-info-box" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-4 transition-all">
+          <div class="flex items-start justify-between gap-3">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span id="poi-icon" class="text-2xl">🏨</span>
+                <h3 id="poi-title" class="text-base font-bold text-[var(--foreground)]">NOZAWA GENROKU (源六旅館)</h3>
+                <span id="poi-badge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200">我們的住宿基地 (5晚)</span>
+              </div>
+              <p id="poi-desc" class="text-xs text-[var(--muted-foreground)]">
+                位於野澤溫泉村核心「大湯通」9288。下樓步行 30 秒即是大湯，步行 2 分鐘到白樺雪具店，步行 3.5 分鐘到遊步道直達日影滑雪場。
+              </p>
+            </div>
+            <div class="text-right shrink-0">
+              <span id="poi-time" class="inline-block px-2.5 py-1 rounded-lg text-xs font-extrabold bg-blue-600 text-white">起點 Base</span>
+              <div id="poi-dist" class="text-[10px] text-[var(--muted-foreground)] mt-0.5">0 公尺</div>
+            </div>
           </div>
         </div>
 
-        <!-- Legend / Notes below Map -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] text-[var(--muted-foreground)] pt-1">
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-blue-500 shrink-0"></span>
-            <span><strong>北方</strong>：長野野澤 (~220km)</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
-            <span><strong>西方</strong>：富士山/河口湖 (~100km)</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-purple-500 shrink-0"></span>
-            <span><strong>南方</strong>：鎌倉大佛 (~55km)</span>
-          </div>
-          <div class="flex items-center gap-1.5">
-            <span class="w-3 h-3 rounded-full bg-amber-500 shrink-0"></span>
-            <span><strong>東南</strong>：千葉木更津 (~60-80km)</span>
+        <!-- WALKING DISTANCE & TIME CHEAT SHEET TABLE -->
+        <div class="space-y-2">
+          <h3 class="text-sm font-bold text-[var(--foreground)] flex items-center gap-2">
+            <span>⏱️</span> 源六出發・步行時間與距離速查表
+          </h3>
+          <div class="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table class="w-full text-xs text-left">
+              <thead class="bg-[var(--secondary)] text-[var(--muted-foreground)] font-semibold border-b border-[var(--border)]">
+                <tr>
+                  <th class="p-2.5">地標設施</th>
+                  <th class="p-2.5">分類</th>
+                  <th class="p-2.5">步行時間</th>
+                  <th class="p-2.5">直線距離</th>
+                  <th class="p-2.5">實戰路線與遊玩秘訣</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)] text-[var(--foreground)]">
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('oyu')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-red-500">♨️</span> 大湯 (Oyu)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-red-100 text-red-700">No.1 外湯</span></td>
+                  <td class="p-2.5 font-extrabold text-red-600">30 秒</td>
+                  <td class="p-2.5">30 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">源六門口往西走幾步即達！野澤最著名地標湯屋，分「溫湯」與「熱湯」（水溫極高，先舀水適應）。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('shirakaba')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-green-600">🎿</span> 白樺租借雪具 (Shirakaba)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-green-100 text-green-700">裝備租借</span></td>
+                  <td class="p-2.5 font-extrabold text-green-600">2 分鐘</td>
+                  <td class="p-2.5">140 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">出源六往東北大湯通走，在轉往遊步道叉路口旁！取板、調鞋極度方便，滑完可寄放。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('yuroad')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-blue-600">🚠</span> 遊步道 (Yu-road 電動步道)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700">滑雪通道</span></td>
+                  <td class="p-2.5 font-extrabold text-blue-600">3.5 分鐘</td>
+                  <td class="p-2.5">250 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">出源六過白樺雪具店即達步道起點！搭乘免費有蓋電動手扶梯直攻日影滑雪場 (Hikage)，省力首選！</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('stanton')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-pink-500">💖</span> Haus St. Anton</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-pink-100 text-pink-700">必吃名店</span></td>
+                  <td class="p-2.5 font-extrabold text-pink-600">1 分鐘</td>
+                  <td class="p-2.5">80 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">大湯通必排甜點名店！必點：現烤酥脆野澤蘋果派、信州水果手工果醬、野澤菜義式冰淇淋。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('rakuichi')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-yellow-600">🌽</span> 樂一 (Rakuichi)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-yellow-100 text-yellow-700">特色小吃</span></td>
+                  <td class="p-2.5 font-extrabold text-yellow-600">1 分鐘</td>
+                  <td class="p-2.5">60 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">大湯正對面！以高溫天然溫泉水現燙信州甜玉米，多汁甘甜爆表；還有溫泉蒸包子與熱飲。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('bus')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-emerald-600">🚌</span> 野澤中央巴士總站</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-emerald-100 text-emerald-700">對外交通</span></td>
+                  <td class="p-2.5 font-extrabold text-emerald-600">4 分鐘</td>
+                  <td class="p-2.5">300 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">往南順緩坡走下街！D2 抵達與 D7 離開野澤搭乘「Nozawa Onsen Liner」(往返 JR 飯山站 25分) 的起訖站。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('maesaka')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-purple-600">🚏</span> 前坂入口站牌 (村內接駁車)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-purple-100 text-purple-700">村內接駁</span></td>
+                  <td class="p-2.5 font-extrabold text-purple-600">3 分鐘</td>
+                  <td class="p-2.5">220 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">村內免費接駁巴士站點！想直接去長坂纜車站 (Nagasaka Gondola) 可在此上車，車程約 5 分鐘。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)] cursor-pointer" onclick="showPoi('ogama')">
+                  <td class="p-2.5 font-bold flex items-center gap-1.5"><span class="text-amber-600">🥚</span> 麻釜 (Ogama 溫泉源泉)</td>
+                  <td class="p-2.5"><span class="px-1.5 py-0.5 rounded text-[10px] bg-amber-100 text-amber-700">天然紀念物</span></td>
+                  <td class="p-2.5 font-extrabold text-amber-600">5 分鐘</td>
+                  <td class="p-2.5">400 公尺</td>
+                  <td class="p-2.5 text-[var(--muted-foreground)]">野澤標誌性的 100°C 天然溫泉湧出口！當地村民煮野澤菜與溫泉蛋的廚房，蒸汽裊裊，散步必訪。</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+
       </div>
-
-      <!-- Distance, Transit & Travel Time Cheat Sheet Table -->
-      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
-        <div class="flex items-center justify-between border-b border-[var(--border)] pb-2.5">
-          <div class="flex items-center gap-2">
-            <span class="text-base">⏱️</span>
-            <h3 class="font-bold text-sm sm:text-base text-[var(--foreground)]">全行程跨區交通時間、距離與銜接密技速查表</h3>
-          </div>
-          <span class="text-xs text-[var(--muted-foreground)]">精準銜接・不走回頭路</span>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left border-collapse">
-            <thead>
-              <tr class="border-b border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)]">
-                <th class="p-2.5 font-semibold">移動路線</th>
-                <th class="p-2.5 font-semibold">直線距離</th>
-                <th class="p-2.5 font-semibold">交通工具與轉乘</th>
-                <th class="p-2.5 font-semibold">耗時</th>
-                <th class="p-2.5 font-semibold">實用銜接小密技（班老大私房推薦）</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[var(--border)]">
-              <tr>
-                <td class="p-2.5 font-bold">上野站 ➔ 長野野澤溫泉</td>
-                <td class="p-2.5 font-mono">約 220 km</td>
-                <td class="p-2.5">JR 北陸新幹線「白鷹號」至飯山 ➔ 轉 Nozawa Onsen Liner 巴士</td>
-                <td class="p-2.5 font-mono font-bold text-blue-600 dark:text-blue-400">約 2 小時 5 分</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">飯山站 4 號月台直達，單程 ¥600 可刷 Suica；1/20 回程新幹線直接在「上野站」下車剛好取 JINS 眼鏡！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">Busta新宿 ➔ 富士山・下吉田</td>
-                <td class="p-2.5 font-mono">約 95 km</td>
-                <td class="p-2.5">富士急高速巴士（中央道）</td>
-                <td class="p-2.5 font-mono font-bold text-emerald-600 dark:text-emerald-400">約 1 小時 40 分</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">⚠️ <strong>致命秘訣</strong>：車票直接買到「中央道下吉田站」，下車走 7 分鐘直達新倉山淺間公園忠靈塔，免繞去河口湖站回頭！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">下吉田 ➔ 忍野八海 ➔ 河口湖</td>
-                <td class="p-2.5 font-mono">約 8+12 km</td>
-                <td class="p-2.5">短程計程車（3人分攤）</td>
-                <td class="p-2.5 font-mono font-bold text-emerald-600 dark:text-emerald-400">各約 18–20 分</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">富士山周邊路線巴士班次稀疏，3 人分攤計程車（每趟約 ¥3,500）省下至少 1.5 小時等車時間！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">新宿站 ➔ 神奈川鎌倉站</td>
-                <td class="p-2.5 font-mono">約 55 km</td>
-                <td class="p-2.5"><strong>JR 湘南新宿線（直達免換車）</strong></td>
-                <td class="p-2.5 font-mono font-bold text-purple-600 dark:text-purple-400">約 58 分鐘</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">新宿出發免換車直達鎌倉；回程同線先在「澀谷站」下車逛超夢中心，再回新宿，動線最順！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">新宿 ➔ 千葉大網白里「ちあき草莓園」</td>
-                <td class="p-2.5 font-mono">約 75 km</td>
-                <td class="p-2.5">JR 中央線 ➔ 東京站轉 JR 京葉線特急 ➔ 蘇我轉外房線「永田站」</td>
-                <td class="p-2.5 font-mono font-bold text-amber-600 dark:text-amber-400">約 1 小時 35 分</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">永田站出站步行 10 分鐘即達；採完草莓直接從永田站搭外房線轉內房線去木更津，不走回頭路！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">MITSUI OUTLET 木更津 ➔ Busta新宿</td>
-                <td class="p-2.5 font-mono">約 50 km</td>
-                <td class="p-2.5"><strong>跨海直達高速巴士（經東京灣 Aqualine）</strong></td>
-                <td class="p-2.5 font-mono font-bold text-amber-600 dark:text-amber-400">約 60–70 分鐘</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">⚠️ <strong>大推直達巴士</strong>：直接在 Outlet 門口上車直達新宿，免提戰利品擠電車轉 3 次車，上車睡覺補眠！</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold">羽田機場 T3 ➔ 淺草站</td>
-                <td class="p-2.5 font-mono">約 22 km</td>
-                <td class="p-2.5"><strong>京急線直通都營淺草線（快特直通列車）</strong></td>
-                <td class="p-2.5 font-mono font-bold text-sky-600 dark:text-sky-400">約 38 分鐘</td>
-                <td class="p-2.5 text-[var(--muted-foreground)]">1/20 傑若米 22:15 抵羽田，免換車一班車 38 分鐘直達淺草雷索爾飯店會合！</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
     </div>
 
-    <!-- TAB 2: DISNEY MUST-PLAY -->
     <div id="tab-disney" class="hidden space-y-4">
 
       <!-- Disney Visual Highlights Gallery -->
@@ -693,17 +830,17 @@
         <div class="p-4 sm:p-5 bg-[var(--secondary)] border-t border-[var(--border)]">
           <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] tracking-wider mb-2.5">📌 本文目錄快速導覽</div>
           <div class="flex flex-wrap gap-2 text-xs">
-            <a href="#nz-intro" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">1. 野澤是什麼地方？</a>
-            <a href="#nz-season" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">2. 最佳滑雪季節</a>
-            <a href="#nz-zones" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">3. 各雪區難度差異</a>
-            <a href="#nz-nodrive" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">4. 不自駕可行性分析</a>
-            <a href="#nz-transit" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">5. 如何前往野澤村</a>
-            <a href="#nz-luggage" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">6. 行李雪具寄放對比</a>
-            <a href="#nz-hotel" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">7. 住宿區域挑選</a>
-            <a href="#nz-localbus" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">8. 村內交通攻略</a>
-            <a href="#nz-onsenrules" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">9. 13外湯禮儀</a>
-            <a href="#nz-food" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">10. 村內在地美食</a>
-            <a href="#nz-souvenir" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">11. 伴手禮購物</a>
+            <button onclick="scrollToGuideSection(\'nz-intro\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">1. 野澤是什麼地方？</button>
+            <button onclick="scrollToGuideSection(\'nz-season\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">2. 最佳滑雪季節</button>
+            <button onclick="scrollToGuideSection(\'nz-zones\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">3. 各雪區難度差異</button>
+            <button onclick="scrollToGuideSection(\'nz-nodrive\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">4. 不自駕可行性分析</button>
+            <button onclick="scrollToGuideSection(\'nz-transit\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">5. 如何前往野澤村</button>
+            <button onclick="scrollToGuideSection(\'nz-luggage\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">6. 行李雪具寄放對比</button>
+            <button onclick="scrollToGuideSection(\'nz-hotel\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">7. 住宿區域挑選</button>
+            <button onclick="scrollToGuideSection(\'nz-localbus\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">8. 村內交通攻略</button>
+            <button onclick="scrollToGuideSection(\'nz-onsenrules\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">9. 13外湯禮儀</button>
+            <button onclick="scrollToGuideSection(\'nz-food\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">10. 村內在地美食</button>
+            <button onclick="scrollToGuideSection(\'nz-souvenir\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">11. 伴手禮購物</button>
           </div>
         </div>
       </div>
@@ -922,7 +1059,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
           <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 space-y-2">
             <div class="font-bold text-sm text-blue-900 dark:text-blue-200">👑 大湯通・溫泉街中心（本團首選）</div>
-            <p class="text-[var(--foreground)]">如：<strong>NOZAWA GENROKU 源六</strong>、朝日屋。</p>
+            <p class="text-[var(--foreground)]">如：<a href="https://www.genroku.biz/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-bold">NOZAWA GENROKU 源六 ↗</a>、朝日屋。</p>
             <p class="text-[var(--muted-foreground)]">生活機能稱霸！走路 1 分鐘到大湯、便利商店、居酒屋、土產街，搭 Yu-road 電梯上雪場輕鬆愜意。</p>
           </div>
           <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
@@ -1336,21 +1473,21 @@
             <tbody class="divide-y divide-[var(--border)]">
               <tr>
                 <td class="p-2.5 font-mono">1/14 (D1)</td>
-                <td class="p-2.5 font-bold">APA 飯店 巢鴨站前</td>
+                <td class="p-2.5 font-bold"><a href="https://www.google.com/maps/search/?api=1&query=APA+Hotel+Sugamo+Ekimae" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline inline-flex items-center gap-1">APA 飯店 巢鴨站前 <span class="text-[10px]">↗</span></a></td>
                 <td class="p-2.5">小白、Alan</td>
                 <td class="p-2.5 font-mono">NT$ 1,640</td>
                 <td class="p-2.5 text-[var(--muted-foreground)]">含早餐、大浴場人工溫泉</td>
               </tr>
               <tr>
                 <td class="p-2.5 font-mono">1/15–1/19 (D2–D6)</td>
-                <td class="p-2.5 font-bold">NOZAWA GENROKU (源六) 共5晚</td>
+                <td class="p-2.5 font-bold"><a href="https://www.genroku.biz/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline inline-flex items-center gap-1">NOZAWA GENROKU (源六) 共5晚 <span class="text-[10px]">↗</span></a></td>
                 <td class="p-2.5">小白、Alan</td>
                 <td class="p-2.5 font-mono">NT$ 1,870 (5晚共 NT$9,350)</td>
                 <td class="p-2.5 text-[var(--muted-foreground)]">現場結算；早餐 ¥1,500/人 (07:30統一供餐)、晚餐 ¥4,000/人 (18:00統一開飯)；需於 2 天前 09:00 前預訂；1/17、1/20 不供晚餐</td>
               </tr>
               <tr>
                 <td class="p-2.5 font-mono">1/20–1/21 (D7–D8)</td>
-                <td class="p-2.5 font-bold">東京淺草雷索爾奢華飯店 (RESOL POSHTEL)</td>
+                <td class="p-2.5 font-bold"><a href="https://www.google.com/maps/search/?api=1&query=RESOL+POSHTEL+Tokyo+Asakusa" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline inline-flex items-center gap-1">東京淺草雷索爾奢華飯店 (RESOL POSHTEL) <span class="text-[10px]">↗</span></a></td>
                 <td class="p-2.5 font-semibold">小白、Alan、傑若米</td>
                 <td class="p-2.5 font-mono">NT$ 1,128 (2晚共 JPY 34,200)</td>
                 <td class="p-2.5 text-[var(--muted-foreground)]"><strong>⚠️ 1/16 會先預扣信用卡 NT$ 6,768 訂金，退房時歸還</strong>；現場到店付款 JPY 34,200（3人分攤）</td>
@@ -1391,11 +1528,11 @@
   <script>
     const DAYS_DATA = [
       {
-        day: "D1", banner: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&auto=format&fit=crop&q=80", date: "1/14", dow: "四", phase: "tokyo1",
+        day: "D1", date: "1/14", dow: "四", phase: "tokyo1",
         title: "桃園飛東京成田 ➔ Skyliner 赴巢鴨 APA 放行李 ➔ 池袋逛街晚餐",
         leave: "請假半天", hotel: "第1晚：APA飯店 巢鴨站前 (含早餐/澡堂 NT$1,640)",
         members: "小白、Alan",
-        highlights: "⚠️ 09:00前務必確認已向源六預訂 1/16 早餐！班機 19:35 抵達成田 T2（池袋 JINS 21:00 打烊來不及，排隔天 10:00 上野站配最順！）。",
+        highlights: "⚠️ 09:00 前務必確認已向源六預訂 1/16 早餐！班機 19:35 抵達成田 T2，搭乘 Skyliner 直奔巢鴨 APA 放行李吃拉麵。",
         events: [
           { time: "06:00–12:00", type: "note", text: "上午上班（請假半天）｜⚠️ 提醒：09:00 前發信確認預訂 1/16 源六早餐" },
           { time: "12:30–15:35", type: "transit", text: "前往桃園機場第一航廈 (T1) 報到托運、機場簡單果腹" },
@@ -1405,11 +1542,11 @@
         ]
       },
       {
-        day: "D2", banner: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&auto=format&fit=crop&q=80", date: "1/15", dow: "五", phase: "nozawa",
-        title: "東京上野 JINS 配鏡 ➔ 北陸新幹線赴野澤 ➔ 道祖神火祭 🔥",
+        day: "D2", date: "1/15", dow: "五", phase: "nozawa",
+        title: "東京出發 ➔ 北陸新幹線 Hakutaka ➔ 前往野澤溫泉 ➔ 道祖神火祭 🔥",
         leave: "請假", hotel: "第2晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
-        highlights: "👓 10:00 準時進「JINS アトレ上野店」(免日文驗光！基本款約NT$1,855當天30分取件；頂規多焦點+超薄+抗刮約NT$4,559需7天，1/22後回上野拿或花¥924寄飯店/集運，現省NT$4,000–7,000)！🔥 晚上看日本三大火祭「道祖神火祭」！",
+        highlights: "搭乘北陸新幹線奔赴信州野澤！漫步溫泉老街吃玉米，晚上 19:00 親歷日本三大震撼火祭「道祖神火祭」。",
         events: [
           { time: "07:30–09:00", type: "meal", text: "🍳 APA 巢鴨飯店早餐 ＆ 退房，搭山手線至上野站寄放大件行李" },
           { time: "10:00–11:15", type: "sight", text: "👓 上野站 1F【JINS アトレ上野店 (10:00開門)】配眼鏡（💡 秘技：戴合適舊眼鏡讓店員機器測度數，標準非球面鏡片約 30–40 分鐘當場取件！）" },
@@ -1423,7 +1560,7 @@
         ]
       },
       {
-        day: "D3", banner: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80", date: "1/16", dow: "六", phase: "nozawa",
+        day: "D3", date: "1/16", dow: "六", phase: "nozawa",
         title: "野澤滑雪 Day 1 ➔ 和牛亭 A5 壽喜燒 ➔ 外湯 ②③④",
         leave: "假日", hotel: "第3晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
@@ -1439,7 +1576,7 @@
         ]
       },
       {
-        day: "D4", banner: "https://images.unsplash.com/photo-1558030006-450675393462?w=800&auto=format&fit=crop&q=80", date: "1/17", dow: "日", phase: "nozawa",
+        day: "D4", date: "1/17", dow: "日", phase: "nozawa",
         title: "野澤滑雪 Day 2 ➔ 七良兵衛居酒屋 / 新屋串燒 ➔ 外湯 ⑤⑥⑦",
         leave: "假日", hotel: "第4晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
@@ -1454,7 +1591,7 @@
         ]
       },
       {
-        day: "D5", banner: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&auto=format&fit=crop&q=80", date: "1/18", dow: "一", phase: "nozawa",
+        day: "D5", date: "1/18", dow: "一", phase: "nozawa",
         title: "野澤滑雪 Day 3 ➔ 源六招牌家庭料理晚餐 ➔ 外湯 ⑧⑨",
         leave: "請假", hotel: "第5晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
@@ -1469,7 +1606,7 @@
         ]
       },
       {
-        day: "D6", banner: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=80", date: "1/19", dow: "二", phase: "nozawa",
+        day: "D6", date: "1/19", dow: "二", phase: "nozawa",
         title: "野澤滑雪 Day 4（收官日）➔ 歸還雪具 ➔ 信州牛燒肉慶功 ➔ 外湯 ⑩⑪",
         leave: "請假", hotel: "第6晚：NOZAWA GENROKU 源六 (NT$1,870)",
         members: "小白、Alan",
@@ -1485,7 +1622,7 @@
         ]
       },
       {
-        day: "D7", banner: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80", date: "1/20", dow: "三", phase: "tokyo",
+        day: "D7", date: "1/20", dow: "三", phase: "tokyo",
         title: "晨泡達成 13 外湯制霸 ➔ 新幹線返東京淺草 ➔ 傑若米羽田合體",
         leave: "請假", hotel: "第7晚：東京淺草雷索爾奢華飯店 (NT$1,128/人)",
         members: "小白、Alan ＋ 傑若米 (22:15 羽田抵達)",
@@ -1501,7 +1638,7 @@
         ]
       },
       {
-        day: "D8", banner: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80", date: "1/21", dow: "四", phase: "tokyo",
+        day: "D8", date: "1/21", dow: "四", phase: "tokyo",
         title: "東京迪士尼海洋 25 週年最終章 (Tokyo DisneySea) 全日暢玩 🌋",
         leave: "請假", hotel: "第8晚：東京淺草雷索爾奢華飯店 (NT$1,128/人)",
         members: "小白、Alan、傑若米 (D1)",
@@ -1517,7 +1654,7 @@
         ]
       },
       {
-        day: "D9", banner: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=800&auto=format&fit=crop&q=80", date: "1/22", dow: "五", phase: "tokyo",
+        day: "D9", date: "1/22", dow: "五", phase: "tokyo",
         title: "富士山三區全制霸一日遊（下吉田＋忍野八海＋河口湖）🗻",
         leave: "請假", hotel: "第9晚：安心小宿 東京滿新宿 (NT$1,200/人)",
         members: "小白、Alan、傑若米 (D2)",
@@ -1530,11 +1667,11 @@
           { time: "12:15–13:50", type: "meal", text: "🚕 計程車② (20分) 至河口湖 ➔ 🍲 富士山午餐：【ほうとう不動 南瓜餺飥麵】或【富士山天婦羅 IDATEN】" },
           { time: "14:00–17:00", type: "sight", text: "🍮 【第三區：河口湖】LAWSON 站前店＋對面買【富士山布丁】➔【天上山公園纜車】➔【Fujiyama Cookie】買名產" },
           { time: "18:00–21:00", type: "transit", text: "🚌 富士山周邊 18:00 後商店皆關門，至河口湖站逛伴手禮，搭 19:00 高速巴士直達東京（約 21:00 抵達）" },
-          { time: "21:00–23:00", type: "meal", text: "🥩 安心小宿 Check-in（可查收 1/15 JINS 寄送包裹或搭山手線回上野取滿7天多焦點眼鏡）➔ 新宿晚餐：【牛かつ もと村 炸牛排】或【居酒屋】" }
+          { time: "21:00–23:00", type: "meal", text: "🥩 安心小宿 Check-in➔ 新宿晚餐：【牛かつ もと村 炸牛排】或【居酒屋】" }
         ]
       },
       {
-        day: "D10", banner: "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&auto=format&fit=crop&q=80", date: "1/23", dow: "六", phase: "tokyo",
+        day: "D10", date: "1/23", dow: "六", phase: "tokyo",
         title: "千葉「ちあきのいちご園」採草莓 🍓 ➔ MITSUI OUTLET 木更津 🛍️ ➔ 東京鐵塔夜景",
         leave: "假日", hotel: "第10晚：安心小宿 東京滿新宿 (NT$1,900/人)",
         members: "小白、Alan、傑若米 (D3)",
@@ -1550,7 +1687,7 @@
         ]
       },
       {
-        day: "D11", banner: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800&auto=format&fit=crop&q=80", date: "1/24", dow: "日", phase: "tokyo",
+        day: "D11", date: "1/24", dow: "日", phase: "tokyo",
         title: "鎌倉大佛半日遊 ➔ 澀谷超夢寶可夢中心 ➔ 新宿 Alpen ➔ 羽田機場 T3",
         leave: "假日", hotel: "第11晚：睡羽田機場 T3（或 泉天空之湯 24H 溫泉）",
         members: "小白、Alan、傑若米 (D4)",
@@ -1568,7 +1705,7 @@
         ]
       },
       {
-        day: "D12", banner: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&auto=format&fit=crop&q=80", date: "1/25", dow: "一", phase: "tokyo",
+        day: "D12", date: "1/25", dow: "一", phase: "tokyo",
         title: "羽田機場返台（桃園 ／ 松山）✈️",
         leave: "請假 (按時數)", hotel: "第12晚：溫暖的家（睡家裡）",
         members: "小白、Alan、傑若米 (D5)",
@@ -1663,14 +1800,7 @@
 
       container.innerHTML = filtered.map(d => `
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-sm overflow-hidden space-y-3">
-          ${d.banner ? `
-            <div class="h-36 sm:h-48 w-full relative overflow-hidden">
-              <img src="${d.banner}" alt="${d.title}" class="w-full h-full object-cover hover:scale-105 transition duration-500" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
-                <span class="text-white font-extrabold text-base sm:text-lg drop-shadow-md">${d.day} ｜ ${d.title}</span>
-              </div>
-            </div>
-          ` : ''}
+          
           <div class="p-4 md:p-5 space-y-3 pt-1">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-[var(--border)] pb-3">
             <div class="flex items-center gap-2.5">
@@ -1947,6 +2077,164 @@
     renderOnsen();
     renderShopping();
     renderChecklist();
+  
+    // ==========================================
+    // MAP & POI INTERACTIVITY
+    // ==========================================
+    function switchMapView(view) {
+      ['walking', 'mountain', 'macro'].forEach(v => {
+        const el = document.getElementById('map-view-' + v);
+        const btn = document.getElementById('map-btn-' + v);
+        if (el) el.classList.toggle('hidden', v !== view);
+        if (btn) {
+          if (v === view) {
+            btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm transition";
+          } else {
+            btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition";
+          }
+        }
+      });
+    }
+
+    const POI_DETAILS = {
+      genroku: {
+        icon: "🏨", title: "NOZAWA GENROKU (源六旅館)",
+        badge: "住宿起點 Base (5晚)", badgeClass: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+        time: "起點 0分", dist: "0 公尺", timeClass: "bg-blue-600 text-white",
+        desc: "我們 1/15–1/19 連續 5 晚的住宿大本營！位於大湯通核心，出門步行 30 秒抵達大湯，2 分鐘到白樺雪具店，3.5 分鐘走上遊步道直通日影滑雪場。"
+      },
+      oyu: {
+        icon: "♨️", title: "大湯 (Oyu) 公共浴場",
+        badge: "野澤第一外湯象徵", badgeClass: "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200",
+        time: "步行 30秒", dist: "30 公尺", timeClass: "bg-red-600 text-white",
+        desc: "野澤溫泉 13 外湯之首，傳統江戶風格純木造建築。內部有熱湯（あつ湯）與溫湯（ぬる湯），出源六門口右轉走 10 步即達！泡完身心舒暢。"
+      },
+      shirakaba: {
+        icon: "🎿", title: "白樺租借雪具店 (Shirakaba Rental)",
+        badge: "雪具租賃首選", badgeClass: "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200",
+        time: "步行 2分", dist: "140 公尺", timeClass: "bg-green-600 text-white",
+        desc: "出源六順大湯通往遊步道叉路走 140 公尺即達。提供雪板、雪鞋、安全帽租賃，裝備齊全且位置極佳，滑完回程可直接歸還寄放。"
+      },
+      yuroad: {
+        icon: "🚠", title: "遊步道 Yu-road (電動手扶梯步道)",
+        badge: "滑雪直攻通道", badgeClass: "bg-sky-100 text-sky-700 dark:bg-sky-900 dark:text-sky-200",
+        time: "步行 3.5分", dist: "250 公尺", timeClass: "bg-sky-600 text-white",
+        desc: "全長約 250 公尺的有蓋免費電動步道！不用辛苦爬坡扛裝備，搭乘約 8 分鐘直接把你送到日影滑雪場 (Hikage) 纜車入口。"
+      },
+      ogama: {
+        icon: "🥚", title: "麻釜 (Ogama 溫泉源頭)",
+        badge: "國定天然紀念物", badgeClass: "bg-amber-100 text-amber-700 dark:bg-amber-900 dark:text-amber-200",
+        time: "步行 5分", dist: "400 公尺", timeClass: "bg-amber-600 text-white",
+        desc: "高達 100°C 沸騰湧出的天然溫泉池，野澤村民自古在此清洗野澤菜與燙溫泉蛋。周圍蒸汽瀰漫極具古風，旁邊有賣現煮雞蛋與玉米。"
+      },
+      bus: {
+        icon: "🚌", title: "野澤中央巴士總站 (Chuo Bus Terminal)",
+        badge: "對外交通樞紐", badgeClass: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200",
+        time: "步行 4分", dist: "300 公尺", timeClass: "bg-emerald-600 text-white",
+        desc: "D2 我們從飯山站搭 Nozawa Onsen Liner 抵達的下車站點，以及 D7 離開野澤前往上野新幹線的上車站點。設有遊客中心、售票處與行李寄存櫃。"
+      },
+      maesaka: {
+        icon: "🚏", title: "前坂入口站牌 (村內免費接駁車)",
+        badge: "村內接駁站點", badgeClass: "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-200",
+        time: "步行 3分", dist: "220 公尺", timeClass: "bg-purple-600 text-white",
+        desc: "村內免費巡迴巴士站點。若想前往長坂快速纜車站 (Nagasaka Gondola) 直攻山頂，可以在此搭乘免費接駁車，車程約 5 分鐘。"
+      },
+      stanton: {
+        icon: "💖", title: "Haus St. Anton (烘焙咖啡館)",
+        badge: "溫泉街名物甜點", badgeClass: "bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200",
+        time: "步行 1分", dist: "80 公尺", timeClass: "bg-pink-600 text-white",
+        desc: "野澤第一人氣甜點名店！必吃現烤熱騰騰酥脆蘋果派、信州果醬、野澤菜風味義式冰淇淋與手沖咖啡，滑雪泡湯後的極致享受。"
+      },
+      rakuichi: {
+        icon: "🌽", title: "樂一 (Rakuichi 溫泉玉米)",
+        badge: "大湯對面特色小吃", badgeClass: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200",
+        time: "步行 1分", dist: "60 公尺", timeClass: "bg-yellow-600 text-white",
+        desc: "大湯正對面！利用高溫純天然溫泉水現燙信州甜玉米，每一口都甘甜多汁，泡完湯來一根超級過癮；另有販售溫泉蛋與日式包子。"
+      },
+      fukiya: {
+        icon: "🥟", title: "フキヤ (Fukiya 元祖溫泉饅頭)",
+        badge: "百年老鋪伴手禮", badgeClass: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-200",
+        time: "步行 1.5分", dist: "100 公尺", timeClass: "bg-rose-600 text-white",
+        desc: "野澤溫泉最知名的溫泉饅頭老店，現蒸出爐熱呼呼，黑糖外皮鬆軟、紅豆餡綿密不甜膩，買單顆現吃或整盒當伴手禮都合適。"
+      },
+      takemoto: {
+        icon: "🍘", title: "竹本 (Takemoto 野澤菜煎餅)",
+        badge: "在地老街伴手禮", badgeClass: "bg-rose-100 text-rose-700 dark:bg-rose-900 dark:text-rose-200",
+        time: "步行 1分", dist: "70 公尺", timeClass: "bg-rose-600 text-white",
+        desc: "主打野澤菜現烤米果煎餅與溫泉饅頭，香脆可口，鹹甜交織，是帶回台灣分送親友的經典信州特產。"
+      },
+      libushi: {
+        icon: "🍺", title: "AJB 里武士 (Anglo Japanese Brewing)",
+        badge: "在地精釀啤酒 Bar", badgeClass: "bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-200",
+        time: "步行 1.5分", dist: "110 公尺", timeClass: "bg-orange-600 text-white",
+        desc: "享譽國際的野澤在地精釀啤酒廠直營 Taproom！就位於大湯旁，滑完雪喝一杯現拉冷冽在地 Craft Beer，氣氛熱鬧放鬆。"
+      },
+      shichiroubee: {
+        icon: "☕", title: "七良兵衛珈琲 (Stay / Cafe)",
+        badge: "文青咖啡選品", badgeClass: "bg-stone-100 text-stone-700 dark:bg-stone-900 dark:text-stone-200",
+        time: "步行 2.5分", dist: "180 公尺", timeClass: "bg-stone-600 text-white",
+        desc: "精緻溫馨的現代咖啡餐館，提供拿鐵、自家製烘焙點心與早午餐，是溫泉街上舒適小憩的絕佳去處。"
+      },
+      kawayu: {
+        icon: "♨️", title: "河原湯 (Kawayu 外湯)",
+        badge: "13外湯之一", badgeClass: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+        time: "步行 2分", dist: "150 公尺", timeClass: "bg-blue-600 text-white",
+        desc: "據傳對皮膚病與割傷特別有療效的外湯，水溫較高，充滿濃郁硫磺香氣，傍晚時分村民常來此洗浴談天。"
+      },
+      asagamayu: {
+        icon: "♨️", title: "麻釜之湯 (Asagama-no-yu 外湯)",
+        badge: "13外湯之一", badgeClass: "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200",
+        time: "步行 4分", dist: "320 公尺", timeClass: "bg-blue-600 text-white",
+        desc: "引流自麻釜源泉的外湯，水質清澈滑潤，湯屋小巧靜謐，洗後全身發熱保暖持久。"
+      },
+      shinshu: {
+        icon: "♨️", title: "真湯 (Shin-yu 外湯)",
+        badge: "13外湯之一 (乳白湯)", badgeClass: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900 dark:text-emerald-200",
+        time: "步行 6分", dist: "450 公尺", timeClass: "bg-emerald-600 text-white",
+        desc: "野澤唯一的微綠至乳白色泉質外湯，含有大量天然湯花（溫泉結晶），被譽為美肌之湯，極具特色。"
+      }
+    };
+
+    function showPoi(key) {
+      const p = POI_DETAILS[key];
+      if (!p) return;
+      const elIcon = document.getElementById('poi-icon');
+      const elTitle = document.getElementById('poi-title');
+      const elBadge = document.getElementById('poi-badge');
+      const elTime = document.getElementById('poi-time');
+      const elDist = document.getElementById('poi-dist');
+      const elDesc = document.getElementById('poi-desc');
+      if (elIcon) elIcon.textContent = p.icon;
+      if (elTitle) elTitle.textContent = p.title;
+      if (elBadge) {
+        elBadge.textContent = p.badge;
+        elBadge.className = "px-2 py-0.5 rounded text-[11px] font-bold " + p.badgeClass;
+      }
+      if (elTime) {
+        elTime.textContent = p.time;
+        elTime.className = "inline-block px-2.5 py-1 rounded-lg text-xs font-extrabold " + p.timeClass;
+      }
+      if (elDist) elDist.textContent = p.dist;
+      if (elDesc) elDesc.textContent = p.desc;
+      
+      const box = document.getElementById('poi-info-box');
+      if (box) {
+        box.classList.remove('ring-2', 'ring-blue-500');
+        void box.offsetWidth;
+        box.classList.add('ring-2', 'ring-blue-500');
+      }
+    }
+
+    function scrollToGuideSection(sectionId) {
+      switchMainTab('nozawa-guide');
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 80);
+    }
+
   </script>
 </body>
 </html>
