@@ -1209,17 +1209,17 @@
         <div class="p-4 sm:p-5 bg-[var(--secondary)] border-t border-[var(--border)]">
           <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] tracking-wider mb-2.5">📌 本文目錄快速導覽</div>
           <div class="flex flex-wrap gap-2 text-xs">
-            <button onclick="scrollToGuideSection(\'nz-intro\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">1. 野澤是什麼地方？</button>
-            <button onclick="scrollToGuideSection(\'nz-season\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">2. 最佳滑雪季節</button>
-            <button onclick="scrollToGuideSection(\'nz-zones\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">3. 各雪區難度差異</button>
-            <button onclick="scrollToGuideSection(\'nz-nodrive\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">4. 不自駕可行性分析</button>
-            <button onclick="scrollToGuideSection(\'nz-transit\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">5. 如何前往野澤村</button>
-            <button onclick="scrollToGuideSection(\'nz-luggage\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">6. 行李雪具寄放對比</button>
-            <button onclick="scrollToGuideSection(\'nz-hotel\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">7. 住宿區域挑選</button>
-            <button onclick="scrollToGuideSection(\'nz-localbus\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">8. 村內交通攻略</button>
-            <button onclick="scrollToGuideSection(\'nz-onsenrules\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">9. 13外湯禮儀</button>
-            <button onclick="scrollToGuideSection(\'nz-food\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">10. 村內在地美食</button>
-            <button onclick="scrollToGuideSection(\'nz-souvenir\')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">11. 伴手禮購物</button>
+            <button onclick="scrollToGuideSection('nz-intro')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">1. 野澤是什麼地方？</button>
+            <button onclick="scrollToGuideSection('nz-season')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">2. 最佳滑雪季節</button>
+            <button onclick="scrollToGuideSection('nz-zones')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">3. 各雪區難度差異</button>
+            <button onclick="scrollToGuideSection('nz-nodrive')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">4. 不自駕可行性分析</button>
+            <button onclick="scrollToGuideSection('nz-transit')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">5. 如何前往野澤村</button>
+            <button onclick="scrollToGuideSection('nz-luggage')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">6. 行李雪具寄放對比</button>
+            <button onclick="scrollToGuideSection('nz-hotel')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">7. 住宿區域挑選</button>
+            <button onclick="scrollToGuideSection('nz-localbus')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">8. 村內交通攻略</button>
+            <button onclick="scrollToGuideSection('nz-onsenrules')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">9. 13外湯禮儀</button>
+            <button onclick="scrollToGuideSection('nz-food')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">10. 村內在地美食</button>
+            <button onclick="scrollToGuideSection('nz-souvenir')" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">11. 伴手禮購物</button>
           </div>
         </div>
       </div>
@@ -2351,10 +2351,6 @@
           }
         }
       });
-    } else {
-        btnMicro.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm transition";
-        btnMacro.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition";
-      }
     }
 
     function switchMainTab(tab) {
@@ -2469,25 +2465,6 @@
     // ==========================================
     // MAP & POI INTERACTIVITY
     // ==========================================
-    function switchMapView(view) {
-      ['relative', 'walking', 'mountain'].forEach(v => {
-        const el = document.getElementById('map-view-' + v);
-        const btn = document.getElementById('map-btn-' + v);
-        if (el) el.classList.toggle('hidden', v !== view);
-        if (btn) {
-          if (v === view) {
-            btn.className = "px-3 py-1.5 rounded-lg text-xs font-bold bg-[var(--primary)] text-[var(--primary-foreground)] shadow-sm transition";
-          } else {
-            btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition";
-          }
-        }
-      });
-    } else {
-            btn.className = "px-3 py-1.5 rounded-lg text-xs font-semibold text-[var(--foreground)] hover:opacity-80 transition";
-          }
-        }
-      });
-    }
 
     const POI_DETAILS = {
       genroku: {
