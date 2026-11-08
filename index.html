@@ -97,7 +97,7 @@
         ♨️ 野澤 13 外湯集章 (<span id="onsen-count">0</span>/13)
       </button>
       <button onclick="switchMainTab('nozawa-guide')" id="tab-btn-nozawa-guide" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        🎿 野澤交通＆雪具指南
+        🎿 野澤滑雪全攻略 (班老大版)
       </button>
       <button onclick="switchMainTab('kisarazu')" id="tab-btn-kisarazu" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
         🍓 採草莓＆木更津＆美食
@@ -230,119 +230,373 @@
       </div>
     </div>
 
-    <!-- TAB 4: NOZAWA TRAFFIC & SKI RENTAL GUIDE (NEW!) -->
-    <div id="tab-nozawa-guide" class="hidden space-y-4">
-      <!-- Traffic Section -->
-      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
-        <div>
-          <h2 class="text-lg font-bold text-[var(--foreground)]">🚅 如何抵達野澤溫泉滑雪場：完整交通指南</h2>
-          <p class="text-xs text-[var(--muted-foreground)]">距離野澤溫泉最近的鐵路門戶為<strong>「飯山站 (Iiyama)」</strong>。自東京搭乘 JR 北陸新幹線直達飯山站後轉乘直達巴士，交通動線順暢極佳！</p>
+        <!-- TAB 4: NOZAWA ONSEN SKI GUIDE (BENIC360 STYLE COMPLETE GUIDE) -->
+    <div id="tab-nozawa-guide" class="hidden space-y-6">
+      
+      <!-- Header Hero Card -->
+      <div class="relative rounded-3xl overflow-hidden border border-[var(--border)] shadow-md bg-[var(--card)]">
+        <div class="h-64 sm:h-80 w-full relative">
+          <img src="images/nozawa_slope.jpg" alt="野澤溫泉滑雪場全景" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20 flex flex-col justify-end p-6 sm:p-8 text-white">
+            <div class="flex items-center gap-2 mb-2 flex-wrap">
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-[var(--primary)] text-white">班老大風格深度攻略</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md">不自駕自由行必讀</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/80 text-white">2027 最新完整版</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight">
+              日本野澤溫泉滑雪不自駕全攻略：滑雪場、交通、住宿、美食、購物懶人包
+            </h1>
+            <p class="text-xs sm:text-sm text-gray-200 mt-2 max-w-3xl leading-relaxed">
+              對想去野澤滑雪的人來說，最大疑問往往是：「不自駕真的玩得起來嗎？交通會不會很麻煩？」
+              事實上，野澤溫泉是全日本數一數二<strong>最適合不自駕</strong>的滑雪勝地！百年日式老街聚落、直通雪場的電動步道 Yu-road、免費循環接駁車與 13 外湯，帶你一篇搞定所有行前功課！
+            </p>
+          </div>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-xs text-left border-collapse">
+        <!-- Quick Table of Contents Jump Links -->
+        <div class="p-4 sm:p-5 bg-[var(--secondary)] border-t border-[var(--border)]">
+          <div class="text-xs font-bold uppercase text-[var(--muted-foreground)] tracking-wider mb-2.5">📌 本文目錄快速導覽</div>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <a href="#nz-intro" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">1. 野澤是什麼地方？</a>
+            <a href="#nz-season" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">2. 最佳滑雪季節</a>
+            <a href="#nz-zones" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">3. 各雪區難度差異</a>
+            <a href="#nz-nodrive" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">4. 不自駕可行性分析</a>
+            <a href="#nz-transit" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">5. 如何前往野澤村</a>
+            <a href="#nz-luggage" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">6. 行李雪具寄放對比</a>
+            <a href="#nz-hotel" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">7. 住宿區域挑選</a>
+            <a href="#nz-localbus" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">8. 村內交通攻略</a>
+            <a href="#nz-onsenrules" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">9. 13外湯禮儀</a>
+            <a href="#nz-food" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">10. 村內在地美食</a>
+            <a href="#nz-souvenir" class="px-3 py-1.5 rounded-xl bg-[var(--card)] border border-[var(--border)] hover:border-[var(--primary)] transition font-medium">11. 伴手禮購物</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 1: Intro -->
+      <div id="nz-intro" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🏔️</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">1. 日本野澤溫泉是什麼樣的地方？</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+          <div class="md:col-span-2 space-y-2.5 text-[var(--foreground)] leading-relaxed">
+            <p>
+              野澤溫泉（Nozawa Onsen）位於日本長野縣北部，是一座開湯歷史超過 1,000 年的古老溫泉鄉，同時也是<strong>全日本頂級天然粉雪滑雪場</strong>之一。
+            </p>
+            <p>
+              有別於白馬谷（Hakuba Valley）由 10 座分散各處的獨立雪場組成，<strong>野澤溫泉是一座「超大型單一雪場」</strong>！你不需要每天搭車在不同雪山之間奔波換乘，只要一張纜車票，就能暢滑整座毛無山，從海拔 1,650 公尺山頂一路滑降到山腳溫泉街，高低落差達 1,085 公尺！
+            </p>
+            <div class="grid grid-cols-2 gap-2 pt-1 font-medium">
+              <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• 標高差：1,085 公尺</div>
+              <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• 最長滑行距離：10 公里</div>
+              <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• 滑雪道數量：44 條</div>
+              <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• 天然外湯：13 座免費木造湯屋</div>
+            </div>
+          </div>
+          <div class="rounded-xl overflow-hidden border border-[var(--border)]">
+            <img src="images/nozawa_village.jpg" alt="野澤溫泉街冬景" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Season -->
+      <div id="nz-season" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">📅</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">2. 野澤滑雪季節與最佳前往時間</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">12月中旬～12月底：季初開板</div>
+            <div class="text-[var(--muted-foreground)]">高海拔 Yamabiko 與上之平雪道率先開放，人潮較少，但低海拔雪道需視初雪降雪量而定。</div>
+          </div>
+          <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-400 dark:border-blue-600 space-y-1.5">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-blue-800 dark:text-blue-300">1月中旬～2月中旬：巔峰黃金期</span>
+              <span class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px]">最推薦！</span>
+            </div>
+            <div class="text-blue-950 dark:text-blue-100">
+              全山積雪達到最厚、最鬆軟的「極致粉雪 (Japow)」！且<strong>每年 1 月 15 日舉辦日本三大火祭「道祖神火祭」</strong>，正是本次行程規劃的黃金時段！
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">2月下旬～3月：春雪與晴朗天氣</div>
+            <div class="text-[var(--muted-foreground)]">晴天率大幅提高，雪質轉為鬆軟春雪，氣溫宜人舒服，極適合初學者練習或家庭休閒遊。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Ski Zones Difficulty -->
+      <div id="nz-zones" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">⛷️</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">3. 野澤滑雪適合新手嗎？各大雪區難度整理</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-[var(--muted-foreground)] leading-relaxed">
+          野澤溫泉地形豐富，綠線（初級）佔 40%、紅線（中級）佔 30%、黑線（高級）佔 30%，無論第一次滑雪的新手還是熱愛野雪的高手都能玩得盡興：
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">🟢 上之平高原 (Uenotaira)</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[11px]">初學者天堂</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">寬度達 100 公尺、平均斜度僅 8～12 度的超平坦長雪道，長達 2 公里兩旁針葉林積雪，安全好滑、風景如畫！</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">🟢 日影雪場 (Hikage)</span>
+              <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 font-bold text-[11px]">新手大本營</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">設有滑雪學校、兒童專用玩雪場與初學專用魔毯，<strong>直通村內「Yu-road」自動電扶梯電動步道</strong>，交通最輕鬆。</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">🔴 長坂主纜車區 (Nagasaka)</span>
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 font-bold text-[11px]">超高速 8分登頂</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">2020 年全新落成 10 人座高速箱型纜車，配備全景抗反光玻璃，8 分鐘即可無縫直達海拔 1,400m 山頂站！</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">🔴 毛無山山頂・Yamabiko (山彥)</span>
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 font-bold text-[11px]">樹林野雪＆美食</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">標高 1,650m 最高峰！擁有野澤最棒的非壓雪天然粉雪林間道，山頂 Yamabiko 餐廳的<strong>【銷魂野澤菜燒肉飯】</strong>全山第一！</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">🔴 Skyline (天際線稜線雪道)</span>
+              <span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 font-bold text-[11px]">3.5km 雲海巡航</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">沿著山脊稜線一路奔馳 3,500 公尺，左手邊俯瞰長野北信濃群山與雲海，視野極度震撼，拍滑雪影片首選！</p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-sm text-[var(--foreground)]">⚫ 日影之壁 ＆ 牛首 (Ushikubi)</span>
+              <span class="px-2 py-0.5 rounded bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300 font-bold text-[11px]">39度黑線魔王坡</span>
+            </div>
+            <p class="text-[var(--muted-foreground)]">最大傾斜度高達 39 度的非壓雪大蘑菇巨石陣，是高級雪友考驗控板技術與立體彈跳的極限戰場！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4: Why No-Car Friendly -->
+      <div id="nz-nodrive" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🚗❌</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">4. 不自駕適合去野澤滑雪嗎？（與白馬對比）</h2>
+        </div>
+        <p class="text-xs sm:text-sm text-[var(--foreground)] leading-relaxed">
+          <strong>答案是：超級適合，甚至比白馬更友善、更純粹！</strong>
+        </p>
+        <div class="overflow-x-auto text-xs sm:text-sm">
+          <table class="w-full text-left border-collapse">
             <thead>
               <tr class="border-b border-[var(--border)] bg-[var(--secondary)] text-[var(--secondary-foreground)]">
-                <th class="p-3 font-semibold">出發點</th>
-                <th class="p-3 font-semibold">交通路線與轉乘方式</th>
-                <th class="p-3 font-semibold">所需時間</th>
-                <th class="p-3 font-semibold">備註說明</th>
+                <th class="p-3 font-semibold">比較項目</th>
+                <th class="p-3 font-semibold text-[var(--primary)]">野澤溫泉 (Nozawa)</th>
+                <th class="p-3 font-semibold">白馬谷 (Hakuba Valley)</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[var(--border)]">
               <tr>
-                <td class="p-3 font-bold">東京站 / 上野站</td>
-                <td class="p-3">搭乘 <strong>JR 北陸新幹線「白鷹號 (Hakutaka)」</strong> ➔ 抵達長野縣「飯山站」➔ 於 4 號月台轉乘 <strong>野澤溫泉接駁巴士（Nozawa Onsen Liner）</strong> 直達野澤中央總站</td>
-                <td class="p-3 font-mono font-semibold">約 2～2.5 小時</td>
-                <td class="p-3 text-[var(--muted-foreground)]">新幹線約 100 分鐘，巴士約 25 分鐘 (¥600 可刷 Suica)</td>
+                <td class="p-3 font-bold">雪場型態</td>
+                <td class="p-3 font-medium text-[var(--primary)]">單一超大雪場，一張票暢滑所有山頭</td>
+                <td class="p-3 text-[var(--muted-foreground)]">10 座分散雪場，天天搭車換山頭</td>
               </tr>
               <tr>
-                <td class="p-3 font-bold">成田機場 (NRT)</td>
-                <td class="p-3">於成田機場第二航廈搭乘 <strong>長野雪地接駁車（Nagano Snow Shuttle）</strong> 直達野澤溫泉村</td>
-                <td class="p-3 font-mono font-semibold">約 6.5 小時</td>
-                <td class="p-3 text-[var(--muted-foreground)]">直達免搬行李換車，需提前數週官網預約班次</td>
+                <td class="p-3 font-bold">不自駕村內交通</td>
+                <td class="p-3 font-medium text-[var(--primary)]">徒步即可逛遍老街＋免費循環巴士＋Yu-road 電梯</td>
+                <td class="p-3 text-[var(--muted-foreground)]">各雪場間距離遠，極度仰賴 HV 接駁巴士班次</td>
               </tr>
               <tr>
-                <td class="p-3 font-bold">羽田機場 (HND)</td>
-                <td class="p-3">於羽田機場第三航廈搭乘 <strong>長野雪地接駁車（Nagano Snow Shuttle）</strong> 直達野澤溫泉村</td>
-                <td class="p-3 font-mono font-semibold">約 6.5 小時</td>
-                <td class="p-3 text-[var(--muted-foreground)]">適合紅眼或深夜抵達旅客直奔雪場</td>
+                <td class="p-3 font-bold">溫泉與文化氛圍</td>
+                <td class="p-3 font-medium text-[var(--primary)]">13座百年免費外湯＋道祖神火祭，道地日式風情</td>
+                <td class="p-3 text-[var(--muted-foreground)]">歐美度假村風格、飯店私人溫泉為主</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold">夜生活與覓食</td>
+                <td class="p-3 font-medium text-[var(--primary)]">溫泉街密集居酒屋、酒吧、燒肉，散步 5 分鐘即達</td>
+                <td class="p-3 text-[var(--muted-foreground)]">餐廳分散（白馬村中心／Echoland），需搭車</td>
               </tr>
             </tbody>
           </table>
         </div>
+      </div>
 
-        <!-- Village Free Shuttle Bus -->
-        <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
-          <div class="flex items-center gap-2">
-            <span class="text-base">🚌</span>
-            <h3 class="font-bold text-sm text-[var(--foreground)]">野澤溫泉村免費接駁巴士（Free Shuttle Bus）重點筆記</h3>
+      <!-- Section 5: How to get to Nozawa -->
+      <div id="nz-transit" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🚅</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">5. 如何前往野澤溫泉村？（不自駕大眾運輸指南）</h2>
+        </div>
+        <div class="space-y-3 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="font-bold text-sm text-[var(--foreground)]">🚆 路線 A：從東京市區出發（最推薦・最快速）</div>
+            <div class="text-[var(--muted-foreground)] leading-relaxed">
+              1. 於<strong>「東京站」</strong>或<strong>「上野站」</strong>搭乘 <strong>JR 北陸新幹線「白鷹號 (Hakutaka)」</strong> 直達長野縣<strong>「飯山站 (Iiyama)」</strong>（車程約 100 分鐘）。<br/>
+              2. 抵達飯山站後，走至 <strong>千曲川口 4 號巴士站牌</strong>，搭乘專用直達接駁巴士 <strong>Nozawa Onsen Liner</strong>，約 <strong>25 分鐘</strong> 即可直達野澤溫泉中央總站（單程票價 ¥600 日圓，上車可直接刷 Suica / PASMO IC卡！）。
+            </div>
           </div>
-          <p class="text-xs text-[var(--secondary-foreground)] leading-relaxed">
-            野澤溫泉村雖然人口不多，但腹地遼闊，景點與各纜車站之間距離不短。村內設有<strong>免費循環接駁巴士</strong>，可輕鬆往返各主要區域與景點，讓旅人更自在地享受觀光與滑雪。<br/>
-            📍 <strong>重要站點</strong>：<strong>「前坂入口」</strong> 為最接近雪場的主要下車站，路線亦會經過第一、第二、第三停車場。<br/>
-            ⏱️ <strong>運行期間</strong>：雪季接駁巴士行駛期間約為每年 <strong>12 月 20 日至隔年 3 月 29 日</strong>，行前可向源六櫃台索取最新當日時刻表。
+
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="font-bold text-sm text-[var(--foreground)]">🚌 路線 B：從成田 (NRT) 或羽田 (HND) 機場出發</div>
+            <div class="text-[var(--muted-foreground)] leading-relaxed">
+              冬季可預約專用滑雪巴士 <strong>Nagano Snow Shuttle（長野雪地接駁車）</strong>，從成田 T2 或羽田 T3 直達野澤溫泉村內（車程約 6.5 小時），免去扛著大行李轉乘多次電車的麻煩。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 6: Luggage & Ski Rental -->
+      <div id="nz-luggage" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🧳</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">6. 不自駕去野澤，行李和雪具怎麼辦？</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">📦 黑貓宅急便（空手旅行）</div>
+            <div class="text-[var(--muted-foreground)]">若自帶雪具板袋，出成田/羽田機場直接至 Yamato 櫃檯寄送至野澤民宿（約出發日前 2–3 天寄送），雙手空空搭新幹線最優雅！</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">🏆 Haus St. Anton（本次方案）</div>
+            <div class="text-[var(--muted-foreground)]">就在住宿「源六」斜隔壁走路 30 秒！1/15 抵達即可提早進店試穿雪鞋尺寸，4天 ¥21,800/人，還裝備極度省力。</div>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">🎿 NOZAWA Sports Thanx（免費倉儲）</div>
+            <div class="text-[var(--muted-foreground)]">靠近長坂纜車，<strong>最大亮點是提供「免費雪具寄存倉儲」</strong>！每天滑完直接把板子鞋子留在店裡，換上便鞋走回老街泡湯，不用天天扛雪具爬山！</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 7: Lodging Area Recommendation -->
+      <div id="nz-hotel" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-4">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🏨</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">7. 去野澤滑雪建議住哪？（3 大住宿分區）</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 space-y-2">
+            <div class="font-bold text-sm text-blue-900 dark:text-blue-200">👑 大湯通・溫泉街中心（本團首選）</div>
+            <p class="text-[var(--foreground)]">如：<strong>NOZAWA GENROKU 源六</strong>、朝日屋。</p>
+            <p class="text-[var(--muted-foreground)]">生活機能稱霸！走路 1 分鐘到大湯、便利商店、居酒屋、土產街，搭 Yu-road 電梯上雪場輕鬆愜意。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="font-bold text-sm text-[var(--foreground)]">🎿 長坂／日影雪場周邊（Ski-in / Out）</div>
+            <p class="text-[var(--foreground)]">如：Schneider 飯店、雪場周邊山莊。</p>
+            <p class="text-[var(--muted-foreground)]">早晨出門套上雪板直衝纜車，但夜間想逛溫泉老街吃居酒屋需走下坡或等接駁車。</p>
+          </div>
+          <div class="p-4 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-2">
+            <div class="font-bold text-sm text-[var(--foreground)]">🌾 中尾／新田區（高 CP 值民宿泊）</div>
+            <p class="text-[var(--foreground)]">如：傳統日式溫泉民宿 (Minshuku)。</p>
+            <p class="text-[var(--muted-foreground)]">環境幽靜、氣氛質樸溫馨，緊鄰中尾之湯與新田之湯，搭乘免費接駁巴士往返雪場。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 8: Local Village Traffic -->
+      <div id="nz-localbus" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🚡</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">8. 野澤村當地交通攻略（Yu-road ＆ 免費接駁巴士）</h2>
+        </div>
+        <div class="space-y-2.5 text-xs sm:text-sm text-[var(--foreground)] leading-relaxed">
+          <p>
+            在野澤村內移動主要依靠兩大神器：<strong>「遊湯步道 (Yu-road)」</strong> 與 <strong>「村內免費循環接駁巴士」</strong>：
           </p>
-        </div>
-      </div>
-
-      <!-- Ski Rental Comparison Table -->
-      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-2">
-          <div>
-            <h2 class="text-lg font-bold text-[var(--foreground)]">🏂 野澤雪具租賃店家完整大比拼</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">試算表內收錄之村內 4 大租賃店規格與費用比較（本次行程已拍板預訂 <strong>Haus St. Anton</strong> 4天）。</p>
-          </div>
-          <span class="px-2.5 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300 text-xs font-bold">已預訂 Haus St. Anton ¥21,800/人</span>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="p-4 rounded-xl border-2 border-[var(--primary)] bg-[var(--secondary)] space-y-2">
-            <div class="flex justify-between items-start">
-              <h3 class="font-bold text-sm text-[var(--foreground)]">🏆 Haus St. Anton（本次首選）</h3>
-              <span class="px-2 py-0.5 rounded bg-[var(--primary)] text-[var(--primary-foreground)] text-xs font-bold">已預約</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+              <div class="font-bold text-sm">🛗 遊湯步道（Yu-road 遮雨電動步道）</div>
+              <div class="text-[var(--muted-foreground)]">全封閉透明棚頂電動電扶梯，從溫泉老街上方直通「日影滑雪場」，免費搭乘，穿著雪靴或扛雪具免爬坡！</div>
             </div>
-            <div class="text-xs space-y-1">
-              <div>📍 <strong>地點</strong>：大湯通（就在住宿「源六」斜隔壁，走路 30 秒！）</div>
-              <div>⭐ <strong>特色</strong>：裝備新穎維護好，1/15 抵達可提早試穿確認尺寸，退房還裝備最輕鬆。</div>
-              <div class="p-2 rounded bg-[var(--card)] font-mono text-xs space-y-0.5">
-                <div>• 3日：¥16,600 (約 NT$3,320)</div>
-                <div class="font-bold text-[var(--primary)]">• 4日：¥21,800 (約 NT$4,360) 👈 本次方案</div>
-                <div>• 5日：¥27,000 (約 NT$5,400)</div>
-                <div>• 4小時：¥5,000</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--card)] space-y-2">
-            <h3 class="font-bold text-sm text-[var(--foreground)]">🎿 Shirakaba Rental（白樺）</h3>
-            <div class="text-xs space-y-1">
-              <div>📍 <strong>地點</strong>：靠近日影纜車 (Hikage)</div>
-              <div>⭐ <strong>特色</strong>：LGBQ 友善店家，近兒童雪道與初學者區域。</div>
-              <div class="p-2 rounded bg-[var(--secondary)] font-mono text-xs space-y-0.5 text-[var(--muted-foreground)]">
-                <div>• 3日：¥25,200 (約 NT$5,040)</div>
-                <div>• 4日：¥33,100 (約 NT$6,620)</div>
-                <div>• 5日：¥40,600 (約 NT$8,120)</div>
-                <div>• 4小時：¥8,300</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--card)] space-y-2">
-            <h3 class="font-bold text-sm text-[var(--foreground)]">🎿 NOZAWA Sports Thanx</h3>
-            <div class="text-xs space-y-1">
-              <div>📍 <strong>地點</strong>：靠近長坂纜車 (Nagasaka)</div>
-              <div>⭐ <strong>特色</strong>：價格親民，<strong>提供雪具免費倉儲寄放服務</strong>（免每天扛回飯店），住客再享 9 折。</div>
-              <div class="p-2 rounded bg-[var(--secondary)] font-mono text-xs space-y-0.5 text-[var(--muted-foreground)]">
-                <div>• 非住客 3日：¥14,900 (約 NT$2,980)</div>
-                <div>• 非住客 4日：¥19,400 (約 NT$3,880)</div>
-                <div>• 非住客 5日：¥23,900 (約 NT$4,780)</div>
-                <div>• 配合住客 4日特惠：¥14,400</div>
-              </div>
+            <div class="p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] space-y-1.5">
+              <div class="font-bold text-sm">🚌 免費接駁循環巴士（Free Shuttle Bus）</div>
+              <div class="text-[var(--muted-foreground)]">行駛於野澤溫泉村各主要站點與第一、第二、第三停車場之間，主要下車站為<strong>「前坂入口」</strong>（最靠近雪場主入口），約每 15–20 分鐘一班。</div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Section 9: 13 Onsen Manners -->
+      <div id="nz-onsenrules" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">♨️</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">9. 野澤溫泉 13 外湯巡禮與泡湯禮儀守則</h2>
+        </div>
+        <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 space-y-2 text-xs sm:text-sm">
+          <div class="font-bold text-amber-900 dark:text-amber-200">⚠️ 13 外湯為當地「湯仲間」村民共同出資維護，入浴請遵守 4 大禮儀：</div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-amber-950 dark:text-amber-100">
+            <div>• <strong>隨喜投幣</strong>：免費開放，但請自律於門口賽錢箱投入 <strong>¥100～200 善意維持費</strong>。</div>
+            <div>• <strong>水溫極高</strong>：天然硫磺泉常高達 43–45°C！入水前先淋水熱身，若太燙可開冷水龍頭，離池記得關閉。</div>
+            <div>• <strong>自備用具</strong>：外湯內不提供毛巾、肥皂或洗髮精，請自備小毛巾與盥洗用品。</div>
+            <div>• <strong>毛巾勿入池</strong>：不可將小毛巾浸泡於浴池中，請放置於浴池邊或頭頂。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 10: Local Food -->
+      <div id="nz-food" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🍲</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">10. 野澤村在地必吃美食推薦</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 text-xs sm:text-sm">
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🥩 和牛亭 (Wagyutei)</div>
+            <div class="text-[var(--muted-foreground)]">A5 信州和牛壽喜燒與極致燒肉（1/16 必吃需預約）。</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🍚 山頂 Yamabiko 燒肉飯</div>
+            <div class="text-[var(--muted-foreground)]">毛無山頂必吃！銷魂野澤菜辣炒燒肉飯與手打蕎麥麵。</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🔥 焼肉 びっきゃ (Bikkya)</div>
+            <div class="text-[var(--muted-foreground)]">信州產極上黑毛和牛炭火燒肉，滑雪慶功首選。</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🍢 新屋 (Atarashiya)</div>
+            <div class="text-[var(--muted-foreground)]">炭火烤雞肉串、香氣逼人的鰻魚飯與親子丼名店。</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🌽 溫泉老街小吃</div>
+            <div class="text-[var(--muted-foreground)]">大湯通樂一現煮溫泉玉米、溫泉蛋、現烤野澤菜菜包 (おやき)。</div>
+          </div>
+          <div class="p-3 rounded-xl bg-[var(--secondary)] space-y-1">
+            <div class="font-bold">🍺 里武士 (Libushi)</div>
+            <div class="text-[var(--muted-foreground)]">大湯正對面的英倫風精釀啤酒吧，滑完雪小酌第一名。</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 11: Souvenirs & Ending -->
+      <div id="nz-souvenir" class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-[var(--border)] pb-3">
+          <span class="text-xl">🎁</span>
+          <h2 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">11. 野澤伴手禮 ＆ 班老大風格行前結語</h2>
+        </div>
+        <div class="space-y-3 text-xs sm:text-sm text-[var(--foreground)] leading-relaxed">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• <strong>野澤菜漬物</strong>：發源地正宗醬油漬、芥末漬</div>
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• <strong>八幡屋礒五郎七味粉</strong>：長野三大名產調味粉</div>
+            <div class="p-2.5 rounded-xl bg-[var(--secondary)]">• <strong>13外湯集印帳</strong>：集滿章可換紀念毛巾</div>
+          </div>
+          <div class="p-4 rounded-xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-300 dark:border-blue-800 space-y-1.5">
+            <div class="font-bold text-sm text-[var(--foreground)]">✨ 結語</div>
+            <p>
+              野澤溫泉沒有大型現代商場的喧鬧，卻完整保留了昭和日本的質樸溫度與天然粉雪天堂。不自駕也能搭乘新幹線與直達接駁車輕鬆抵達，穿著浴衣踩著木屐在雪地漫步泡湯，這才是最道地的日本滑雪冬日回憶！
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- TAB 5: KISARAZU OUTLET & FOOD GUIDE -->
