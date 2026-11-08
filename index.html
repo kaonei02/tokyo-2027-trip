@@ -94,7 +94,7 @@
         📅 每日行程 (D1–D12)
       </button>
       <button onclick="switchMainTab('disney')" id="tab-btn-disney" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
-        🌋 迪士尼海洋攻略 (<span id="disney-count">0</span>/10)
+        🌋 迪士尼海洋攻略 (<span id="disney-count">0</span>/14)
       </button>
       <button onclick="switchMainTab('onsen')" id="tab-btn-onsen" class="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-[var(--card)] text-[var(--foreground)] border border-[var(--border)] transition">
         ♨️ 野澤 13 外湯集章 (<span id="onsen-count">0</span>/13)
@@ -908,11 +908,249 @@
         </div>
       </div>
 
+      <!-- Complete Ranked Guide (S+ / S / A / B / Shows) -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border)] pb-3">
+          <div>
+            <h2 class="text-lg font-bold text-[var(--foreground)]">📊 東京迪士尼海洋・全設施＆表演秀推薦排行榜（網友實測分級總表）</h2>
+            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">綜合 2025–2026 Dcard、PTT 日旅版與 Threads 實測評價，依造景沉浸感、刺激度、真實排隊時間與快速通關密技分級整理</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-200 text-xs font-bold">🏆 S+ ～ B 級完整評比</span>
+        </div>
+
+        <!-- Tier S+ -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-rose-600 text-white text-xs font-extrabold">🏆 S+ 級：神作天花板</span>
+            <span class="text-xs text-[var(--muted-foreground)] font-medium">沒玩到會遺憾！造景與科技頂規，全園最搶手</span>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-[var(--secondary)] text-[var(--foreground)] border-b border-[var(--border)]">
+                  <th class="p-2.5 font-bold w-14">排名</th>
+                  <th class="p-2.5 font-bold min-w-[170px]">設施名稱（區域）</th>
+                  <th class="p-2.5 font-bold min-w-[140px]">類型／刺激度</th>
+                  <th class="p-2.5 font-bold w-28">白天真實排隊</th>
+                  <th class="p-2.5 font-bold min-w-[150px]">快速通關／密技</th>
+                  <th class="p-2.5 font-bold min-w-[260px]">網友評價亮點＆避雷提醒</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)]">
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-rose-600 dark:text-rose-400">No.1</td>
+                  <td class="p-2.5 font-bold">❄️ 安娜與艾莎的冰雪之旅<div class="text-[11px] font-normal text-[var(--muted-foreground)]">夢幻泉鄉 Fantasy Springs</div></td>
+                  <td class="p-2.5">室內乘船音樂劇<div class="text-amber-500 font-semibold">★☆☆☆☆ 溫和（微幅滑落）</div></td>
+                  <td class="p-2.5 font-bold text-rose-600 dark:text-rose-400">120–180 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200 font-bold">💰 DPA ¥2,000</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">08:50–09:10 秒殺完售</div></td>
+                  <td class="p-2.5 leading-relaxed"><strong>全園公認第 1 名神作！</strong>電子人偶表情流暢度逆天，邊聽《Let It Go》邊順流滑下超感動。現場排隊極久，<strong>唯一建議一入園第一張 DPA 買它</strong>。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-rose-600 dark:text-rose-400">No.2</td>
+                  <td class="p-2.5 font-bold">🦅 翱翔：夢幻奇航 (Soaring)<div class="text-[11px] font-normal text-[var(--muted-foreground)]">地中海港灣</div></td>
+                  <td class="p-2.5">飛行模擬劇院<div class="text-amber-500 font-semibold">★★☆☆☆ 溫和（懸空高空感）</div></td>
+                  <td class="p-2.5 font-bold text-rose-600 dark:text-rose-400">100–160 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 dark:bg-rose-900/60 dark:text-rose-200 font-bold">💰 DPA ¥2,000</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">09:45–10:15 完售</div></td>
+                  <td class="p-2.5 leading-relaxed">雙腳懸空飛越世界奇景（配香味與微風），結尾飛回東京迪士尼超震撼。缺點是<strong>跟冰雪奇緣 DPA 嚴重衝突</strong>（第 2 張 DPA 常買不到），若沒買到 DPA 需評估是否願意排 2 小時。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-rose-600 dark:text-rose-400">No.3</td>
+                  <td class="p-2.5 font-bold">🧚 小飛俠夢幻島歷險記<div class="text-[11px] font-normal text-[var(--muted-foreground)]">夢幻泉鄉 Fantasy Springs</div></td>
+                  <td class="p-2.5">3D 動感飛船<div class="text-amber-500 font-semibold">★★★☆☆ 中等（易暈注意）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">60–110 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 font-bold">💰 DPA ¥2,000</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">或一開園衝現場排</div></td>
+                  <td class="p-2.5 leading-relaxed">視覺效果與飛行沉浸感極強，像環球影城哈利波特＋蜘蛛人的升級版！但<strong>3D 畫面加上俯衝旋轉，極度容易暈車／暈 3D 的人可能會頭暈</strong>。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tier S -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-amber-500 text-white text-xs font-extrabold">🔥 S 級：海洋獨家王牌</span>
+            <span class="text-xs text-[var(--muted-foreground)] font-medium">全世界只有東京迪士尼海洋才有的鎮園之寶！刺激與造景兼具</span>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-[var(--secondary)] text-[var(--foreground)] border-b border-[var(--border)]">
+                  <th class="p-2.5 font-bold w-14">排名</th>
+                  <th class="p-2.5 font-bold min-w-[170px]">設施名稱（區域）</th>
+                  <th class="p-2.5 font-bold min-w-[140px]">類型／刺激度</th>
+                  <th class="p-2.5 font-bold w-28">白天真實排隊</th>
+                  <th class="p-2.5 font-bold min-w-[150px]">快速通關／密技</th>
+                  <th class="p-2.5 font-bold min-w-[260px]">網友評價亮點＆避雷提醒</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)]">
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-amber-600 dark:text-amber-400">No.4</td>
+                  <td class="p-2.5 font-bold">🌋 地心探險之旅<div class="text-[11px] font-normal text-[var(--muted-foreground)]">神秘島（火山中心）</div></td>
+                  <td class="p-2.5">火山暗黑高速飛車<div class="text-rose-500 font-semibold">★★★★☆ 高刺激（高速俯衝）</div></td>
+                  <td class="p-2.5 font-bold text-rose-600 dark:text-rose-400">90–140 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 font-bold">💰 DPA ¥1,500</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">第 2 張 DPA 首選</div></td>
+                  <td class="p-2.5 leading-relaxed"><strong>全球唯一！</strong>前半段看奇幻地底生物，最後直接從火山口<strong>時速 75 公里衝出戶外俯衝</strong>，爽度全園最高！若《翱翔》DPA 賣完，網友最推第 2 張 DPA 買它。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-amber-600 dark:text-amber-400">No.5</td>
+                  <td class="p-2.5 font-bold">🗿 印第安納瓊斯：水晶骷髏頭魔宮<div class="text-[11px] font-normal text-[var(--muted-foreground)]">失落河三角洲</div></td>
+                  <td class="p-2.5">吉普車暗黑冒險<div class="text-amber-500 font-semibold">★★★☆☆ 中高（劇烈晃動）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">70–110 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-bold">🎟️ 免費 PP / 單人通道</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">Single Rider 約 15–30 分</div></td>
+                  <td class="p-2.5 leading-relaxed">造景超大氣、吉普車甩尾與閃避巨石超刺激！最大優點是<strong>有免費 40 週年 PP 可抽</strong>，且支援 <strong>Single Rider（單人通道）</strong>，完全不用花錢買 DPA 就能玩到。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-extrabold text-amber-600 dark:text-amber-400">No.6</td>
+                  <td class="p-2.5 font-bold">⚡ 驚魂古塔 (Tower of Terror)<div class="text-[11px] font-normal text-[var(--muted-foreground)]">美國海濱</div></td>
+                  <td class="p-2.5">室內故事自由落體<div class="text-rose-600 font-semibold">★★★★★ 極刺激（失重感強）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">75–120 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-900/60 dark:text-amber-200 font-bold">💰 DPA ¥1,500</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">或傍晚現場排</div></td>
+                  <td class="p-2.5 leading-relaxed">東京獨創劇情（偶像「Shiriki Utundu」詛咒消失），升到頂樓打開窗戶俯瞰海洋全景後瞬間急墜三次！<strong>敢坐自由落體的人必玩，怕失重感的人請跳過</strong>。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tier A -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-blue-600 text-white text-xs font-extrabold">🎨 A 級：高人氣經典</span>
+            <span class="text-xs text-[var(--muted-foreground)] font-medium">好玩好拍，建議依體力、排隊時間與喜好挑選 2–3 項</span>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-[var(--secondary)] text-[var(--foreground)] border-b border-[var(--border)]">
+                  <th class="p-2.5 font-bold w-14">排名</th>
+                  <th class="p-2.5 font-bold min-w-[170px]">設施名稱（區域）</th>
+                  <th class="p-2.5 font-bold min-w-[140px]">類型／刺激度</th>
+                  <th class="p-2.5 font-bold w-28">白天真實排隊</th>
+                  <th class="p-2.5 font-bold min-w-[150px]">快速通關／密技</th>
+                  <th class="p-2.5 font-bold min-w-[260px]">網友評價亮點＆避雷提醒</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)]">
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-blue-600 dark:text-blue-400">No.7</td>
+                  <td class="p-2.5 font-bold">🏮 樂佩公主天燈盛會<div class="text-[11px] font-normal text-[var(--muted-foreground)]">夢幻泉鄉 Fantasy Springs</div></td>
+                  <td class="p-2.5">浪漫乘船看景<div class="text-amber-500 font-semibold">★☆☆☆☆ 溫和（零刺激）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">50–90 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-200 font-bold">💰 DPA ¥2,000</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">建議排隊≤50分再現場排</div></td>
+                  <td class="p-2.5 leading-relaxed">天燈場景真的美哭、非常浪漫好拍！但網友普遍提醒<strong>「體感時間超短（約 5 分鐘就結束）」</strong>，不建議花 ¥2,000 買 DPA，適合早場或傍晚排隊 50 分鐘內去坐。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-blue-600 dark:text-blue-400">No.8</td>
+                  <td class="p-2.5 font-bold">🎯 玩具總動員瘋狂遊戲屋<div class="text-[11px] font-normal text-[var(--muted-foreground)]">美國海濱</div></td>
+                  <td class="p-2.5">3D 射擊對戰遊戲<div class="text-amber-500 font-semibold">★☆☆☆☆ 溫和（手會很痠）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">80–120 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-200 font-bold">💰 DPA ¥2,000</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">或趁 19:15 夜間秀去排</div></td>
+                  <td class="p-2.5 leading-relaxed">跟旅伴比拼射擊分數超歡樂，老少咸宜！但白天都要排 90 分鐘以上，網友推薦<strong>趁晚上 19:15 大家去看水上大秀時去排（只剩 40 分鐘）</strong>，或買傍晚 DPA。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-blue-600 dark:text-blue-400">No.9</td>
+                  <td class="p-2.5 font-bold">🎢 忿怒雙神 (Raging Spirits)<div class="text-[11px] font-normal text-[var(--muted-foreground)]">失落河三角洲</div></td>
+                  <td class="p-2.5">360度雲霄飛車<div class="text-rose-500 font-semibold">★★★★☆ 高刺激（唯一倒轉）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">60–100 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-bold">🎟️ 免費 PP / 單人通道</span><div class="text-[11px] text-[var(--muted-foreground)] mt-0.5">Single Rider 約 20–35 分</div></td>
+                  <td class="p-2.5 leading-relaxed">全園唯一有 360 度迴旋的戶外雲霄飛車，就在印第安納瓊斯隔壁。同樣支援<strong>單人通道與免費 PP</strong>，但體感偏短（約 1 分半），喜歡雲霄飛車再排。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-blue-600 dark:text-blue-400">No.10</td>
+                  <td class="p-2.5 font-bold">🐠 尼莫＆好友的海洋世界<div class="text-[11px] font-normal text-[var(--muted-foreground)]">發現港</div></td>
+                  <td class="p-2.5">4D 潛水艇劇院<div class="text-amber-500 font-semibold">★★☆☆☆ 溫和（微幅晃動）</div></td>
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">30–50 分</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-bold">🎟️ 免費 40週年 PP</span></td>
+                  <td class="p-2.5 leading-relaxed">坐進縮小潛水艇跟尼莫一起在海底探險，氣氛可愛輕鬆，適合下午抽一張免費 PP 順路玩。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tier B -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-emerald-600 text-white text-xs font-extrabold">🛋️ B 級：回血神設施＆氣氛體驗</span>
+            <span class="text-xs text-[var(--muted-foreground)] font-medium">免久排、歇腿吹暖氣／冷氣首選，下午走累時救命綠洲</span>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-[var(--border)]">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-[var(--secondary)] text-[var(--foreground)] border-b border-[var(--border)]">
+                  <th class="p-2.5 font-bold w-14">排名</th>
+                  <th class="p-2.5 font-bold min-w-[170px]">設施名稱（區域）</th>
+                  <th class="p-2.5 font-bold min-w-[140px]">類型／刺激度</th>
+                  <th class="p-2.5 font-bold w-28">白天真實排隊</th>
+                  <th class="p-2.5 font-bold min-w-[150px]">快速通關／密技</th>
+                  <th class="p-2.5 font-bold min-w-[260px]">推薦原因＆玩法建議</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)]">
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">No.11</td>
+                  <td class="p-2.5 font-bold">🧞 辛巴達傳奇之旅<div class="text-[11px] font-normal text-[var(--muted-foreground)]">阿拉伯海岸</div></td>
+                  <td class="p-2.5">室內長途乘船音樂劇<div class="text-emerald-600 font-semibold">★☆☆☆☆ 零刺激</div></td>
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">5–15 分鐘</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-bold">✅ 直接走進去免買卡</span></td>
+                  <td class="p-2.5 leading-relaxed"><strong>PTT/Dcard 網友封為「回血神作」！</strong>幾乎不用排隊，坐船吹暖氣／冷氣長達 10 分鐘，小老虎 Chandu 超萌、主題曲超洗腦，下午走累必坐。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">No.12</td>
+                  <td class="p-2.5 font-bold">🦑 海底兩萬哩<div class="text-[11px] font-normal text-[var(--muted-foreground)]">神秘島</div></td>
+                  <td class="p-2.5">潛水艇暗黑探索<div class="text-emerald-600 font-semibold">★☆☆☆☆ 溫和（密閉空間）</div></td>
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">20–40 分鐘</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-900/60 dark:text-emerald-200 font-bold">🎟️ 可抽免費 PP</span></td>
+                  <td class="p-2.5 leading-relaxed">就在《地心探險》正對面，搭乘小型潛水艇拿探照燈照海底怪獸，有免費 PP 可抽，排隊 20 分鐘內可順便玩。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">No.13</td>
+                  <td class="p-2.5 font-bold">🐞 小叮噹奇妙仙子忙碌小車<div class="text-[11px] font-normal text-[var(--muted-foreground)]">夢幻泉鄉 Fantasy Springs</div></td>
+                  <td class="p-2.5">戶外迷你旋轉車<div class="text-emerald-600 font-semibold">★☆☆☆☆ 零刺激（兒童向）</div></td>
+                  <td class="p-2.5 font-bold text-amber-600 dark:text-amber-400">40–70 分鐘</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 font-bold">無 DPA（僅現場排）</span></td>
+                  <td class="p-2.5 leading-relaxed">造景把自己縮小成昆蟲視角很可愛，但設施本身是兒童向慢速車，且無 DPA 只能硬排，除非特別愛奇妙仙子否則可略過。</td>
+                </tr>
+                <tr class="hover:bg-[var(--secondary)]/50">
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">No.14</td>
+                  <td class="p-2.5 font-bold">🛶 威尼斯貢多拉遊船 / 電氣化鐵路<div class="text-[11px] font-normal text-[var(--muted-foreground)]">地中海港灣 / 美國海濱</div></td>
+                  <td class="p-2.5">景觀交通船／復古火車<div class="text-emerald-600 font-semibold">★☆☆☆☆ 零刺激（看風景）</div></td>
+                  <td class="p-2.5 font-bold text-emerald-600 dark:text-emerald-400">20–40 分鐘</td>
+                  <td class="p-2.5"><span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300 font-bold">現場排隊</span></td>
+                  <td class="p-2.5 leading-relaxed">拍照與看風景用，若有空檔想看地中海港灣夕陽或省腳力從美國海濱搭去發現港可搭。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2 Must-Watch Shows -->
+        <div class="space-y-2 pt-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-lg bg-purple-600 text-white text-xs font-extrabold">🎭 兩大必看表演秀（不佔設施 DPA 額度！）</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-800 space-y-1">
+              <div class="font-bold text-sm text-purple-900 dark:text-purple-200">🌟 1. 堅信！～夢想之海～ (Believe! Sea of Dreams)</div>
+              <div class="text-[11px] text-purple-700 dark:text-purple-300 font-semibold">📍 19:15 地中海港灣夜間水上大秀｜🎟️ 岸邊自由卡位 或 買觀賞席 DPA</div>
+              <p class="text-[var(--foreground)] leading-relaxed pt-1">結合巨大船艦、水幕、雷射投影與滿天煙火，場面極度震撼！若想看清楚建議提早 45–60 分鐘在港灣岸邊卡位；若不看秀，這時段去排《玩具總動員》或《冰雪奇緣》等待時間直接砍半！</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 space-y-1">
+              <div class="font-bold text-sm text-indigo-900 dark:text-indigo-200">🎷 2. 動感大樂團 (Big Band Beat: A Special Treat)</div>
+              <div class="text-[11px] text-indigo-700 dark:text-indigo-300 font-semibold">📍 美國海濱百老匯音樂劇場｜🎟️ 入園免費抽籤 (Entry Request) 或 DPA</div>
+              <p class="text-[var(--foreground)] leading-relaxed pt-1">米奇親自上陣打爵士鼓帥翻全場！入園時可在 App 免費抽籤（Entry Request，不影響 DPA 冷卻時間），抽中就能在室內舒服坐著看百老匯級歌舞秀。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h2 class="text-lg font-bold text-[var(--foreground)]">🏆 10 大熱門設施「真實排隊時間 vs 攻略法」（點擊打勾紀錄）</h2>
-            <p class="text-xs text-[var(--muted-foreground)]">標註網友實測真實排隊時間！建議目標：<strong>Tier S 全拿 ＋ Tier A 挑 2–3 項 ＋ Tier B 順路休息</strong>（共約 6–8 項）。</p>
+            <h2 class="text-lg font-bold text-[var(--foreground)]">✅ 14 大設施「互動打卡清單」（點擊卡片打勾紀錄）</h2>
+            <p class="text-xs text-[var(--muted-foreground)]">已對應上方排行榜 No.1 ～ No.14！建議目標：<strong>S+ 與 S 級挑 4–5 項主力 ＋ A/B 級挑 2–3 項調劑</strong>（一天共玩 6–8 項最舒適）。</p>
           </div>
           <button onclick="resetDisney()" class="self-start px-3 py-1.5 rounded-lg border border-[var(--border)] text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]">
             重置紀錄
@@ -2135,16 +2373,20 @@
     }
 
         const DISNEY_RIDES = [
-      { id: "d1", tier: "Tier S 必玩", name: "① 安娜與艾莎的冰雪之旅", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★★☆☆☆", pass: "🔥 現場排 120–180分｜入園第1秒搶 DPA (¥2,000)", desc: "全園人氣霸主！DPA 通常在開園 20–30 分鐘內（約 08:55–09:10）秒殺完售。若沒搶到 DPA，建議刷不定時釋出票，或趁 19:15 夜間大秀時去排（約可縮短至 70–90 分）。" },
-      { id: "d2", tier: "Tier S 必玩", name: "② 小飛俠夢幻島歷險記", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★★★☆☆", pass: "⏳ 現場排 60–110分｜開園第1站衝現場排或買 DPA", desc: "3D 沉浸式飛越倫敦夜空對抗虎克船長！從大門走 18 分鐘抵達時，現場通常已需排 50–75 分鐘（白天平均 80–110 分），開園第一站先排它最划算。" },
-      { id: "d3", tier: "Tier S 必玩", name: "③ 翱翔：夢幻奇航 (Soaring)", zone: "地中海港灣", thrill: "★★☆☆☆", pass: "🔥 現場排 120–180分｜09:50 搶第2張 DPA (¥2,000)", desc: "全園第二快完售的 DPA（常於 09:45–10:15 賣光）！若第一張買了冰雪，滿 60 分鐘冷卻期立刻看還有沒有傍晚 DPA；若已售罄建議果斷取捨，避免硬排 2.5 小時。" },
-      { id: "d4", tier: "Tier S 必玩", name: "④ 地心探險之旅", zone: "神秘島（火山中心）", thrill: "★★★★☆", pass: "⏳ 現場排 90–140分｜強烈建議買第2/3張 DPA (¥1,500)", desc: "迪士尼海洋鎮園之寶，最後時速 75km 衝出火山口！下午現場排隊動輒破百分鐘，非常推薦用 ¥1,500 買 DPA 直接走快速通道，CP 值極高。" },
-      { id: "d5", tier: "Tier A 經典", name: "⑤ 樂佩公主天燈盛會", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★☆☆☆☆", pass: "⏳ 現場排 60–100分｜可與小飛俠二選一或買 DPA", desc: "數百盞天燈水面浪漫造景，視覺極美適合拍 MV！但乘船時間僅約 5 分鐘，網友建議現場排隊在 60 分鐘內再排，或傍晚點燈後再去。" },
-      { id: "d6", tier: "Tier A 經典", name: "⑥ 印第安納瓊斯：水晶骷髏頭魔宮", zone: "失落河三角洲", thrill: "★★★★☆", pass: "⚡ 一般排 80–110分｜走 Single Rider 約 15–30分", desc: "越野車高速穿梭古文明遺跡！就在夢幻泉鄉隔壁，3 男生直接對入口工作人員說「Single Rider (單人通道)」，免費省下 1 小時以上（註：極尖峰時段偶爾會暫停開放）。" },
-      { id: "d7", tier: "Tier A 經典", name: "⑦ 驚魂古塔 (Tower of Terror)", zone: "美國海濱", thrill: "★★★★★", pass: "⏳ 現場排 70–110分｜與玩具總動員二選一或買 DPA", desc: "受詛咒的自由落體電梯，升到頂樓瞬間可飽覽東京灣夜景後急墜！傍晚時段排隊約 75–95 分鐘，也可視情況加買 DPA (¥1,500)。" },
-      { id: "d8", tier: "Tier A 經典", name: "⑧ 玩具總動員瘋狂遊戲屋", zone: "美國海濱", thrill: "★★☆☆☆", pass: "⏳ 現場排 80–120分｜趁 19:15 夜間秀排或買 DPA", desc: "戴 3D 眼鏡瘋狂拉繩射擊 PK 分數！全日排隊都在 90 分鐘上下，若沒買 DPA，推薦在 19:00–19:45 大家看夜間水上秀時去排，隊伍動最快。" },
-      { id: "d9", tier: "Tier B 順路", name: "⑨ 忿怒雙神 (Raging Spirits)", zone: "失落河三角洲", thrill: "★★★★☆", pass: "⚡ 一般排 70–100分｜走 Single Rider 約 15–35分", desc: "全園唯一 360 度環形雲霄飛車，就在印第安納瓊斯正隔壁！同樣善用 Single Rider 單人通道（注意：口袋物品須全數寄放密碼櫃）。" },
-      { id: "d10", tier: "Tier B 順路", name: "⑩ 辛巴達傳奇之旅 ＆ 海底兩萬哩", zone: "阿拉伯海岸 ／ 神秘島", thrill: "★☆☆☆☆", pass: "✅ 辛巴達排 5–15分 ／ 海底排 20–40分（免買卡）", desc: "網友公認最強「回血神作」！《辛巴達》載客量極大幾乎不用排，在室內吹暖氣坐船聽神曲 12 分鐘，是下午走累時拯救雙腿的綠洲。" }
+      { id: "d1", tier: "🏆 S+ 神作", name: "No.1 安娜與艾莎的冰雪之旅", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★☆☆☆☆ 溫和", pass: "🔥 現場排 120–180分｜入園第1秒搶 DPA (¥2,000)", desc: "全園公認第 1 名神作！電子人偶流暢度逆天，DPA 常於開園 20–30 分鐘內（約 08:50–09:10）秒殺完售。唯一建議一入園第一張 DPA 買它。" },
+      { id: "d2", tier: "🏆 S+ 神作", name: "No.2 翱翔：夢幻奇航 (Soaring)", zone: "地中海港灣", thrill: "★★☆☆☆ 懸空感", pass: "🔥 現場排 100–160分｜09:50 搶第2張 DPA (¥2,000)", desc: "雙腳懸空飛越世界奇景（配香味與微風），全園第 2 快完售的 DPA（常於 09:45–10:15 賣光）。跟冰雪奇緣 DPA 嚴重衝突，沒買到 DPA 需評估是否願排 2 小時。" },
+      { id: "d3", tier: "🏆 S+ 神作", name: "No.3 小飛俠夢幻島歷險記", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★★★☆☆ 易暈注意", pass: "⏳ 現場排 60–110分｜一開園衝現場排或買 DPA (¥2,000)", desc: "3D 沉浸式飛越倫敦夜空對抗虎克船長，像哈利波特＋蜘蛛人升級版！但 3D 畫面加上俯衝旋轉，極度容易暈車／暈 3D 的人可能會頭暈。" },
+      { id: "d4", tier: "🔥 S 王牌", name: "No.4 地心探險之旅", zone: "神秘島（火山中心）", thrill: "★★★★☆ 高刺激", pass: "⏳ 現場排 90–140分｜強烈推薦第 2 張 DPA 買它 (¥1,500)", desc: "全球唯一！前半段看奇幻地底生物，最後時速 75km 從火山口衝出戶外俯衝，爽度全園最高！若《翱翔》DPA 賣完，網友最推第 2 張 DPA 買它。" },
+      { id: "d5", tier: "🔥 S 王牌", name: "No.5 印第安納瓊斯：水晶骷髏頭魔宮", zone: "失落河三角洲", thrill: "★★★☆☆ 劇烈晃動", pass: "🎟️ 一般排 70–110分｜免費 PP 或走單人通道 (15–30分)", desc: "吉普車甩尾與閃避巨石超刺激！最大優點是有免費 40 週年 PP 可抽，且支援 Single Rider（單人通道），完全不用花錢買 DPA 就能玩到。" },
+      { id: "d6", tier: "🔥 S 王牌", name: "No.6 驚魂古塔 (Tower of Terror)", zone: "美國海濱", thrill: "★★★★★ 自由落體", pass: "⏳ 現場排 75–120分｜買 DPA (¥1,500) 或傍晚排隊", desc: "東京獨創劇情（偶像詛咒消失），升到頂樓打開窗戶俯瞰海洋全景後瞬間急墜三次！敢坐自由落體的人必玩，怕失重感的人請跳過。" },
+      { id: "d7", tier: "🎨 A 人氣", name: "No.7 樂佩公主天燈盛會", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★☆☆☆☆ 浪漫看景", pass: "⏳ 現場排 50–90分｜建議排隊 ≤50 分再排（不建議買 DPA）", desc: "天燈場景真的美哭、非常浪漫好拍！但網友普遍提醒「體感時間超短（約 5 分鐘就結束）」，適合早場或傍晚排隊 50 分鐘內去坐。" },
+      { id: "d8", tier: "🎨 A 人氣", name: "No.8 玩具總動員瘋狂遊戲屋", zone: "美國海濱", thrill: "★☆☆☆☆ 射擊對戰", pass: "⏳ 現場排 80–120分｜趁 19:15 夜間秀排 (40分) 或買 DPA", desc: "戴 3D 眼鏡瘋狂拉繩射擊 PK 分數超歡樂！白天都要排 90 分鐘以上，推薦趁晚上 19:15 大家看水上大秀時去排，或買傍晚 DPA。" },
+      { id: "d9", tier: "🎨 A 人氣", name: "No.9 忿怒雙神 (Raging Spirits)", zone: "失落河三角洲", thrill: "★★★★☆ 360度倒轉", pass: "🎟️ 一般排 60–100分｜免費 PP 或走單人通道 (20–35分)", desc: "全園唯一有 360 度迴旋的戶外雲霄飛車，就在印第安納瓊斯隔壁。同樣支援單人通道與免費 PP，體感偏短（約 1 分半），喜歡雲霄飛車再排。" },
+      { id: "d10", tier: "🎨 A 人氣", name: "No.10 尼莫＆好友的海洋世界", zone: "發現港", thrill: "★★☆☆☆ 微幅晃動", pass: "🎟️ 現場排 30–50分｜可抽免費 40 週年 PP", desc: "坐進縮小潛水艇跟尼莫一起在海底探險，氣氛可愛輕鬆，適合下午抽一張免費 PP 順路玩。" },
+      { id: "d11", tier: "🛋️ B 回血", name: "No.11 辛巴達傳奇之旅", zone: "阿拉伯海岸", thrill: "★☆☆☆☆ 零刺激", pass: "✅ 現場排 5–15分｜免買卡直接進場", desc: "PTT/Dcard 網友封為「回血神作」！幾乎不用排隊，在室內坐船吹暖氣長達 10 分鐘，小老虎 Chandu 超萌、主題曲超洗腦，下午走累必坐。" },
+      { id: "d12", tier: "🛋️ B 回血", name: "No.12 海底兩萬哩", zone: "神秘島", thrill: "★☆☆☆☆ 密閉探索", pass: "🎟️ 現場排 20–40分｜可抽免費 40 週年 PP", desc: "就在《地心探險》正對面，搭乘小型潛水艇拿探照燈照海底怪獸，有免費 PP 可抽，排隊 20 分鐘內可順便玩。" },
+      { id: "d13", tier: "🛋️ B 回血", name: "No.13 小叮噹奇妙仙子忙碌小車", zone: "夢幻泉鄉 Fantasy Springs", thrill: "★☆☆☆☆ 兒童向", pass: "⏳ 現場排 40–70分｜無 DPA（僅現場排）", desc: "造景把自己縮小成昆蟲視角很可愛，但設施本身是兒童向慢速車，且沒 DPA 只能硬排，除非特別愛奇妙仙子否則可略過。" },
+      { id: "d14", tier: "🛋️ B 回血", name: "No.14 威尼斯貢多拉遊船 / 電氣化鐵路", zone: "地中海港灣 / 美國海濱", thrill: "★☆☆☆☆ 看風景", pass: "⏳ 現場排 20–40分｜不需買卡", desc: "拍照與看風景用，若有空檔想看地中海港灣夕陽或省腳力從美國海濱搭火車去發現港可搭。" }
     ];
 
     const DISNEY_TIMELINE = [
